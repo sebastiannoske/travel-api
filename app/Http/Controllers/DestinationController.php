@@ -14,7 +14,7 @@ class DestinationController extends Controller
      */
     public function index()
     {
-        return Destination::event->all();
+        return Destination::all();
     }
 
     /**

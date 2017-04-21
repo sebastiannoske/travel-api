@@ -28,14 +28,16 @@ Route::group(['middleware' => 'auth:api'], function() {
         ]
     ]);
 
-    Route::resource('events.destinations.travel', 'TravelController', [
+    Route::resource('destinations.travel', 'TravelController', [
         'only' => [
             'index', 'show', 'store'
         ]
     ]);
 
-
-
-
+    Route::resource('transportation_means', 'TransportationMeanController', [
+        'only' => [
+            'index', 'show'
+        ]
+    ]);
 
 });

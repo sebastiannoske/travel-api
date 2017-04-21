@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\TransportationMean;
 
 class TransportationMeanController extends Controller
 {
@@ -13,7 +14,7 @@ class TransportationMeanController extends Controller
      */
     public function index()
     {
-        //
+        return TransportationMean::all();
     }
 
     /**

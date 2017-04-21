@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Travel;
+use App\Destination;
 use App\TravelOffer;
 use App\TravelRequest;
 
@@ -17,10 +18,47 @@ class TravelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $destination_id)
     {
+        if ( sizeof($request->input('kind')) > 0 ) {
 
-        $travel = Travel::with('offer')->with('request')->with('transportation_mean')->orderBy('updated_at', 'desc')->get();
+            if ( $request->input('kind') === 'offer') {
+
+                $travel = Travel::whereHas('destination', function ($query) use ($destination_id) {
+                    $query->where('id', '=', $destination_id);
+                })
+                ->whereHas('offer', function ($query) use ($destination_id) {
+                    $query->where('id', '>', 0);
+                })
+                ->with('offer')
+                ->with('transportation_mean')
+                ->orderBy('id', 'desc')
+                ->get();
+
+                return $travel;
+
+            } elseif ( $request->input('kind') === 'request' ){
+
+                $travel = Travel::whereHas('destination', function ($query) use ($destination_id) {
+                    $query->where('id', '=', $destination_id);
+                })
+                ->whereHas('request', function ($query) use ($destination_id) {
+                    $query->where('id', '>', 0);
+                })
+                ->with('request')
+                ->with('transportation_mean')
+                ->orderBy('id', 'desc')
+                ->get();
+
+                return $travel;
+
+            }
+
+        }
+
+        $travel = Travel::whereHas('destination', function ($query) use ($destination_id) {
+            $query->where('id', '=', $destination_id);
+        })->with('offer')->with('request')->with('transportation_mean')->orderBy('id', 'desc')->get();
 
         return $travel;
     }
@@ -65,7 +103,7 @@ class TravelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $destination_id)
     {
         $user = $this->firstOrCreateUser($request);
 
@@ -74,11 +112,11 @@ class TravelController extends Controller
             'lat' => $request->lat,
             'long' => $request->long,
             'city' => $request->city,
-            'street_address' => $request->street_address,
+            'street_address' => $request->streetAddress,
             'postcode' => $request->postcode,
             'user_id' => $user->id,
-            'destination_id' => $request->destination_id,
-            'transportation_mean_id' => $request->transportation_mean_id
+            'destination_id' => $destination_id,
+            'transportation_mean_id' => $request->transportationMeanId
 
         ]);
 

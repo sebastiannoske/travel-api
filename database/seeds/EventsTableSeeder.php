@@ -20,7 +20,7 @@ class EventsTableSeeder extends Seeder
         ]);
 
         App\Event::create([
-            'name' => 'Demo gegen Biofleisch'
+            'name' => 'Spezielle Demo'
         ]);
     }
 }
