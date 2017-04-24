@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TransportationMean;
+use Illuminate\Support\Facades\DB;
 
 class TransportationMeanController extends Controller
 {
@@ -15,6 +16,28 @@ class TransportationMeanController extends Controller
     public function index()
     {
         return TransportationMean::all();
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexByTravelId(Request $request, $travel_id)
+    {
+
+
+        $tm = DB::table('transportation_means')
+            ->leftJoin('travels', function ($leftJoin) use ($travel_id) {
+                $leftJoin->on('transportation_means.id', '=', 'travels.transportation_mean_id')
+                    ->where('travels.destination_id', '=', $travel_id);
+            })
+            ->where('destination_id', '!=', null)
+            ->select('transportation_means.id', 'transportation_means.  name')
+            ->get();
+
+
+        return $tm;
     }
 
     /**

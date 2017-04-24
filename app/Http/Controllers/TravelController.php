@@ -77,19 +77,27 @@ class TravelController extends Controller
     public function firstOrCreateUser(Request $request)
     {
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->user_email)->first();
 
         if (!$user) {
 
+            $pwRand = str_random(10);
+
             $user = User::firstOrCreate([
-                'email' => $request->email,
-                'name' => $request->name,
-                'password' => bcrypt($request->password)
+                'email' => $request->user_email,
+                'password' => bcrypt($pwRand),
+                'name' => $request->user_name,
+                'street_address' => $request->user_address,
+                'postcode' => $request->user_postcode,
+                'city' => $request->user_city,
+                'phone_number' => $request->user_phone_number,
             ]);
 
             DB::table('role_user')->insert([
                 ['user_id' => $user->id]
             ]);
+
+            \Mail::to($user)->send(new ConfirmTravel($user, $pwRand));
 
         }
 
@@ -113,6 +121,7 @@ class TravelController extends Controller
             'long' => $request->long,
             'city' => $request->city,
             'street_address' => $request->streetAddress,
+            'phone_number' => $request->phone_number,
             'postcode' => $request->postcode,
             'user_id' => $user->id,
             'destination_id' => $destination_id,

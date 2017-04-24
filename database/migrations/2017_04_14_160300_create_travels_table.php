@@ -23,6 +23,7 @@ class CreateTravelsTable extends Migration
             $table->decimal('long', 13,10);
             $table->boolean('public')->default(true);
             $table->integer('user_id')->unsigned();
+            $table->string('phone_number')->nullable();
             $table->integer('destination_id')->unsigned();
             $table->integer('transportation_mean_id')->unsigned();
             $table->timestamps();

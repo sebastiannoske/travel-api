@@ -13,7 +13,7 @@ class Travel extends Model
      * @var array
      */
 
-    protected $fillable = ['description', 'city', 'postcode', 'street_address', 'lat', 'long', 'user_id', 'destination_id', 'transportation_mean_id'];
+    protected $fillable = ['description', 'city', 'postcode', 'street_address', 'phone_number', 'lat', 'long', 'user_id', 'destination_id', 'transportation_mean_id'];
 
     /**
      * The attributes that should be hidden for arrays.
