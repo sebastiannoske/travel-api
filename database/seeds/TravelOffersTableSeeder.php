@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\TravelOffer;
+use Faker\Factory as Faker;
 
 class TravelOffersTableSeeder extends Seeder
 {
@@ -12,28 +12,17 @@ class TravelOffersTableSeeder extends Seeder
      */
     public function run()
     {
-        TravelOffer::create([
-            'travel_id' => 2,
-            'passenger' => 5,
-            'cost' => 50.00
-        ]);
 
-        TravelOffer::create([
-            'travel_id' => 3,
-            'passenger' => 3,
-            'cost' => 150.00
-        ]);
+        foreach (range(1001,2000) as $index) {
 
-        TravelOffer::create([
-            'travel_id' => 5,
-            'passenger' => 2,
-            'cost' => 50.00
-        ]);
+            $faker = Faker::create();
 
-        TravelOffer::create([
-            'travel_id' => 6,
-            'passenger' => 1,
-            'cost' => 20.00
-        ]);
+            DB::table('travel_offers')->insert([
+                'travel_id' => $index,
+                'passenger' => $faker->numberBetween(1,8),
+                'cost' => $faker->numberBetween(8,40)
+            ]);
+
+        }
     }
 }

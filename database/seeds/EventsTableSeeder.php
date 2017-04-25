@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class EventsTableSeeder extends Seeder
 {
@@ -11,16 +12,15 @@ class EventsTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Event::create([
-            'name' => 'TTip Demo'
-        ]);
 
-        App\Event::create([
-            'name' => 'Allgemeine Demo'
-        ]);
 
-        App\Event::create([
-            'name' => 'Spezielle Demo'
-        ]);
+        $faker = Faker::create();
+
+        foreach (range(1,10) as $index) {
+            DB::table('events')->insert([
+                'name' => 'Demo  ' . $faker->word
+            ]);
+        }
+
     }
 }

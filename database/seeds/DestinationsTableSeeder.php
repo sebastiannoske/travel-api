@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Faker\Factory as Faker;
 
 class DestinationsTableSeeder extends Seeder
 {
@@ -12,34 +13,28 @@ class DestinationsTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Destination::create([
-            'name' => 'München',
-            'event_id' => 1,
-            'date' => Carbon::createFromDate(2017, 8, 21, 'GMT')
-        ]);
 
-        App\Destination::create([
-            'name' => 'Hamburg',
-            'event_id' => 1,
-            'date' => Carbon::createFromDate(2017, 8, 21, 'GMT')
-        ]);
+        $faker = Faker::create();
+        $startDate = Carbon::create(2017, 6, 1, 0, 0, 0);
+        $dates = [];
 
-        App\Destination::create([
-            'name' => 'Köln',
-            'event_id' => 1,
-            'date' => Carbon::createFromDate(2017, 8, 21, 'GMT')
-        ]);
+        for ( $i = 0; $i < 10; $i++) {
 
-        App\Destination::create([
-            'name' => 'Berlin',
-            'event_id' => 2,
-            'date' => Carbon::createFromDate(2017, 9, 5, 'GMT')
-        ]);
+            array_push($dates, $startDate->addWeeks(rand(1, 52))->format('Y-m-d H:i:s'));
 
-        App\Destination::create([
-            'name' => 'Berlin',
-            'event_id' => 3,
-            'date' => Carbon::createFromDate(2017, 10, 10, 'GMT')
-        ]);
+        }
+
+
+        foreach (range(1,50) as $index) {
+
+            $event_id = $faker->numberBetween(1,10);
+
+            DB::table('destinations')->insert([
+                'name' => $faker->city,
+                'event_id' => $event_id,
+                'date' => $dates[$event_id - 1]
+            ]);
+        }
+
     }
 }
