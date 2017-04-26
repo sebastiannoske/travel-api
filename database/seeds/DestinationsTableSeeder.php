@@ -18,16 +18,34 @@ class DestinationsTableSeeder extends Seeder
         $startDate = Carbon::create(2017, 6, 1, 0, 0, 0);
         $dates = [];
 
-        for ( $i = 0; $i < 10; $i++) {
+        for ( $i = 0; $i < 7; $i++) {
 
             array_push($dates, $startDate->addWeeks(rand(1, 52))->format('Y-m-d H:i:s'));
 
         }
 
+        DB::table('destinations')->insert([
+            'name' => $faker->city,
+            'event_id' => 1,
+            'date' => $dates[0]
+        ]);
 
-        foreach (range(1,50) as $index) {
+        DB::table('destinations')->insert([
+            'name' => $faker->city,
+            'event_id' => 2,
+            'date' => $dates[1]
+        ]);
 
-            $event_id = $faker->numberBetween(1,10);
+        DB::table('destinations')->insert([
+            'name' => $faker->city,
+            'event_id' => 3,
+            'date' => $dates[1]
+        ]);
+
+
+        foreach (range(4,20) as $index) {
+
+            $event_id = $faker->numberBetween(4,7);
 
             DB::table('destinations')->insert([
                 'name' => $faker->city,
