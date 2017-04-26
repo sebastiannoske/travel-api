@@ -49,7 +49,7 @@ class TravelOffersTableSeeder extends Seeder
 
         }
 
-        foreach (range(2131,2450) as $index) {
+        foreach (range(2201,2450) as $index) {
 
             $faker = Faker::create();
 
