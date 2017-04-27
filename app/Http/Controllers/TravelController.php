@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ConfirmTravel;
+use App\Mail\ConfirmUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
@@ -81,11 +82,9 @@ class TravelController extends Controller
 
         if (!$user) {
 
-            $pwRand = str_random(10);
-
             $user = User::firstOrCreate([
                 'email' => $request->user_email,
-                'password' => bcrypt($pwRand),
+                'password' => bcrypt(str_random(60)),
                 'name' => $request->user_name,
                 'street_address' => $request->user_address,
                 'postcode' => $request->user_postcode,
@@ -97,7 +96,7 @@ class TravelController extends Controller
                 ['user_id' => $user->id]
             ]);
 
-            \Mail::to($user)->send(new ConfirmTravel($user, $pwRand));
+            \Mail::to($user)->send(new ConfirmUser($user));
 
         }
 

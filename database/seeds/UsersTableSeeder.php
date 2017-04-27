@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Basti',
             'email' => 'sebastian.noske@gmail.com',
             'password' => bcrypt('1suchasurge'),
+            'verified' => true,
             'api_token' => str_random(60)
         ]);
 
@@ -23,6 +24,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Kat',
             'email' => 's.noske@gmx.net',
             'password' => bcrypt('1suchasurge'),
+            'verified' => true,
             'api_token' => str_random(60)
         ]);
     }

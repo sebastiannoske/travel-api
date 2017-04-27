@@ -29,6 +29,17 @@ class User extends Authenticatable
         'password', 'remember_token', 'api_token', 'created_at', 'updated_at'
     ];
 
+    public static function boot() {
+
+        parent::boot();
+
+        static::creating(function($user) {
+
+            $user->token = str_random(30);
+
+        });
+    }
+
     /**
      *  Get travel associated with the user
      */

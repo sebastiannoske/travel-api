@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Mail\ConfirmTravel;
+use App\Mail\UserConfirmed;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -68,5 +68,25 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function confirmEmail($token) {
+
+        $user = User::whereToken($token)->firstOrFail();
+
+        $pw = str_random(10);
+
+        $user->password = bcrypt($pw);
+
+        $user->verified = true;
+
+        $user->token = null;
+
+        $user->save();
+
+        \Mail::to($user)->send(new UserConfirmed($user, $pw));
+
+        return redirect('/login');
+
     }
 }

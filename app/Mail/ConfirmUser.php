@@ -8,22 +8,20 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User;
 
-class ConfirmTravel extends Mailable
+class ConfirmUser extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $user;
-    public $pw;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, $pw)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->pw = $pw;
     }
 
     /**
@@ -33,6 +31,6 @@ class ConfirmTravel extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.confirm');
+        return $this->view('emails.confirm-user');
     }
 }
