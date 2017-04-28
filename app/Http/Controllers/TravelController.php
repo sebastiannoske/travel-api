@@ -132,8 +132,6 @@ class TravelController extends Controller
 
         $travel->save();
 
-        dd($request->travel_type);
-
         if ($request->travel_type === 'offer') {
 
             TravelOffer::create([
