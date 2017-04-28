@@ -18,7 +18,7 @@ class TravelOffersTableSeeder extends Seeder
             $faker = Faker::create();
 
             DB::table('travel_offers')->insert([
-                'travel_id' => 1,
+                'travel_id' => $index,
                 'passenger' => $faker->numberBetween(1,8),
                 'cost' => $faker->numberBetween(8,40)
             ]);
@@ -30,7 +30,7 @@ class TravelOffersTableSeeder extends Seeder
             $faker = Faker::create();
 
             DB::table('travel_offers')->insert([
-                'travel_id' => 2,
+                'travel_id' => $index,
                 'passenger' => $faker->numberBetween(1,8),
                 'cost' => $faker->numberBetween(8,40)
             ]);

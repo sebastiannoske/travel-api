@@ -23,12 +23,14 @@ class TravelController extends Controller
     {
         if ( sizeof($request->input('kind')) > 0 ) {
 
+            //dd($request->input('kind') === 'offer');
+
             if ( $request->input('kind') === 'offer') {
 
                 $travel = Travel::whereHas('destination', function ($query) use ($destination_id) {
                     $query->where('id', '=', $destination_id);
                 })
-                ->whereHas('offer', function ($query) use ($destination_id) {
+                ->whereHas('offer', function ($query) {
                     $query->where('id', '>', 0);
                 })
                 ->with('offer')
@@ -129,6 +131,8 @@ class TravelController extends Controller
         ]);
 
         $travel->save();
+
+        dd($request->travel_type);
 
         if ($request->travel_type === 'offer') {
 

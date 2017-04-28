@@ -18,7 +18,7 @@ class TravelRequestsTableSeeder extends Seeder
         foreach (range(1001,1500) as $index) {
 
             DB::table('travel_requests')->insert([
-                'travel_id' => 1,
+                'travel_id' => $index,
                 'passenger' => $faker->numberBetween(1,8),
                 'cost' => $faker->numberBetween(8,40)
             ]);
@@ -28,7 +28,7 @@ class TravelRequestsTableSeeder extends Seeder
         foreach (range(1851,2000) as $index) {
 
             DB::table('travel_requests')->insert([
-                'travel_id' => 2,
+                'travel_id' => $index,
                 'passenger' => $faker->numberBetween(1,8),
                 'cost' => $faker->numberBetween(8,40)
             ]);
