@@ -169,7 +169,7 @@ class TravelController extends Controller
     public function firstOrCreateUser(Request $request)
     {
 
-        $user = User::where('email', $request->user_email)->first();
+        $user = User::where('email', $request->userEmail)->first();
 
         if (!$user) {
 
