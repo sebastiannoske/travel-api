@@ -14,6 +14,21 @@ use App\TravelRequest;
 
 class TravelController extends Controller
 {
+
+    public function confirmTravel($token) {
+
+        $travel = Travel::whereToken($token)->firstOrFail();
+
+        $travel->verified = true;
+
+        $travel->token = null;
+
+        $travel->save();
+
+        return redirect('/login');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,47 +38,75 @@ class TravelController extends Controller
     {
         if ( sizeof($request->input('kind')) > 0 ) {
 
-            //dd($request->input('kind') === 'offer');
+            $travel = [];
+            $paginate = [];
 
             if ( $request->input('kind') === 'offer') {
 
                 $travel = Travel::whereHas('destination', function ($query) use ($destination_id) {
-                    $query->where('id', '=', $destination_id);
-                })
-                ->whereHas('offer', function ($query) {
-                    $query->where('id', '>', 0);
-                })
-                ->with('offer')
-                ->with('transportation_mean')
-                ->orderBy('id', 'desc')
-                ->get();
-
-                return $travel;
+                                $query->where('id', '=', $destination_id);
+                            })
+                            ->whereHas('offer', function ($query) {
+                                $query->where('id', '>', 0);
+                            })
+                            ->with('offer')
+                            ->with('transportation_mean')
+                            ->where([
+                                ['public', '=', '1'],
+                                ['verified', '=', '1'],
+                            ])
+                            ->orderBy('id', 'desc')
+                            ->get();
 
             } elseif ( $request->input('kind') === 'request' ){
 
                 $travel = Travel::whereHas('destination', function ($query) use ($destination_id) {
-                    $query->where('id', '=', $destination_id);
-                })
-                ->whereHas('request', function ($query) use ($destination_id) {
-                    $query->where('id', '>', 0);
-                })
-                ->with('request')
-                ->with('transportation_mean')
-                ->orderBy('id', 'desc')
-                ->get();
-
-                return $travel;
+                                $query->where('id', '=', $destination_id);
+                            })
+                            ->whereHas('request', function ($query) use ($destination_id) {
+                                $query->where('id', '>', 0);
+                            })
+                            ->with('request')
+                            ->with('transportation_mean')
+                            ->where([
+                                ['public', '=', '1'],
+                                ['verified', '=', '1'],
+                            ])
+                            ->orderBy('id', 'desc')
+                            ->get();
 
             }
 
+
+        } else {
+
+            $travel = Travel::whereHas('destination', function ($query) use ($destination_id) {
+                            $query->where('id', '=', $destination_id);
+                        })
+                            ->with('offer')
+                            ->with('request')
+                            ->with('transportation_mean')
+                            ->where([
+                                ['public', '=', '1'],
+                                ['verified', '=', '1'],
+                            ])
+                            ->orderBy('id', 'desc')
+                            ->get();
+
         }
 
-        $travel = Travel::whereHas('destination', function ($query) use ($destination_id) {
-            $query->where('id', '=', $destination_id);
-        })->with('offer')->with('request')->with('transportation_mean')->orderBy('id', 'desc')->get();
+        if ( sizeof($request->input('start')) > 0 && sizeof($request->input('limit')) > 0 ) {
 
-        return $travel;
+            $start = intval($request->input('start'));
+            $limit = intval($request->input('limit'));
+
+            $travel = array_slice ( $travel->toArray() , $start, $limit );
+            $paginate = [ 'start' => $start, 'limit' => $limit ];
+
+        }
+
+
+        return response()->json(['data' => $travel, 'paginate' => $paginate]);
     }
 
     /**
@@ -85,13 +128,13 @@ class TravelController extends Controller
         if (!$user) {
 
             $user = User::firstOrCreate([
-                'email' => $request->user_email,
+                'email' => $request->userEmail,
                 'password' => bcrypt(str_random(60)),
-                'name' => $request->user_name,
-                'street_address' => $request->user_address,
-                'postcode' => $request->user_postcode,
-                'city' => $request->user_city,
-                'phone_number' => $request->user_phone_number,
+                'name' => $request->userName,
+                'street_address' => $request->userAddress,
+                'postcode' => $request->userPostCode,
+                'city' => $request->userCity,
+                'phone_number' => $request->userPhoneNumber,
             ]);
 
             DB::table('role_user')->insert([
@@ -122,7 +165,7 @@ class TravelController extends Controller
             'long' => $request->long,
             'city' => $request->city,
             'street_address' => $request->streetAddress,
-            'phone_number' => $request->phone_number,
+            'phone_number' => $request->phoneNumber,
             'postcode' => $request->postcode,
             'user_id' => $user->id,
             'destination_id' => $destination_id,
@@ -132,7 +175,7 @@ class TravelController extends Controller
 
         $travel->save();
 
-        if ($request->travel_type === 'offer') {
+        if ($request->travelType === 'offer') {
 
             TravelOffer::create([
                 'travel_id' => $travel->id,
@@ -140,7 +183,7 @@ class TravelController extends Controller
                 'cost' => $request->cost
             ]);
 
-        } else if ($request->travel_type === 'request') {
+        } else if ($request->travelType === 'request') {
 
             TravelRequest::create([
                 'travel_id' => $travel->id,
@@ -149,9 +192,9 @@ class TravelController extends Controller
             ]);
         }
 
-        \Mail::to($user)->send(new ConfirmTravel($user));
+        \Mail::to($user)->send(new ConfirmTravel($user, $travel));
 
-        return $travel;
+        return response()->json(['data' => $travel]);
     }
 
     /**
@@ -162,7 +205,14 @@ class TravelController extends Controller
      */
     public function show($id)
     {
-        return Travel::find($id);
+
+        $travel = Travel::where([
+            ['id', '=', $id],
+            ['public', '=', '1'],
+            ['verified', '=', '1'],
+        ])->get();
+
+        return response()->json(['data' => $travel]);
     }
 
     /**

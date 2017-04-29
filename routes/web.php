@@ -26,3 +26,4 @@ Route::get('/home', 'HomeController@index');
 Route::get('/travel', 'PagesController@index');
 Route::get('/travel/{travel}', 'PagesController@edit');
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
+Route::get('/travel/confirm/{token}', 'TravelController@confirmTravel');

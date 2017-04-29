@@ -4,7 +4,7 @@
 
 <head>
 
-    <title></title>
+    <title>User Confirmed</title>
 
 </head>
 

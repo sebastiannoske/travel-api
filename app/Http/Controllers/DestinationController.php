@@ -14,7 +14,9 @@ class DestinationController extends Controller
      */
     public function index()
     {
-        return Destination::all();
+        $destinations = Destination::all();
+
+        return response()->json(['data' => $destinations]);
     }
 
     /**
@@ -46,7 +48,9 @@ class DestinationController extends Controller
      */
     public function show($id)
     {
-        return Destination::find($id);
+        $destination = Destination::find($id);
+
+        return response()->json(['data' => $destination]);
     }
 
     /**

@@ -22,6 +22,8 @@ class CreateTravelsTable extends Migration
             $table->decimal('lat', 12, 10);
             $table->decimal('long', 13,10);
             $table->boolean('public')->default(true);
+            $table->boolean('verified')->default(false);
+            $table->string('token')->nullable();
             $table->integer('user_id')->unsigned();
             $table->string('phone_number')->nullable();
             $table->integer('destination_id')->unsigned();

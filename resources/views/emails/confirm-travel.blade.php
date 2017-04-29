@@ -4,7 +4,7 @@
 
     <head>
 
-        <title>Sign Up Confirmation</title>
+        <title>Travel Confirmation</title>
 
     </head>
 
@@ -14,7 +14,7 @@
 
         <p>
 
-            Du musst nur noch <a href='{{ url("login") }}'>deine angelegte Fahrt bestätigen</a> um diese im Portal zu aktivieren.
+            Du musst nur noch <a href='{{ url("travel/confirm/{$travel->token}") }}'>deine angelegte Fahrt bestätigen</a> um diese im Portal zu aktivieren.
 
         </p>
 

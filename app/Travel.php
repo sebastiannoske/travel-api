@@ -21,7 +21,18 @@ class Travel extends Model
      * @var array
      */
 
-    protected $hidden = ['public', 'user_id', 'destination_id', 'transportation_mean_id', 'created_at', 'updated_at'];
+    protected $hidden = ['public', 'user_id', 'destination_id', 'transportation_mean_id', 'token', 'verified', 'created_at', 'updated_at'];
+
+    public static function boot() {
+
+        parent::boot();
+
+        static::creating(function($travel) {
+
+            $travel->token = str_random(30);
+
+        });
+    }
 
     /**
      *  Get destination associated with the travel

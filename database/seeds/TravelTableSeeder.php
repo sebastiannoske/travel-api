@@ -43,6 +43,7 @@ class TravelTableSeeder extends Seeder
         foreach (range(1,1500) as $index) {
 
             DB::table('travels')->insert([
+                'verified' => true,
                 'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
                 'city' => $faker->city,
                 'postcode' => $faker->postcode,
@@ -58,6 +59,7 @@ class TravelTableSeeder extends Seeder
         foreach (range(1501,2000) as $index) {
 
             DB::table('travels')->insert([
+                'verified' => true,
                 'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
                 'city' => $faker->city,
                 'postcode' => $faker->postcode,
@@ -73,6 +75,7 @@ class TravelTableSeeder extends Seeder
         foreach (range(2001,2200) as $index) {
 
             DB::table('travels')->insert([
+                'verified' => true,
                 'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
                 'city' => $faker->city,
                 'postcode' => $faker->postcode,
@@ -88,6 +91,7 @@ class TravelTableSeeder extends Seeder
         foreach (range(2201,2600) as $index) {
 
             DB::table('travels')->insert([
+                'verified' => true,
                 'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
                 'city' => $faker->city,
                 'postcode' => $faker->postcode,

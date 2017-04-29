@@ -27,7 +27,7 @@ class TransportationMeanController extends Controller
     {
 
 
-        $tm = DB::table('transportation_means')
+        $tms = DB::table('transportation_means')
             ->leftJoin('travels', function ($leftJoin) use ($travel_id) {
                 $leftJoin->on('transportation_means.id', '=', 'travels.transportation_mean_id')
                     ->where('travels.destination_id', '=', $travel_id);
@@ -37,7 +37,7 @@ class TransportationMeanController extends Controller
             ->get();
 
 
-        return $tm;
+        return response()->json(['data' => $tms]);
     }
 
     /**
