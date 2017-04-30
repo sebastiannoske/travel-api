@@ -14,18 +14,35 @@ use App\TravelRequest;
 
 class TravelController extends Controller
 {
+    protected $redirectTo = '/';
 
     public function confirmTravel($token) {
 
-        $travel = Travel::whereToken($token)->firstOrFail();
+        $travel = Travel::whereToken($token)->first();
 
-        $travel->verified = true;
+        if ($travel) {
 
-        $travel->token = null;
+            $travel->verified = true;
 
-        $travel->save();
+            $travel->public = true;
 
-        return redirect('/login');
+            $travel->token = null;
+
+            $travel->save();
+
+            if (\Auth::user()) {
+
+                return redirect('/');
+
+            } else {
+
+                return redirect('/login');
+
+            }
+
+        }
+
+        return redirect('/');
 
     }
 
@@ -41,8 +58,14 @@ class TravelController extends Controller
         $paginate = null;
         $query_by_input_ready = false;
 
-        // All travel if kind = offer,request given
-        if ( sizeof($request->input('kind')) > 0 ) {
+
+        // All travel by a given center coordinate and a radius in km
+        if ( ( sizeof($request->input('center')) > 0 ) && ( sizeof($request->input('radius')) > 0 ) ) {
+
+            // TODO
+
+            // All travel if kind = offer, request given
+        } elseif ( sizeof($request->input('kind')) > 0 ) {
 
             // border box given
             if ( sizeof($request->input('bbox')) > 0 ) {

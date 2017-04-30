@@ -21,7 +21,7 @@ class CreateTravelsTable extends Migration
             $table->string('street_address');
             $table->double('lat', 12, 10);
             $table->double('long', 13,10);
-            $table->boolean('public')->default(true);
+            $table->boolean('public')->default(false);
             $table->boolean('verified')->default(false);
             $table->string('token')->nullable();
             $table->integer('user_id')->unsigned();

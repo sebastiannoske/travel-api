@@ -50,9 +50,12 @@ class TravelTableSeeder extends Seeder
                 'street_address' => $faker->streetAddress,
                 'user_id' => $faker->numberBetween(1,2),
                 'destination_id' => 1,
+                'verified' => true,
+                'public' => true,
                 'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
                 'lat' => $faker->latitude($min = 48, $max = 54),
-                'long' => $faker->longitude($min = 7, $max = 13)
+                'long' => $faker->longitude($min = 7, $max = 13),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ]);
         }
 
@@ -66,9 +69,12 @@ class TravelTableSeeder extends Seeder
                 'street_address' => $faker->streetAddress,
                 'user_id' => $faker->numberBetween(1,2),
                 'destination_id' => 2,
+                'verified' => true,
+                'public' => true,
                 'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
                 'lat' => $faker->latitude($min = 48, $max = 54),
-                'long' => $faker->longitude($min = 7, $max = 13)
+                'long' => $faker->longitude($min = 7, $max = 13),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ]);
         }
 
@@ -82,9 +88,12 @@ class TravelTableSeeder extends Seeder
                 'street_address' => $faker->streetAddress,
                 'user_id' => $faker->numberBetween(1,2),
                 'destination_id' => 3,
+                'verified' => true,
+                'public' => true,
                 'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
                 'lat' => $faker->latitude($min = 48, $max = 54),
-                'long' => $faker->longitude($min = 7, $max = 13)
+                'long' => $faker->longitude($min = 7, $max = 13),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ]);
         }
 
@@ -98,9 +107,12 @@ class TravelTableSeeder extends Seeder
                 'street_address' => $faker->streetAddress,
                 'user_id' => $faker->numberBetween(1,2),
                 'destination_id' => $faker->numberBetween(4,20),
+                'verified' => true,
+                'public' => true,
                 'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
                 'lat' => $faker->latitude($min = 48, $max = 54),
-                'long' => $faker->longitude($min = 7, $max = 13)
+                'long' => $faker->longitude($min = 7, $max = 13),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ]);
         }
 

@@ -12,7 +12,7 @@
 
 <h1>Hallo, {{ $user->name }}</h1>
 
-<p>Deine E-Mail Adress wurde bestätigt. Dein Password lautet: {{ $pw }}</p>
+<p>Deine E-Mail Adresse wurde bestätigt. Du kanst dich nun mit deiner E-Mailadresse und dem Password {{ $pw }} unter <a href='{{ url("login") }}'>hier</a> anmelden.</p>
 
 </body>
 

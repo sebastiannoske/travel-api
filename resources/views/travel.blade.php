@@ -4,10 +4,9 @@
 
     <div class="container">
 
-        @can('edit_travel')
+        @can('edit_own')
 
-
-            @if (isset($travels) && count($travels))
+            @if (isset($travel) && count($travel))
 
                 <div class="table-responsive">
 
@@ -34,28 +33,28 @@
 
                         <tbody>
 
-                        @foreach ($travels as $travel)
+                        @foreach ($travel as $current_travel)
 
-                            <?php $is_offer = $travel->offer; ?>
+                            <?php $is_offer = $current_travel->offer; ?>
 
                             <tr class="<?php if ($is_offer) : echo 'offer'; else: echo 'request'; endif; ?>">
 
-                                <td>{{$travel->created_at->diffForHumans()}}</td>
+                                <td>{{$current_travel->created_at->diffForHumans()}}</td>
                                 <td><?php if ($is_offer) : echo 'Angebot'; else: echo 'Gesuch'; endif; ?></td>
-                                <td>{{$travel->postcode}}</td>
-                                <td>{{$travel->city}}</td>
-                                <td>{{$travel->transportation_mean->name}}</td>
-                                <td>{{$travel->destination->name}}</td>
+                                <td>{{$current_travel->postcode}}</td>
+                                <td>{{$current_travel->city}}</td>
+                                <td>{{$current_travel->transportation_mean->name}}</td>
+                                <td>{{$current_travel->destination->name}}</td>
                                 <td>
-                                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-{{$travel->id}}">
-                                        <input type="checkbox" id="checkbox-{{$travel->id}}" class="mdl-checkbox__input" checked>
+                                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-{{$current_travel->id}}">
+                                        <input type="checkbox" id="checkbox-{{$current_travel->id}}" class="mdl-checkbox__input" @if ($current_travel->verified === 1) checked @endif>
                                     </label>
                                 </td>
-                                <td><a href="{{ url('/travel', $travel->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-button--primary">editieren</button></a></td>
+                                <td><a href="{{ url('/travel', $current_travel->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-button--primary">editieren</button></a></td>
                                 <td><button class="mdl-button mdl-js-button mdl-button--accent">löschen</button></td>
                                 <td>
-                                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-{{$travel->id}}">
-                                        <input type="checkbox" id="switch-{{$travel->id}}" class="mdl-switch__input" <?php if ($travel->public): echo "checked"; endif; ?>>
+                                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-{{$current_travel->id}}">
+                                        <input type="checkbox" id="switch-{{$current_travel->id}}" class="mdl-switch__input" @if ($current_travel->public === 1) checked @endif>
                                         <span class="mdl-switch__label"></span>
                                     </label>
                                 </td>
@@ -67,6 +66,8 @@
                         </tbody>
 
                     </table>
+
+                    {{ $travel->links() }}
 
                 </div>
 

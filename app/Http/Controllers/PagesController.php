@@ -16,8 +16,8 @@ class PagesController extends Controller
     public function index()
     {
 
-        $travels = Travel::with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('updated_at', 'desc')->get();
-        return view('travel', ['travels' => $travels]);
+        $travel = Travel::with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+        return view('travel', ['travel' => $travel]);
 
     }
 
@@ -29,7 +29,7 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $travel = Travel::where('id', '=', $id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('updated_at', 'desc')->first();
+        $travel = Travel::where('id', '=', $id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
         return view('travel-details', ['travel' => $travel]);
     }
 

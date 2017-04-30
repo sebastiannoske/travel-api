@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -73,21 +73,35 @@ class RegisterController extends Controller
 
     public function confirmEmail($token) {
 
-        $user = User::whereToken($token)->firstOrFail();
+        $user = User::whereToken($token)->first();
 
-        $pw = str_random(10);
+        if ($user) {
 
-        $user->password = bcrypt($pw);
+            $pw = str_random(10);
 
-        $user->verified = true;
+            $user->password = bcrypt($pw);
 
-        $user->token = null;
+            $user->verified = true;
 
-        $user->save();
+            $user->token = null;
 
-        \Mail::to($user)->send(new UserConfirmed($user, $pw));
+            $user->save();
 
-        return redirect('/login');
+            \Mail::to($user)->send(new UserConfirmed($user, $pw));
+
+            if (\Auth::user()) {
+
+                return redirect('/');
+
+            } else {
+
+                return redirect('/login');
+
+            }
+
+        }
+
+        return redirect('/');
 
     }
 

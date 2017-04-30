@@ -11,19 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function() {
-
-
-
-});
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-Route::get('/travel', 'PagesController@index');
+Route::get('/', 'PagesController@index');
 Route::get('/travel/{travel}', 'PagesController@edit');
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
 Route::get('/travel/confirm/{token}', 'TravelController@confirmTravel');
