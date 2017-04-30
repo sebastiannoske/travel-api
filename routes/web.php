@@ -15,5 +15,6 @@ Auth::routes();
 
 Route::get('/', 'PagesController@index');
 Route::get('/travel/{travel}', 'PagesController@edit');
+Route::post('/travel/{travel}/ispublic', 'TravelController@setPublicValue');
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
 Route::get('/travel/confirm/{token}', 'TravelController@confirmTravel');

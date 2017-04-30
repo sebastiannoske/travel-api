@@ -317,4 +317,14 @@ class TravelController extends Controller
     {
         //
     }
+
+    public function setPublicValue(Request $request, $id) {
+
+        $value = ( $request->state === 'true') ? 1 : 0;
+        $travel = Travel::find($id);
+        $travel->public = $value;
+        $travel->save();
+
+        return $request->state;
+    }
 }

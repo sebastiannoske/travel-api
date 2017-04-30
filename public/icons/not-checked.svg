@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="LEISTE-FAHRTEN-GRAU-BG" transform="translate(-603.000000, -24.000000)" fill="#C21C34">
+            <g id="Shape">
+                <path d="M613,24 C607.5,24 603,28.5 603,34 C603,39.5 607.5,44 613,44 C618.5,44 623,39.5 623,34 C623,28.5 618.5,24 613,24 L613,24 Z M605,34 C605,29.6 608.6,26 613,26 C617.4,26 621,29.6 621,34 C621,38.4 617.4,42 613,42 C608.6,42 605,38.4 605,34 Z"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -16,7 +16,22 @@ class PagesController extends Controller
     public function index()
     {
 
-        $travel = Travel::with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+        $user = \Auth::user();
+        $travel = null;
+
+        if ($user)
+        {
+            if ($user->hasRole('user')) {
+
+                $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+
+            } else {
+
+                $travel = Travel::with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+
+            }
+        }
+
         return view('travel', ['travel' => $travel]);
 
     }
@@ -29,7 +44,24 @@ class PagesController extends Controller
      */
     public function edit($id)
     {
-        $travel = Travel::where('id', '=', $id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
+
+        $user = \Auth::user();
+        $travel = null;
+
+        if ($user)
+        {
+            if ($user->hasRole('user')) {
+
+                $travel = Travel::where([['user_id', '=', $user->id], ['id', '=', $id]])->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
+
+            } else {
+
+                $travel = Travel::where('id', '=', $id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
+
+            }
+        }
+
+
         return view('travel-details', ['travel' => $travel]);
     }
 
