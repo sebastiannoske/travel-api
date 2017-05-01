@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        
+
         @if (isset($travel) && count($travel))
 
             <div class="table-responsive">
@@ -21,9 +21,9 @@
                         <th>Verkehrsmittel</th>
                         <th>Aktionsort</th>
                         <th>per Mail bestätigt?</th>
-                        <th></th>
-                        <th></th>
                         <th>Aktiv?</th>
+                        <th></th>
+                        <th></th>
 
                     </tr>
 
@@ -46,14 +46,14 @@
                             <td>
                                 @if ($current_travel->verified === 1) <img src="/icons/checked.svg"/> @else <img src="/icons/not-checked.svg"/> @endif
                             </td>
-                            <td><a href="{{ url('/travel', $current_travel->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-button--primary">editieren</button></a></td>
-                            <td><button class="mdl-button mdl-js-button mdl-button--accent">löschen</button></td>
                             <td id="public-switch">
                                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-{{$current_travel->id}}">
                                     <input type="checkbox" id="switch-{{$current_travel->id}}" class="mdl-switch__input" data-ref-id="{{$current_travel->id}}" @if ($current_travel->public === 1) checked @endif>
                                     <span class="mdl-switch__label"></span>
                                 </label>
                             </td>
+                            <td><a href="{{ url('/travel', $current_travel->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a></td>
+                            <td><button class="btn-delete mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" data-ref-id="{{$current_travel->id}}">löschen</button></td>
 
                         </tr>
 

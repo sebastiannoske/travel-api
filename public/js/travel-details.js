@@ -56,6 +56,17 @@ var Global = Global || {};
 
             });
 
+            var picker = new MaterialDatetimePicker({})
+                .on('submit', function(d) {
+                    var date = new Date(d);
+
+                    elements.dateInput.val(moment(date).format('YYYY-MM-DD hh:mm:ss'));
+                });
+
+            elements.datePickerBtn.addEventListener('click', function() {
+                picker.open();
+            }, false);
+
         };
 
         var setValues = function setValues() {
@@ -67,6 +78,8 @@ var Global = Global || {};
         var setElements = function setElements() {
 
             elements.doc = $(document);
+            elements.datePickerBtn = document.getElementById('datepicker-btn');
+            elements.dateInput = $('#datepicker-btn input');
 
         };
 

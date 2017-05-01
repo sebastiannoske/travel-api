@@ -6,6 +6,7 @@ use App\Mail\ConfirmTravel;
 use App\Mail\ConfirmUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\User;
 use App\Travel;
 use App\Destination;
@@ -230,6 +231,7 @@ class TravelController extends Controller
 
         $travel = new Travel([
             'description' => $request->description,
+            'departure_time' => Carbon::createFromFormat('Y-m-d H:i:s', $request->departureTime),
             'lat' => $request->lat,
             'long' => $request->long,
             'city' => $request->city,
@@ -304,7 +306,17 @@ class TravelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $travel = Travel::find($id);
+        $travel->city = $request->city;
+        $travel->postcode = $request->postcode;
+        $travel->street_address = $request->street_address;
+        $travel->departure_time = $request->departure_time;
+        $travel->description = $request->description;
+        $travel->save();
+
+        return redirect('/travel/' . $id );
+
     }
 
     /**
@@ -313,9 +325,28 @@ class TravelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+
+        $offer = TravelOffer::where('travel_id', '=', $id)->first();
+
+        if ($offer) {
+            $offer->delete();
+        } else {
+            $request = TravelRequest::where('travel_id', '=', $id)->first();
+
+            if ($request) {
+                $request->delete();
+            }
+        }
+
+        $travel = Travel::findOrFail($id);
+
+        if ($travel) {
+            $travel->delete();
+        }
+
+        return response()->json(['status' => 'ok']);
     }
 
     public function setPublicValue(Request $request, $id) {

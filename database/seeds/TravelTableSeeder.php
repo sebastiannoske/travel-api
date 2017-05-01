@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 use Faker\Factory as Faker;
 
 class TravelTableSeeder extends Seeder
@@ -45,6 +46,7 @@ class TravelTableSeeder extends Seeder
             DB::table('travels')->insert([
                 'verified' => true,
                 'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                'departure_time' => Carbon::create(2017, rand(6, 11), rand(1, 27), rand(0, 23), rand(0, 59), rand(0, 59)),
                 'city' => $faker->city,
                 'postcode' => $faker->postcode,
                 'street_address' => $faker->streetAddress,
@@ -55,7 +57,7 @@ class TravelTableSeeder extends Seeder
                 'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
                 'lat' => $faker->latitude($min = 48, $max = 54),
                 'long' => $faker->longitude($min = 7, $max = 13),
-                'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+                'created_at' => Carbon::now()
             ]);
         }
 
@@ -64,6 +66,7 @@ class TravelTableSeeder extends Seeder
             DB::table('travels')->insert([
                 'verified' => true,
                 'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                'departure_time' => Carbon::create(2017, rand(6, 11), rand(1, 27), rand(0, 23), rand(0, 59), rand(0, 59)),
                 'city' => $faker->city,
                 'postcode' => $faker->postcode,
                 'street_address' => $faker->streetAddress,
@@ -74,7 +77,7 @@ class TravelTableSeeder extends Seeder
                 'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
                 'lat' => $faker->latitude($min = 48, $max = 54),
                 'long' => $faker->longitude($min = 7, $max = 13),
-                'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+                'created_at' => Carbon::now()
             ]);
         }
 
@@ -83,6 +86,7 @@ class TravelTableSeeder extends Seeder
             DB::table('travels')->insert([
                 'verified' => true,
                 'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                'departure_time' => Carbon::create(2017, rand(6, 11), rand(1, 27), rand(0, 23), rand(0, 59), rand(0, 59)),
                 'city' => $faker->city,
                 'postcode' => $faker->postcode,
                 'street_address' => $faker->streetAddress,
@@ -93,7 +97,7 @@ class TravelTableSeeder extends Seeder
                 'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
                 'lat' => $faker->latitude($min = 48, $max = 54),
                 'long' => $faker->longitude($min = 7, $max = 13),
-                'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+                'created_at' => Carbon::now()
             ]);
         }
 
@@ -102,6 +106,7 @@ class TravelTableSeeder extends Seeder
             DB::table('travels')->insert([
                 'verified' => true,
                 'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                'departure_time' => Carbon::create(2017, rand(6, 11), rand(1, 27), rand(0, 23), rand(0, 59), rand(0, 59)),
                 'city' => $faker->city,
                 'postcode' => $faker->postcode,
                 'street_address' => $faker->streetAddress,
@@ -112,7 +117,7 @@ class TravelTableSeeder extends Seeder
                 'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
                 'lat' => $faker->latitude($min = 48, $max = 54),
                 'long' => $faker->longitude($min = 7, $max = 13),
-                'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+                'created_at' => Carbon::now()
             ]);
         }
 

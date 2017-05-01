@@ -1,0 +1,35 @@
+body {
+    background-color: #fff !important;
+    font-family: 'Roboto', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+tr.request {
+    border-left: 3px solid #C21C34;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.02);
+}
+
+.table-striped>tbody>tr:nth-of-type(even) {
+    background-color: rgba(0,0,0,.05);
+}
+
+.c-datepicker__header-date {
+    height: 182px !important;
+}
+
+.c-datepicker__header-date span {
+    display: block;
+    position: relative;
+    line-height: 1.2em;
+}
+
+.c-datepicker__clock__hours, .c-datepicker__clock__minutes {
+    position: relative !important;
+}
+
+#datepicker-btn * {
+    pointer-events: none;
+}

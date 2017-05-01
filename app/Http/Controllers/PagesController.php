@@ -61,7 +61,6 @@ class PagesController extends Controller
             }
         }
 
-
         return view('travel-details', ['travel' => $travel]);
     }
 
