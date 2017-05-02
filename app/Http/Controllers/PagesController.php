@@ -30,9 +30,16 @@ class PagesController extends Controller
                 $travel = Travel::with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
 
             }
+
+            return view('travel', ['travel' => $travel]);
+
+        } else {
+
+            return redirect('/login');
+
         }
 
-        return view('travel', ['travel' => $travel]);
+
 
     }
 

@@ -12,6 +12,9 @@
 */
 
 Auth::routes();
+Route::any('/register', function() {
+    return redirect('/');
+});
 
 Route::get('/', 'PagesController@index');
 Route::get('/travel/{travel}', 'PagesController@edit');
