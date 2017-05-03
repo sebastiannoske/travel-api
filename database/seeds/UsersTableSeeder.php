@@ -27,5 +27,13 @@ class UsersTableSeeder extends Seeder
             'verified' => true,
             'api_token' => str_random(60)
         ]);
+
+        App\User::create([
+            'name' => 'Philipp',
+            'email' => 'philipp@urban-digitals.com',
+            'password' => bcrypt('philipp123attravelapi'),
+            'verified' => true,
+            'api_token' => str_random(60)
+        ]);
     }
 }
