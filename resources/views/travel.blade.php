@@ -44,7 +44,7 @@
                             <td>{{$current_travel->transportation_mean->name}}</td>
                             <td>{{$current_travel->destination->name}}</td>
                             <td>
-                                @if ($current_travel->verified === 1) <img src="{{ URL::to('/') }}/icons/checked.svg"/> @else <img src="{{ URL::to('/') }}/icons/not-checked.svg"/> @endif
+                                @if ($current_travel->verified === 1) <img src="{{ URL::to('/') }}/img/checked.svg"/> @else <img src="{{ URL::to('/') }}/img/not-checked.svg"/> @endif
                             </td>
                             <td id="public-switch">
                                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-{{$current_travel->id}}">
