@@ -52,7 +52,7 @@
                                     <span class="mdl-switch__label"></span>
                                 </label>
                             </td>
-                            <td><a href="{{ url('/travel', $current_travel->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a></td>
+                            <td><a href="{{ url('/edit-travel', $current_travel->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a></td>
                             <td><button class="btn-delete mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" data-ref-id="{{$current_travel->id}}">löschen</button></td>
 
                         </tr>

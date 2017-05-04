@@ -17,10 +17,10 @@ Route::any('/register', function() {
 });
 
 Route::get('/', 'PagesController@index');
-Route::get('/travel/{travel}', 'PagesController@edit');
+Route::get('/edit-travel/{travel}', 'PagesController@edit');
 Route::post('/travel/{travel}/ispublic', 'TravelController@setPublicValue');
 Route::post('/travel/{travel}/update', 'TravelController@update');
 Route::post('/travel/{travel}/destroy', 'TravelController@destroy');
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
 Route::get('/travel/confirm/{token}', 'TravelController@confirmTravel');
-Route::get('/fahrt/{url_token}', 'PagesController@showByUrlToken');
+Route::get('/travel/{url_token}', 'PagesController@showByUrlToken');
