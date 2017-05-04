@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Mitfahrzentrale') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -56,7 +56,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Mitfahrzentrale') }}
                     </a>
                 </div>
 
@@ -96,6 +96,26 @@
                 </div>
             </div>
         </nav>
+
+        @can('edit_own')
+
+            <div class="sub-nav">
+                <div class="container">
+                    <ul>
+                        <li><a href="/">Fahrten</a></li>
+                        <li><a href="/">Einstellungen</a></li>
+                        <li><a href="/">Userverwaltung</a></li>
+                        <li><a href="/">Email Templates</a></li>
+                        <li><a href="/">Benutzereinstellungen</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        @else
+
+            <br/><br/><br/>
+
+        @endcan
 
         @yield('content')
     </div>

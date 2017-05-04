@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="form-group" id="datepicker-btn">
-                    <label for="departure_time">Abfahrtszeit</label>
+                    <label for="departure_time">Abfahrt</label>
                     <input type="text" class="form-control" id="departure_time" name="departure_time" placeholder="Abfahrtszeit" value="{{$travel->departure_time}}">
                 </div>
 

@@ -33,3 +33,42 @@ tr.request {
 #datepicker-btn * {
     pointer-events: none;
 }
+
+.navbar {
+    margin-bottom: 0 !important;
+}
+
+
+.sub-nav {
+    background-color: #4A4A4A;
+    margin-bottom: 22px;
+}
+
+.sub-nav ul {
+    margin: 0 0 0 -20px;
+    padding: 0;
+}
+
+.sub-nav ul li {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    list-style: none;
+    background-color: transparent;
+    transition: .15s ease background-color;
+}
+
+.sub-nav ul li:hover {
+    background-color: #9B9B9B;
+}
+
+.sub-nav ul li a {
+    padding: 21px 20px 20px;
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+}
+
+.sub-nav ul li a:hover {
+    text-decoration: none;
+}
