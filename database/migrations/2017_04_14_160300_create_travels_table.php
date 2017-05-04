@@ -24,7 +24,8 @@ class CreateTravelsTable extends Migration
             $table->double('long', 13,10);
             $table->boolean('public')->default(false);
             $table->boolean('verified')->default(false);
-            $table->string('token')->nullable();
+            $table->string('token')->nullable()->unique();
+            $table->string('url_token')->nullable()->unique();
             $table->integer('user_id')->unsigned();
             $table->string('phone_number')->nullable();
             $table->integer('destination_id')->unsigned();

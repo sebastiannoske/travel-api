@@ -30,6 +30,7 @@ class Travel extends Model
         static::creating(function($travel) {
 
             $travel->token = str_random(30);
+            $travel->url_token = str_random(4);
 
         });
     }

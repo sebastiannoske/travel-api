@@ -68,7 +68,25 @@ class PagesController extends Controller
             }
         }
 
+        return view('travel-edit', ['travel' => $travel]);
+    }
+
+    /**
+     * Show content for a travel bei url_token.
+     *
+     * @param  int  $url_token
+     * @return \Illuminate\Http\Response
+     */
+    public function showByUrlToken($url_token) {
+
+        $travel = Travel::where([
+            ['url_token', '=', $url_token],
+            ['public', '=', '1'],
+            ['verified', '=', '1'],
+        ])->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
+
         return view('travel-details', ['travel' => $travel]);
+
     }
 
 }
