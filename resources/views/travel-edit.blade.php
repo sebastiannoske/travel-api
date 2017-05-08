@@ -6,7 +6,9 @@
 
         @if (isset($travel) && count($travel))
 
-            @if ($errors->has('administrative_area_level_1') || $errors->has('postal_code') || $errors->has('lat') || $errors->has('lng'))
+            <?php $stopoverError = ($errors->has('administrative_area_level_1') || $errors->has('postal_code') || $errors->has('lat') || $errors->has('lng')); ?>
+
+            @if ($stopoverError)
 
                 <p class="alert alert-danger">
 
@@ -100,9 +102,9 @@
                 @endif
 
 
-                <h5 style="text-align: center;"><a class="btn" role="button" data-toggle="collapse" href="#collapse" aria-expanded="false" aria-controls="collapse">Zwischenstopp hinzufügen <i class="glyphicon glyphicon-plus"></i></a></h5>
+                <h5 style="text-align: center;"><a class="btn" role="button" data-toggle="collapse" href="#collapse" aria-expanded="@if ($stopoverError) true @else false @endif" aria-controls="collapse">Zwischenstopp hinzufügen <i class="glyphicon glyphicon-plus"></i></a></h5>
 
-                <div class="collapse" id="collapse">
+                <div class="collapse @if ($stopoverError) in @endif" id="collapse">
 
                     <div class="form-group">
 

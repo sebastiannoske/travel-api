@@ -379,6 +379,8 @@ class TravelController extends Controller
             }
         }
 
+        Stopover::where('travel_id', '=', $id)->delete();
+
         $travel = Travel::findOrFail($id);
 
         if ($travel) {

@@ -65,10 +65,6 @@ class Handler extends ExceptionHandler
             return response()->json(['status' => 'error', 'message' => 'method not allowed', 'code' => 405], 405);
         }
 
-        if ($request->wantsJson() && $exception instanceof MethodNotAllowedHttpException) {
-            return response()->json(['status' => 'error', 'message' => 'method not allowed', 'code' => 405], 405);
-        }
-
         if ($request->wantsJson() && $exception instanceof QueryException) {
             return response()->json(['status' => 'error', 'message' => 'unprocessable entity', 'code' => 422], 422);
         }

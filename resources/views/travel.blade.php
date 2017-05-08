@@ -71,7 +71,7 @@
 
         @else
 
-            <h4>Bitte Logge dich zuerst ein um Fahren bearbeiten zu können.</h4>
+            <h4>Entweder existiert keine Fahrt zu deinem Profil.</h4>
 
         @endif
 
