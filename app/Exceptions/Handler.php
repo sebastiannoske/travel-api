@@ -5,6 +5,10 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Illuminate\Database\QueryException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +48,33 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if ($request->wantsJson() && $exception instanceof ModelNotFoundException) {
+            return response()->json(['status' => 'error', 'message' => 'object requested not found', 'code' => 404], 404);
+        }
+
+        if ($request->wantsJson() && $exception instanceof NotFoundHttpException) {
+            return response()->json(['status' => 'error', 'message' => 'not found', 'code' => 404], 404);
+        }
+
+        if ($request->wantsJson() && $exception instanceof AuthenticationException) {
+            return response()->json(['status' => 'error', 'message' => 'unauthenticated', 'code' => 401], 401);
+        }
+
+        if ($request->wantsJson() && $exception instanceof MethodNotAllowedHttpException) {
+            return response()->json(['status' => 'error', 'message' => 'method not allowed', 'code' => 405], 405);
+        }
+
+        if ($request->wantsJson() && $exception instanceof MethodNotAllowedHttpException) {
+            return response()->json(['status' => 'error', 'message' => 'method not allowed', 'code' => 405], 405);
+        }
+
+        if ($request->wantsJson() && $exception instanceof QueryException) {
+            return response()->json(['status' => 'error', 'message' => 'unprocessable entity', 'code' => 422], 422);
+        }
+
+        //dd(get_class($exception));
+
         return parent::render($request, $exception);
     }
 

@@ -12,11 +12,12 @@ class DestinationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $event_id)
     {
-        $destinations = Destination::all();
+        $destinations = Destination::where('event_id', '=', $event_id)->get();
 
-        return response()->json(['data' => $destinations]);
+        return response()->json(['data' => $destinations, 'status' => 'success', 'total' => $destinations->count()]);
+
     }
 
     /**
@@ -50,7 +51,7 @@ class DestinationController extends Controller
     {
         $destination = Destination::find($id);
 
-        return response()->json(['data' => $destination]);
+        return response()->json(['data' => $destination, 'status' => 'success', 'total' => $destination->count()]);
     }
 
     /**

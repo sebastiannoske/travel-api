@@ -16,8 +16,8 @@ class EventController extends Controller
     {
 
         $events = Event::all();
+        return response()->json(['data' => $events, 'status' => 'success', 'total' => $events->count()]);
 
-        return response()->json(['data' => $events]);
     }
 
     /**
@@ -49,7 +49,8 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        return Event::find($id);
+        $event = Event::find($id);
+        return response()->json(['data' => $event, 'status' => 'success', 'total' => $event->count()]);
     }
 
     /**

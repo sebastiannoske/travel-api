@@ -18,7 +18,7 @@ class CreateStopoversTable extends Migration
             $table->integer('travel_id')->unsigned();
             $table->string('city');
             $table->string('postcode');
-            $table->string('street_address');
+            $table->string('street_address')->nullable()->default(null);;
             $table->double('lat', 12, 10);
             $table->double('long', 13,10);
             $table->timestamps();

@@ -27,7 +27,7 @@ class PagesController extends Controller
 
             } else {
 
-                $travel = Travel::with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+                $travel = Travel::with('offer')->with('request')->with('stopover')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
 
             }
 
@@ -59,11 +59,11 @@ class PagesController extends Controller
         {
             if ($user->hasRole('user')) {
 
-                $travel = Travel::where([['user_id', '=', $user->id], ['id', '=', $id]])->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
+                $travel = Travel::where([['user_id', '=', $user->id], ['id', '=', $id]])->with('stopover')->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
 
             } else {
 
-                $travel = Travel::where('id', '=', $id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
+                $travel = Travel::where('id', '=', $id)->with('stopover')->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
 
             }
         }
@@ -83,7 +83,7 @@ class PagesController extends Controller
             ['url_token', '=', $url_token],
             ['public', '=', '1'],
             ['verified', '=', '1'],
-        ])->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
+        ])->with('stopover')->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
 
         return view('travel-details', ['travel' => $travel]);
 

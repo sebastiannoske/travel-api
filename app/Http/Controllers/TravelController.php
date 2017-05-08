@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ConfirmTravel;
 use App\Mail\ConfirmUser;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\User;
@@ -12,6 +13,7 @@ use App\Travel;
 use App\Destination;
 use App\TravelOffer;
 use App\TravelRequest;
+use App\Stopover;
 
 class TravelController extends Controller
 {
@@ -180,7 +182,7 @@ class TravelController extends Controller
         }
 
 
-        return response()->json(['data' => $travel, 'paginate' => $paginate]);
+        return response()->json(['data' => $travel, 'paginate' => $paginate, 'status' => 'success', 'total' => $travel->count()]);
     }
 
     /**
@@ -274,7 +276,31 @@ class TravelController extends Controller
 
         \Mail::to($user)->send(new ConfirmTravel($user, $travel));
 
-        return response()->json(['data' => $travel]);
+        return response()->json(['data' => $travel, 'status' => 'success', 'total' => $travel->count()]);
+    }
+
+    public function storeStopover(Requests\CreateStopoverRequest $request, $travel_id) {
+
+        $streetAddress = $request->route;
+
+        if (count($request->street_number)) {
+            $streetAddress .= ' ' . $request->street_number;
+        }
+
+        $stopover = new Stopover([
+            'travel_id' => $travel_id,
+            'lat' => $request->lat,
+            'long' => $request->lng,
+            'city' => $request->administrative_area_level_1,
+            'street_address' => $streetAddress,
+            'postcode' => $request->postal_code
+
+        ]);
+
+        $stopover->save();
+
+        return redirect('/edit-travel/' . $travel_id );
+
     }
 
     /**
@@ -296,7 +322,7 @@ class TravelController extends Controller
             ->with('stopover')
             ->with('transportation_mean')->get();
 
-        return response()->json(['data' => $travel]);
+        return response()->json(['data' => $travel, 'status' => 'success', 'total' => $travel->count()]);
     }
 
     /**
@@ -328,7 +354,7 @@ class TravelController extends Controller
         $travel->description = $request->description;
         $travel->save();
 
-        return redirect('/travel/' . $id );
+        return redirect('/edit-travel/' . $id );
 
     }
 
@@ -359,7 +385,7 @@ class TravelController extends Controller
             $travel->delete();
         }
 
-        return response()->json(['status' => 'ok']);
+        return response()->json(['status' => 'success']);
     }
 
     public function setPublicValue(Request $request, $id) {

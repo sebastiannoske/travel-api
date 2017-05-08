@@ -29,6 +29,7 @@
 
             <p>{{$travel->description}}</p>
 
+
         @else
 
             <h4>Entweder existiert diese Fahrt nicht oder du hast nicht das Recht, diese Fahrt zu sehen.</h4>

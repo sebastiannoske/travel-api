@@ -19,7 +19,7 @@ class CreateTravelsTable extends Migration
             $table->dateTime('departure_time')->nullable()->default(null);
             $table->string('city');
             $table->string('postcode');
-            $table->string('street_address');
+            $table->string('street_address')->nullable()->default(null);
             $table->double('lat', 12, 10);
             $table->double('long', 13,10);
             $table->boolean('public')->default(false);

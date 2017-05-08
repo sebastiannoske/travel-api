@@ -37,8 +37,8 @@ class TransportationMeanController extends Controller
             ->groupBy('transportation_means.id')
             ->get();
 
+        return response()->json(['data' => $tms, 'status' => 'success', 'total' => $tms->count()]);
 
-        return response()->json(['data' => $tms]);
     }
 
     /**
