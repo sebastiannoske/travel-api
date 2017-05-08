@@ -16,8 +16,8 @@ class CreateTravelRequestsTable extends Migration
         Schema::create('travel_requests', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('travel_id')->unsigned();
-            $table->unsignedTinyInteger('passenger');
-            $table->decimal('cost', 7, 2);
+            $table->unsignedTinyInteger('passenger')->nullable()->default(null);;
+            $table->decimal('cost', 7, 2)->nullable()->default(null);;
             $table->timestamps();
             $table->foreign('travel_id')->references('id')->on('travels');
         });

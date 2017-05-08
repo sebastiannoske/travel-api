@@ -233,9 +233,14 @@ class TravelController extends Controller
     {
         $user = $this->firstOrCreateUser($request);
 
+
+        $departure = (isset($request->departureTime)) ? Carbon::createFromFormat('Y-m-d H:i:s', $request->departureTime) : null;
+        $passenger = (isset($request->passenger)) ? $request->passenger : null;
+        $cost = (isset($request->cost)) ? $request->cost : null;
+
         $travel = new Travel([
             'description' => $request->description,
-            'departure_time' => Carbon::createFromFormat('Y-m-d H:i:s', $request->departureTime),
+            'departure_time' => $departure,
             'lat' => $request->lat,
             'long' => $request->long,
             'city' => $request->city,
@@ -254,16 +259,16 @@ class TravelController extends Controller
 
             TravelOffer::create([
                 'travel_id' => $travel->id,
-                'passenger' => $request->passenger,
-                'cost' => $request->cost
+                'passenger' => $passenger,
+                'cost' => $cost
             ]);
 
         } else if ($request->travelType === 'request') {
 
             TravelRequest::create([
                 'travel_id' => $travel->id,
-                'passenger' => $request->passenger,
-                'cost' => $request->cost
+                'passenger' => $passenger,
+                'cost' => $cost
             ]);
         }
 
