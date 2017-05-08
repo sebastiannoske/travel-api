@@ -23,17 +23,18 @@ class TransportationMeanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexByTravelId(Request $request, $travel_id)
+    public function indexByTravelId(Request $request, $destination_id)
     {
 
 
         $tms = DB::table('transportation_means')
-            ->leftJoin('travels', function ($leftJoin) use ($travel_id) {
+            ->leftJoin('travels', function ($leftJoin) use ($destination_id) {
                 $leftJoin->on('transportation_means.id', '=', 'travels.transportation_mean_id')
-                    ->where('travels.destination_id', '=', $travel_id);
+                    ->where('travels.destination_id', '=', $destination_id);
             })
             ->where('destination_id', '!=', null)
-            ->select('transportation_means.id', 'transportation_means.  name')
+            ->select('transportation_means.id', 'transportation_means.name')
+            ->groupBy('transportation_means.id')
             ->get();
 
 

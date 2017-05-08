@@ -85,4 +85,14 @@ class Travel extends Model
 
     }
 
+    /**
+     *  Get stopover associated with the travel
+     */
+
+    public function stopover() {
+
+        return $this->hasMany('App\Stopover');
+
+    }
+
 }

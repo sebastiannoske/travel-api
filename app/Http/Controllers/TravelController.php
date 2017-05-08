@@ -85,6 +85,7 @@ class TravelController extends Controller
                         ->whereBetween('long', [$bbox[1], $bbox[3]])
                         ->with($request->input('kind'))
                         ->with('transportation_mean')
+                        ->with('stopover')
                         ->where([
                             ['public', '=', '1'],
                             ['verified', '=', '1'],
@@ -108,6 +109,7 @@ class TravelController extends Controller
                     })
                     ->with($request->input('kind'))
                     ->with('transportation_mean')
+                    ->with('stopover')
                     ->where([
                         ['public', '=', '1'],
                         ['verified', '=', '1'],
@@ -132,6 +134,7 @@ class TravelController extends Controller
                         ->whereBetween('long', [$bbox[1], $bbox[3]])
                         ->with('offer')
                         ->with('request')
+                        ->with('stopover')
                         ->with('transportation_mean')
                         ->where([
                             ['public', '=', '1'],
@@ -153,6 +156,7 @@ class TravelController extends Controller
                         })
                         ->with('offer')
                         ->with('request')
+                        ->with('stopover')
                         ->with('transportation_mean')
                         ->where([
                             ['public', '=', '1'],
@@ -274,14 +278,18 @@ class TravelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($destionation_id, $travel_id)
     {
 
         $travel = Travel::where([
-            ['id', '=', $id],
+            ['id', '=', $travel_id],
             ['public', '=', '1'],
             ['verified', '=', '1'],
-        ])->get();
+        ])
+            ->with('offer')
+            ->with('request')
+            ->with('stopover')
+            ->with('transportation_mean')->get();
 
         return response()->json(['data' => $travel]);
     }

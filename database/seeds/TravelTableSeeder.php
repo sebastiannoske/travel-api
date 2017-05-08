@@ -25,7 +25,7 @@ class TravelTableSeeder extends Seeder
 
             } else if ($i < 50) {
 
-                array_push($means, 1);
+                array_push($means, 2);
 
             } else if ($i < 75) {
 
