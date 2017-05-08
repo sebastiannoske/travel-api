@@ -6,6 +6,7 @@ use Faker\Factory as Faker;
 
 class StopoverTableSeeder extends Seeder
 {
+    
     /**
      * Run the database seeds.
      *
