@@ -175,6 +175,8 @@ class TravelController extends Controller
 
         };
 
+        $travel_count = $travel->count();
+
         // slice Array, if start and limit is given
         if ( sizeof($request->input('start')) > 0 && sizeof($request->input('limit')) > 0 ) {
 
@@ -183,11 +185,12 @@ class TravelController extends Controller
 
             $travel = array_slice ( $travel->toArray() , $start, $limit );
             $paginate = [ 'start' => $start, 'limit' => $limit ];
+            $travel_count = sizeof($travel);
 
         }
 
 
-        return response()->json(['data' => $travel, 'paginate' => $paginate, 'status' => 'success', 'total' => $travel->count()]);
+        return response()->json(['data' => $travel, 'paginate' => $paginate, 'status' => 'success', 'total' => $travel_count]);
     }
 
     /**
