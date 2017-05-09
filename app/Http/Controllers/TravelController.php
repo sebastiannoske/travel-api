@@ -14,6 +14,7 @@ use App\Destination;
 use App\TravelOffer;
 use App\TravelRequest;
 use App\Stopover;
+use App\TravelContact;
 
 class TravelController extends Controller
 {
@@ -87,6 +88,7 @@ class TravelController extends Controller
                         ->whereBetween('long', [$bbox[1], $bbox[3]])
                         ->with($request->input('kind'))
                         ->with('transportation_mean')
+                        ->with('contact')
                         ->with('stopover')
                         ->where([
                             ['public', '=', '1'],
@@ -111,6 +113,7 @@ class TravelController extends Controller
                     })
                     ->with($request->input('kind'))
                     ->with('transportation_mean')
+                    ->with('contact')
                     ->with('stopover')
                     ->where([
                         ['public', '=', '1'],
@@ -136,8 +139,9 @@ class TravelController extends Controller
                         ->whereBetween('long', [$bbox[1], $bbox[3]])
                         ->with('offer')
                         ->with('request')
-                        ->with('stopover')
                         ->with('transportation_mean')
+                        ->with('contact')
+                        ->with('stopover')
                         ->where([
                             ['public', '=', '1'],
                             ['verified', '=', '1'],
@@ -158,8 +162,9 @@ class TravelController extends Controller
                         })
                         ->with('offer')
                         ->with('request')
-                        ->with('stopover')
+                        ->with('contact')
                         ->with('transportation_mean')
+                        ->with('stopover')
                         ->where([
                             ['public', '=', '1'],
                             ['verified', '=', '1'],
@@ -247,7 +252,6 @@ class TravelController extends Controller
             'long' => $request->long,
             'city' => $request->city,
             'street_address' => $request->streetAddress,
-            'phone_number' => $request->phoneNumber,
             'postcode' => $request->postcode,
             'user_id' => $user->id,
             'destination_id' => $destination_id,
@@ -256,6 +260,14 @@ class TravelController extends Controller
         ]);
 
         $travel->save();
+
+        TravelContact::create([
+            'travel_id' => $travel->id,
+            'organisation' => $request->organisation,
+            'name' => $request->contactName,
+            'phone_number' => $request->phoneNumber,
+            'email' => $request->contactEmail
+        ]);
 
         if ($request->travelType === 'offer') {
 
@@ -276,7 +288,7 @@ class TravelController extends Controller
 
         \Mail::to($user)->send(new ConfirmTravel($user, $travel));
 
-        return response()->json(['data' => $travel, 'status' => 'success', 'total' => $travel->count()]);
+        return response()->json(['data' => [ 'id' => $travel->id ], 'status' => 'success', 'total' => $travel->count()]);
     }
 
     public function storeStopover(Requests\CreateStopoverRequest $request, $travel_id) {
@@ -320,6 +332,7 @@ class TravelController extends Controller
             ->with('offer')
             ->with('request')
             ->with('stopover')
+            ->with('contact')
             ->with('transportation_mean')->get();
 
         return response()->json(['data' => $travel, 'status' => 'success', 'total' => $travel->count()]);

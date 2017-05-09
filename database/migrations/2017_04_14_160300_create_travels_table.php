@@ -27,7 +27,6 @@ class CreateTravelsTable extends Migration
             $table->string('token')->nullable()->unique();
             $table->string('url_token')->nullable()->unique();
             $table->integer('user_id')->unsigned();
-            $table->string('phone_number')->nullable();
             $table->integer('destination_id')->unsigned();
             $table->integer('transportation_mean_id')->unsigned();
             $table->timestamps();

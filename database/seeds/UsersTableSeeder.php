@@ -21,9 +21,9 @@ class UsersTableSeeder extends Seeder
         ]);
 
         App\User::create([
-            'name' => 'Kat',
-            'email' => 's.noske@gmx.net',
-            'password' => bcrypt('1suchasurge'),
+            'name' => 'Stefan',
+            'email' => 'stefan@bassliner.org',
+            'password' => bcrypt('stefan123attravelapi'),
             'verified' => true,
             'api_token' => str_random(60)
         ]);
