@@ -34,6 +34,8 @@ class TravelController extends Controller
 
             $travel->save();
 
+            $this->confirmEmail($travel->user_id);
+
             if (\Auth::user()) {
 
                 return redirect('/');
@@ -47,6 +49,28 @@ class TravelController extends Controller
         }
 
         return redirect('/');
+
+    }
+
+    private function confirmEmail($user_id) {
+
+        $user = User::find($user_id);
+
+        if (!$user->verified) {
+
+            $pw = str_random(10);
+
+            $user->password = bcrypt($pw);
+
+            $user->verified = true;
+
+            $user->token = null;
+
+            $user->save();
+
+            \Mail::to($user)->send(new UserConfirmed($user, $pw));
+
+        }
 
     }
 
@@ -225,7 +249,7 @@ class TravelController extends Controller
                 ['user_id' => $user->id]
             ]);
 
-            \Mail::to($user)->send(new ConfirmUser($user));
+            //\Mail::to($user)->send(new ConfirmUser($user));
 
         }
 
