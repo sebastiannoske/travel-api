@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ConfirmTravel;
+use App\Mail\UserConfirmed;
 use App\Mail\ConfirmUser;
 use Illuminate\Http\Request;
 use App\Http\Requests;
