@@ -26,7 +26,6 @@ class TravelContactsTableSeeder extends Seeder
                 'email' => $faker->safeEmail(),
                 'phone_number' => $faker->e164PhoneNumber()
             ]);
-
         }
     }
 }
