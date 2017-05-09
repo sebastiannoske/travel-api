@@ -18,7 +18,7 @@ class CreateTravelContactsTable extends Migration
             $table->integer('travel_id')->unsigned();
             $table->string('organisation')->nullable();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
             $table->timestamps();
             $table->foreign('travel_id')->references('id')->on('travels');

@@ -272,6 +272,14 @@ class TravelController extends Controller
         $departure = (isset($request->departureTime)) ? Carbon::createFromFormat('Y-m-d H:i:s', $request->departureTime) : null;
         $passenger = (isset($request->passenger)) ? $request->passenger : null;
         $cost = (isset($request->cost)) ? $request->cost : null;
+        $phone_number = $request->phoneNumber;
+        $contact_email = $request->contactEmail;
+
+        if (!$phone_number && !$contact_email) {
+
+            return response()->json(['status' => 'error', 'message' => 'unprocessable entity. at least a phone number or a contact e-email must be specified.', 'code' => 422], 422);
+
+        }
 
         $travel = new Travel([
             'description' => $request->description,
