@@ -237,7 +237,7 @@
 
         @else
 
-            <h4>Entweder existiert diese Fahrt nicht oder du hast nicht das Recht, diese Fahrt zu bearbeiten.</h4>
+            <h5>Entweder existiert diese Fahrt nicht oder du besitzt nicht die nötige Berechtigung diese Fahrt zu bearbeiten.</h5>
 
         @endif
 

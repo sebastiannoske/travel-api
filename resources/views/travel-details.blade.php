@@ -174,7 +174,7 @@
 
         @else
 
-            <h4>Entweder existiert diese Fahrt nicht oder du hast nicht das Recht, diese Fahrt zu sehen.</h4>
+            <h5>Diese Fahrt existiert nicht.</h5>
 
         @endif
 

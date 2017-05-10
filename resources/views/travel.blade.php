@@ -91,11 +91,11 @@
 
             @if ($kind)
 
-                    <h4>Es existiert keine Fahrt zu deinem Profil oder der aktuellen Auswahl. ( @if ($kind === 'offer') Nur Angebote @elseif ($kind === 'request') Nur Gesuche @endif )</h4>
+                    <h5>Es existiert keine Fahrt zu deinem Profil oder der aktuellen Auswahl. ( @if ($kind === 'offer') Nur Angebote @elseif ($kind === 'request') Nur Gesuche @endif )</h5>
 
             @else
 
-                    <h4>Es existiert keine Fahrt zu deinem Profil.</h4>
+                    <h5>Es existiert keine Fahrt zu deinem Profil.</h5>
 
             @endif
 

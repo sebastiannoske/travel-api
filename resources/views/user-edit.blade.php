@@ -138,7 +138,7 @@
 
         @else
 
-            <h4>Du hast nicht das Recht, diese Fahrt zu bearbeiten.</h4>
+            <h5>Du besitzt nicht die nötige Berechtigung diese Fahrt zu bearbeiten.</h5>
 
         @endif
 

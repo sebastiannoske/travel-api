@@ -83,7 +83,7 @@
 
         @else
 
-            <h4>Du hast nicht das Recht, E-Mail Templates zu bearbeiten.</h4>
+            <h4>Du besitzt nicht die nötige Berechtigung E-Mail Templates zu bearbeiten.</h4>
 
         @endif
 
