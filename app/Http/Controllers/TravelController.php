@@ -399,7 +399,7 @@ class TravelController extends Controller
         $travel->city = $request->city;
         $travel->postcode = $request->postcode;
         $travel->street_address = $request->street_address;
-        $travel->departure_time = $request->departure_time;
+        $travel->departure_time = Carbon::createFromFormat('d.m.Y H:i', $request->departure_time);
         $travel->description = $request->description;
         $travel->save();
 

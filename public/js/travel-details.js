@@ -61,7 +61,9 @@ var Global = Global || {};
                 .on('submit', function(d) {
                     var date = new Date(d);
 
-                    elements.dateInput.val(moment(date).format('YYYY-MM-DD hh:mm:ss'));
+                    elements.dateInput.val(moment(date).format('DD.MM.YYYY hh:mm'));
+                }).on('cancel', function(d) {
+                    elements.dateInput.val('');
                 });
 
             elements.datePickerBtn.addEventListener('click', function() {
