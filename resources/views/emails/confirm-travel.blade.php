@@ -10,7 +10,7 @@
 
     <body>
 
-        <h2>{{$template->title}} {{ $user->name }}!</h2>
+        <h3>{{$template->title}} {{ $user->name }}!</h3>
 
         <p>{!! nl2br(e($template->text)) !!}</p>
 
