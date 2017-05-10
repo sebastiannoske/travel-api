@@ -1,3 +1,5 @@
+Vue.component('search', require('./components/Search.vue'));
+
 var Global = Global || {};
 
 (function($){
