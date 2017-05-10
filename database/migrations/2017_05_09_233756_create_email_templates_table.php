@@ -17,9 +17,9 @@ class CreateEmailTemplatesTable extends Migration
             $table->increments('id');
             $table->integer('event_id')->unsigned();
             $table->string('template_name');
-            $table->string('title');
-            $table->string('text');
-            $table->string('closing');
+            $table->text('title');
+            $table->text('text');
+            $table->text('closing');
             $table->timestamps();
             $table->foreign('event_id')->references('id')->on('events');
         });
