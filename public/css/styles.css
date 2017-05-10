@@ -1,5 +1,5 @@
 body {
-    background-color: #fff !important;
+    background-color: rgba(244,244,244,1) !important;
     font-family: 'Roboto', sans-serif !important;
     -webkit-font-smoothing: antialiased;
 }
@@ -71,4 +71,33 @@ tr.request {
 
 .sub-nav ul li a:hover {
     text-decoration: none;
+}
+
+body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.sub-nav {
+    display: none;
+}
+
+.travel-details {
+    margin-top: 50px;
+}
+
+.travel-details p span {
+    font-weight: bold;
+    display: inline-block;
+    min-width:50px;
+}
+
+.travel-details .section-wrap.wide p span {
+    min-width:100px;
+}
+
+.travel-details .section-wrap {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 7px 2px rgba(0,0,0,.1);
+}
+
+.travel-details .section-wrap p {
+    margin-bottom: 0;
 }

@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User;
+use App\EmailTemplate;
 
 class UserConfirmed extends Mailable
 {
@@ -14,6 +15,7 @@ class UserConfirmed extends Mailable
 
     public $user;
     public $pw;
+    public $template;
 
     /**
      * Create a new message instance.
@@ -24,6 +26,7 @@ class UserConfirmed extends Mailable
     {
         $this->user = $user;
         $this->pw = $pw;
+        $this->template = EmailTemplate::find(2);
     }
 
     /**

@@ -8,27 +8,57 @@
 
             <?php $is_offer = $travel->offer; ?>
 
-            <h4 style="text-align: center;"><?php if ($is_offer) : echo 'Angebot'; else: echo 'Gesuch'; endif; ?> / <span class="small">Fahrt nach</span> {{$travel->destination->name}}</h4>
+            <div class="row travel-details">
 
-            <div><span class="small">Erstellt: {{$travel->created_at->diffForHumans()}}</span></div>
-            <div>Verkehrsmittel: {{$travel->transportation_mean->name}}</div><br/>
+                <div class="col-md-6">
 
-            <br/><br/>
+                    <div class="section-wrap">
 
-            <h5>Abfahrt</h5>
+                        <h5>Infos</h5>
 
-            <p>{{$travel->city}}</p>
+                        <p><span>art:</span> <?php if ($is_offer) : echo 'Angebot'; else: echo 'Gesuch'; endif; ?></p>
 
-            <p>{{$travel->postcode}}</p>
+                        <p><span>von:</span> {{$travel->street_address}}, {{$travel->postcode}}, {{$travel->city}}</p>
 
-            <p>{{$travel->street_address}}</p>
+                        <p><span>nach:</span> {{$travel->destination->name}}</p>
 
-            <p>{{$travel->departure_time}}</p>
+                        <p><span>am:</span> {{ Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y')}}</p>
 
-            <h5>Fahrt</h5>
+                        <p><span>um:</span> {{ Carbon\Carbon::parse($travel->departure_time)->format('h:m')}} Uhr</p>
 
-            <p>{{$travel->description}}</p>
+                        <p><span>wie:</span> {{$travel->transportation_mean->name}}</p>
 
+                    </div>
+
+                    <div class="section-wrap">
+
+                        <h5>Beschreibung</h5>
+
+                        <p>{{$travel->description}}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="section-wrap wide">
+
+                        <h5>Kontakt & Ansprechpartner</h5>
+
+                        <p><span>Organisation:</span> {{$travel->contact->organisation}}</p>
+
+                        <p><span>Kontakt:</span> {{$travel->contact->name}}</p>
+
+                        <p><span>E-Mail:</span> <a href="mailto:{{$travel->contact->email}}">{{$travel->contact->email}}</a></p>
+
+                        <p><span>Telefon:</span> <a href="tel:{{$travel->contact->phone_number}}">{{$travel->contact->phone_number}}</a></p>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         @else
 

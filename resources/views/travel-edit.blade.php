@@ -8,6 +8,10 @@
 
             <?php $stopoverError = ($errors->has('administrative_area_level_1') || $errors->has('postal_code') || $errors->has('lat') || $errors->has('lng')); ?>
 
+            <?php $is_offer = $travel->offer; ?>
+
+            <h4 style="text-align: center;"><?php if ($is_offer) : echo 'Angebot'; else: echo 'Gesuch'; endif; ?> / <span class="small">Fahrt nach</span> {{$travel->destination->name}}</h4>
+
             @if ($stopoverError)
 
                 <p class="alert alert-danger">
@@ -20,9 +24,17 @@
 
             @endif
 
-            <?php $is_offer = $travel->offer; ?>
+            @if (session()->has('message'))
 
-            <h4 style="text-align: center;"><?php if ($is_offer) : echo 'Angebot'; else: echo 'Gesuch'; endif; ?> / <span class="small">Fahrt nach</span> {{$travel->destination->name}}</h4>
+                <p class="alert alert-success">
+
+                    <?php echo session('message')[0]; ?>
+
+                </p>
+
+                <br/><br/><br/>
+
+            @endif
 
             <div><span class="small">Erstellt: {{$travel->created_at->diffForHumans()}}</span></div>
             <div>Verkehrsmittel: {{$travel->transportation_mean->name}}</div><br/>
@@ -37,38 +49,86 @@
 
             <br/><br/>
 
-            <form method="POST" action="/travel/{{$travel->id}}/update">
+            {!! Form::open(['url' => "/travel/$travel->id/update"]) !!}
 
-                {{ csrf_field() }}
+                <div class="row">
 
-                <h5>Abfahrt</h5>
+                    <div class="col-md-6">
 
-                <div class="form-group">
-                    <label for="city">Stadt</label>
-                    <input type="text" class="form-control" id="city" name="city" placeholder="Stadt" value="{{$travel->city}}">
-                </div>
+                        <h5>Abfahrt</h5>
+
+                        <div class="form-group <?php if ($errors->has('city')) echo 'has-error'; ?>">
+
+                            {{ Form::label('city', 'Stadt')}}
+                            {{ Form::text('city', $travel->city, array_merge(['class' => 'form-control', 'id' => 'city'])) }}
+
+                        </div>
+
+                        <div class="form-group <?php if ($errors->has('postcode')) echo 'has-error'; ?>">
+
+                            {{ Form::label('postcode', 'Postleitzahl')}}
+                            {{ Form::text('postcode', $travel->postcode, array_merge(['class' => 'form-control', 'id' => 'postcode'])) }}
+
+                        </div>
+
+                        <div class="form-group <?php if ($errors->has('street_address')) echo 'has-error'; ?>">
+
+                            {{ Form::label('street_address', 'Straße, Nr.')}}
+                            {{ Form::text('street_address', $travel->street_address, array_merge(['class' => 'form-control', 'id' => 'street_address'])) }}
+
+                        </div>
+
+                        <div class="form-group <?php if ($errors->has('departure_time')) echo 'has-error'; ?>">
+
+                            {{ Form::label('departure_time', 'Abfahrt')}}
+                            {{ Form::text('departure_time', $travel->departure_time, array_merge(['class' => 'form-control', 'id' => 'departure_time'])) }}
+
+                        </div>
+
+                        <div class="form-group <?php if ($errors->has('description')) echo 'has-error'; ?>">
+
+                            {{ Form::label('description', 'Beschreibung')}}
+                            {{ Form::textarea('description', $travel->description, array_merge(['class' => 'form-control', 'id' => 'description'])) }}
+
+                        </div>
+
+                    </div>
 
 
-                <div class="form-group">
-                    <label for="postcode">Postleitzahl</label>
-                    <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Postleitzahl" value="{{$travel->postcode}}">
-                </div>
+                    <div class="col-md-6">
 
-                <div class="form-group">
-                    <label for="street_address">Straße, Nr.</label>
-                    <input type="text" class="form-control" id="street_address" name="street_address" placeholder="Straße, Nr" value="{{$travel->street_address}}">
-                </div>
+                        <h5>Kontakt</h5>
 
-                <div class="form-group" id="datepicker-btn">
-                    <label for="departure_time">Abfahrt</label>
-                    <input type="text" class="form-control" id="departure_time" name="departure_time" placeholder="Abfahrtszeit" value="{{$travel->departure_time}}">
-                </div>
+                        <div class="form-group <?php if ($errors->has('organisation')) echo 'has-error'; ?>">
 
-                <h5>Fahrt</h5>
+                            {{ Form::label('organisation', 'Organisation')}}
+                            {{ Form::text('organisation', $travel->contact->organisation, array_merge(['class' => 'form-control', 'id' => 'organisation'])) }}
 
-                <div class="form-group">
-                    <label for="description">Beschreibung</label>
-                    <textarea class="form-control" rows="10" id="description" name="description" placeholder="Beschreibung">{{$travel->description}}</textarea>
+                        </div>
+
+                        <div class="form-group <?php if ($errors->has('name')) echo 'has-error'; ?>">
+
+                            {{ Form::label('name', 'Kontakt-Person')}}
+                            {{ Form::text('name', $travel->contact->name, array_merge(['class' => 'form-control', 'id' => 'name'])) }}
+
+                        </div>
+
+                        <div class="form-group <?php if ($errors->has('email')) echo 'has-error'; ?>">
+
+                            {{ Form::label('email', 'E-Mail')}}
+                            {{ Form::text('email', $travel->contact->email, array_merge(['class' => 'form-control', 'id' => 'email'])) }}
+
+                        </div>
+
+                        <div class="form-group <?php if ($errors->has('phone_number')) echo 'has-error'; ?>">
+
+                            {{ Form::label('phone_number', 'Telefon')}}
+                            {{ Form::text('phone_number', $travel->contact->phone_number, array_merge(['class' => 'form-control', 'id' => 'phone_number'])) }}
+
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <div style="text-align: right;">
@@ -78,7 +138,7 @@
 
                 </div>
 
-            </form>
+            {!! Form::close() !!}
 
             @if ($travel->transportation_mean_id === 2)
 

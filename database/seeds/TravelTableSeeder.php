@@ -33,7 +33,7 @@ class TravelTableSeeder extends Seeder
 
             } else {
 
-                array_push($means, $faker->numberBetween(4,7));
+                array_push($means, $faker->numberBetween(4,6));
 
             }
 

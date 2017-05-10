@@ -347,7 +347,7 @@ class TravelController extends Controller
 
         $stopover->save();
 
-        return redirect('/edit-travel/' . $travel_id );
+        return redirect()->back()->with('message', ['Zwischenstopp hinzugefügt.']);
 
     }
 
@@ -392,7 +392,7 @@ class TravelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\UpdateTravelRequest $request, $id)
     {
 
         $travel = Travel::find($id);
@@ -403,7 +403,14 @@ class TravelController extends Controller
         $travel->description = $request->description;
         $travel->save();
 
-        return redirect('/edit-travel/' . $id );
+        $travel_contact = TravelContact::where('travel_id', '=', $travel->id)->first();
+        $travel_contact->organisation = $request->organisation;
+        $travel_contact->name = $request->name;
+        $travel_contact->email = $request->email;
+        $travel_contact->phone_number = $request->phone_number;
+        $travel_contact->save();
+
+        return redirect()->back()->with('message', ['Änderungen gespeichert.']);
 
     }
 
@@ -429,6 +436,7 @@ class TravelController extends Controller
         }
 
         Stopover::where('travel_id', '=', $id)->delete();
+        TravelContact::where('travel_id', '=', $id)->delete();
 
         $travel = Travel::findOrFail($id);
 

@@ -2,18 +2,26 @@
 
 <html>
 
-<head>
+    <head>
 
-    <title>User Confirmed</title>
+        <title>User Confirmed</title>
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-<h1>Hallo, {{ $user->name }}</h1>
+        <h2>{{$template->title}} {{ $user->name }}</h2>
 
-<p>Deine E-Mail Adresse wurde bestätigt. Du kanst dich nun mit deiner E-Mailadresse und dem Password {{ $pw }} unter <a href='{{ url("login") }}'>hier</a> anmelden.</p>
+        <p>{!! nl2br(e($template->text)) !!}</p>
 
-</body>
+        <br/>
+
+        <p>Du kannst dich nun mit deiner E-Mailadresse und dem Password "{{ $pw }}" <a href='{{ url("login") }}'>hier</a> anmelden.</p>
+
+        <br/>
+
+        <p>{!! nl2br(e($template->closing)) !!}</p>
+
+    </body>
 
 </html>

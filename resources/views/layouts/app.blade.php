@@ -40,7 +40,7 @@
         ]) !!};
     </script>
 </head>
-<body>
+<body class="template-{{ collect(\Request::segments())->implode('-') }}">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -99,17 +99,19 @@
 
         @can('edit_own')
 
-            <div class="sub-nav">
+            <nav class="sub-nav">
                 <div class="container">
                     <ul>
                         <li><a href="/">Fahrten</a></li>
-                        <li><a href="/">Einstellungen</a></li>
-                        <li><a href="/">Userverwaltung</a></li>
-                        <li><a href="/">Email Templates</a></li>
-                        <li><a href="/">Benutzereinstellungen</a></li>
+                        @can('edit_all')
+                            <li><a href="/">Einstellungen</a></li>
+                            <li><a href="/">Userverwaltung</a></li>
+                            <li><a href="/emails">Email Templates</a></li>
+                        @endcan
+                        <li><a href="/user">Benutzereinstellungen</a></li>
                     </ul>
                 </div>
-            </div>
+            </nav>
 
         @else
 

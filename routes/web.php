@@ -17,7 +17,7 @@ Route::any('/register', function() {
 });
 
 Route::get('/', 'PagesController@index');
-Route::get('/edit-travel/{travel}', 'PagesController@edit');
+Route::get('/edit-travel/{travel}', 'PagesController@editTravel');
 Route::post('/travel/{travel}/ispublic', 'TravelController@setPublicValue');
 Route::post('/travel/{travel}/stopover', 'TravelController@storeStopover');
 Route::post('/travel/{travel}/update', 'TravelController@update');
@@ -25,3 +25,10 @@ Route::post('/travel/{travel}/destroy', 'TravelController@destroy');
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
 Route::get('/travel/confirm/{token}', 'TravelController@confirmTravel');
 Route::get('/travel/{url_token}', 'PagesController@showByUrlToken');
+
+Route::get('/user', 'PagesController@editUser');
+Route::post('/user/{user}/update', 'UserController@update');
+Route::post('/user/{user}/updatepassword', 'UserController@updatePassword');
+
+Route::get('/emails', 'PagesController@editEmails');
+Route::post('/email/{email}/update', 'EmailController@update');

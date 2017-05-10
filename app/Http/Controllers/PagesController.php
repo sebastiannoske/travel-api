@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Travel;
+use App\EmailTemplate;
 
 class PagesController extends Controller
 {
@@ -49,7 +50,7 @@ class PagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editTravel($id)
     {
 
         $user = \Auth::user();
@@ -59,16 +60,49 @@ class PagesController extends Controller
         {
             if ($user->hasRole('user')) {
 
-                $travel = Travel::where([['user_id', '=', $user->id], ['id', '=', $id]])->with('stopover')->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
+                $travel = Travel::where([['user_id', '=', $user->id], ['id', '=', $id]])->with('stopover')->with('offer')->with('request')->with('contact')->with('destination')->with('transportation_mean')->first();
 
             } else {
 
-                $travel = Travel::where('id', '=', $id)->with('stopover')->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
+                $travel = Travel::where('id', '=', $id)->with('stopover')->with('offer')->with('request')->with('contact')->with('destination')->with('transportation_mean')->first();
 
             }
         }
 
         return view('travel-edit', ['travel' => $travel]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editUser()
+    {
+
+        $user = \Auth::user();
+
+        return view('user-edit', ['user' => $user]);
+
+    }
+
+    public function editEmails() {
+
+        $user = \Auth::user();
+        $templates = null;
+
+        if ($user) {
+
+            if ($user->hasRole('admin')) {
+
+                $templates = EmailTemplate::all();
+
+            }
+
+        }
+
+        return view('email-edit', ['templates' => $templates]);
+
     }
 
     /**
@@ -83,7 +117,7 @@ class PagesController extends Controller
             ['url_token', '=', $url_token],
             ['public', '=', '1'],
             ['verified', '=', '1'],
-        ])->with('stopover')->with('offer')->with('request')->with('destination')->with('transportation_mean')->first();
+        ])->with('stopover')->with('offer')->with('request')->with('contact')->with('destination')->with('transportation_mean')->first();
 
         return view('travel-details', ['travel' => $travel]);
 

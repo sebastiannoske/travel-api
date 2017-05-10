@@ -24,10 +24,6 @@ class TransportationMeansTableSeeder extends Seeder
         ]);
 
         App\TransportationMean::create([
-            'name' => 'Bassliner'
-        ]);
-
-        App\TransportationMean::create([
             'name' => 'Fahrrad'
         ]);
 

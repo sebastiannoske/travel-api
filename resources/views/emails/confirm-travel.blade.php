@@ -10,13 +10,21 @@
 
     <body>
 
-        <h1>Eine neue Fahrt wurde angelegt, {{ $user->name }}!</h1>
+        <h2>{{$template->title}} {{ $user->name }}!</h2>
+
+        <p>{!! nl2br(e($template->text)) !!}</p>
+
+        <br/>
 
         <p>
 
             Du musst nur noch <a href='{{ url("travel/confirm/{$travel->token}") }}'>deine angelegte Fahrt bestätigen</a> um diese im Portal zu aktivieren.
 
         </p>
+
+        <br/>
+
+        <p>{!! nl2br(e($template->closing)) !!}</p>
 
     </body>
 
