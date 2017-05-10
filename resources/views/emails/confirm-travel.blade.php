@@ -18,7 +18,7 @@
 
         <p>
 
-            Du musst nur noch <a href='{{ url("travel/confirm/{$travel->token}") }}'>deine angelegte Fahrt bestätigen</a> um diese im Portal zu aktivieren.
+            <a href='{{ url("travel/confirm/{$travel->token}") }}'>Eintrag bestätigen</a>
 
         </p>
 

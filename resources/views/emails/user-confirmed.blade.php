@@ -16,7 +16,14 @@
 
         <br/>
 
-        <p>Du kannst dich nun mit deiner E-Mailadresse und dem Password "{{ $pw }}" <a href='{{ url("login") }}'>hier</a> anmelden.</p>
+        <p>
+
+            Passort: "{{ $pw }}"
+
+            <br />
+            <a href='{{ url("login") }}'>hier</a>
+        
+        </p>
 
         <br/>
 
