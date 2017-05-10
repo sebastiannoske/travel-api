@@ -228,12 +228,11 @@
 
                 <br/><br/><br/><br/><br/>
 
-
                 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDS1rNqI3ZCpJu0fd8Rkyo5SAi8EPIna5g&libraries=places"></script>
 
             @endif
 
-            <script src="/js/travel-details.js"></script>
+                <script src="/js/travel-details.js"></script>
 
 
         @else

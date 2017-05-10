@@ -13,7 +13,10 @@ var Global = Global || {};
 
             setValues();
             setElements();
-            initAutocomplete();
+
+            if (typeof(google) !== 'undefined') {
+                initAutocomplete();
+            }
 
             $('.mdl-switch__input').on('change', function(e) {
 
