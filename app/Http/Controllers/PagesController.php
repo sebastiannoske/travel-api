@@ -14,7 +14,7 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $user = \Auth::user();
@@ -24,15 +24,36 @@ class PagesController extends Controller
         {
             if ($user->hasRole('user')) {
 
-                $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+                if ($request->kind) {
 
+                    $travel = Travel::where('user_id', '=', $user->id)->whereHas($request->kind, function ($query) {
+                        $query->where('id', '>', 0);
+                    })->with($request->kind)->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+
+
+
+                } else {
+
+                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+
+                }
             } else {
 
-                $travel = Travel::with('offer')->with('request')->with('stopover')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+                if ($request->kind) {
+
+                    $travel = Travel::whereHas($request->kind, function ($query) {
+                        $query->where('id', '>', 0);
+                    })->with($request->kind)->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+
+                } else {
+
+                    $travel = Travel::with('offer')->with('request')->with('stopover')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+
+                }
 
             }
 
-            return view('travel', ['travel' => $travel]);
+            return view('travel', ['travel' => $travel, 'kind' => $request->kind]);
 
         } else {
 

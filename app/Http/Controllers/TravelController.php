@@ -35,15 +35,26 @@ class TravelController extends Controller
 
             $travel->save();
 
-            $this->confirmEmail($travel->user_id);
+            $user_activated = $this->confirmEmail($travel->user_id);
+            $message = "Die Fahrt";
 
-            if (\Auth::user()) {
+            if ($user_activated) {
 
-                return redirect('/');
+                $message .= " und der zugehörige Benutzer wurden freigeschaltet.";
 
             } else {
 
-                return redirect('/login');
+                $message .= " wurde freigeschaltet.";
+
+            }
+
+            if (\Auth::user()) {
+
+                return redirect('/')->with('message', [$message]);
+
+            } else {
+
+                return redirect('/login')->with('message', [$message]);
 
             }
 
@@ -71,7 +82,11 @@ class TravelController extends Controller
 
             \Mail::to($user)->send(new UserConfirmed($user, $pw));
 
+            return true;
+
         }
+
+        return false;
 
     }
 

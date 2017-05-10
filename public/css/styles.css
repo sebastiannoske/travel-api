@@ -4,8 +4,19 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+
+
 tr.request {
     border-left: 3px solid #C21C34;
+}
+
+.table-striped>thead>tr {
+    background-color: #fff;
+}
+
+.table-striped>thead>tr>th {
+    padding-top: 30px !important;
+    padding-bottom: 20px !important;
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
@@ -100,4 +111,14 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
 
 .travel-details .section-wrap p {
     margin-bottom: 0;
+}
+
+.nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover {
+    color: lightgrey;
+    background-color: #fcfcfc !important;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #000;
+    background-color: #fff !important;
 }

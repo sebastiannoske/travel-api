@@ -2,6 +2,19 @@
 
 @section('content')
 <div class="container">
+
+    @if (session()->has('message'))
+
+        <p class="alert alert-success">
+
+            <?php echo session('message')[0]; ?>
+
+        </p>
+
+        <br/><br/><br/>
+
+    @endif
+
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
