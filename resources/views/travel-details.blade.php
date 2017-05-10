@@ -60,7 +60,7 @@
 
                             <div class="col-md-9">
 
-                                <p>{{$travel->contact->email}}</p>
+                                <p><a href="mailto:{{$travel->contact->email}}">{{$travel->contact->email}}</a></p>
 
                             </div>
 
@@ -76,7 +76,7 @@
 
                             <div class="col-md-9">
 
-                                <p>{{$travel->contact->phone_number}}</p>
+                                <p><a href="tel:{{$travel->contact->phone_number}}">{{$travel->contact->phone_number}}</a></p>
 
                             </div>
 

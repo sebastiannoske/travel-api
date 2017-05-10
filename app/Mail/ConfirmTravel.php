@@ -37,6 +37,6 @@ class ConfirmTravel extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.confirm-travel');
+        return $this->subject('Mitfahrbörse: Eintrag bestätigen')->view('emails.confirm-travel');
     }
 }

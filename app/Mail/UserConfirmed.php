@@ -36,6 +36,6 @@ class UserConfirmed extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.user-confirmed');
+        return $this->subject('Zugangsdaten für die Mitfahrbörse')->view('emails.user-confirmed');
     }
 }
