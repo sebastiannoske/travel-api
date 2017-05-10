@@ -6,11 +6,11 @@
 
         @if (session()->has('message'))
 
-            <p class="alert alert-success">
+            <h4>Ihr Eintrag ist nun veröffentlicht!</h4>
 
-                <?php echo session('message')[0]; ?>
+            <p><a href="#" target="_blank">>>Hier geht’s zur Mitfahrbörse der G20-Protestwelle</a></p>
 
-            </p>
+            <p><?php echo session('message')[0]; ?></p>
 
             <br/><br/><br/>
 

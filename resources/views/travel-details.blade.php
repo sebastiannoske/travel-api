@@ -8,6 +8,8 @@
 
             <?php $is_offer = $travel->offer; ?>
 
+            <h4>Detail- und Kontaktinformationen</h4>
+
             <div class="row travel-details">
 
                 <div class="col-md-6 col-md-push-6">
@@ -16,13 +18,69 @@
 
                         <h5>Kontakt & Ansprechpartner</h5>
 
-                        <p><span>Organisation:</span> {{$travel->contact->organisation}}</p>
+                        <div class="row">
 
-                        <p><span>Kontakt:</span> {{$travel->contact->name}}</p>
+                            <div class="col-md-3">
 
-                        <p><span>E-Mail:</span> <a href="mailto:{{$travel->contact->email}}">{{$travel->contact->email}}</a></p>
+                                <p><span>Organisation:</span></p>
 
-                        <p><span>Telefon:</span> <a href="tel:{{$travel->contact->phone_number}}">{{$travel->contact->phone_number}}</a></p>
+                            </div>
+
+                            <div class="col-md-9">
+
+                                <p>{{$travel->contact->organisation}}</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+
+                                <p><span>Name:</span></p>
+
+                            </div>
+
+                            <div class="col-md-9">
+
+                                <p>{{$travel->contact->name}}</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+
+                                <p><span>E-Mail:</span></p>
+
+                            </div>
+
+                            <div class="col-md-9">
+
+                                <p>{{$travel->contact->email}}</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+
+                                <p><span>Telefon:</span></p>
+
+                            </div>
+
+                            <div class="col-md-9">
+
+                                <p>{{$travel->contact->phone_number}}</p>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
@@ -34,17 +92,71 @@
 
                         <h5>Infos</h5>
 
-                        <p><span>art:</span> <?php if ($is_offer) : echo 'Angebot'; else: echo 'Gesuch'; endif; ?></p>
+                        <h6><?php if ($is_offer) : echo 'Angebot'; else: echo 'Gesuch'; endif; ?></h6>
 
-                        <p><span>von:</span> {{$travel->street_address}}, {{$travel->postcode}}, {{$travel->city}}</p>
+                        <div class="row">
 
-                        <p><span>nach:</span> {{$travel->destination->name}}</p>
+                            <div class="col-md-3">
 
-                        <p><span>am:</span> {{ Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y')}}</p>
+                                <p><span>Von:</span></p>
 
-                        <p><span>um:</span> {{ Carbon\Carbon::parse($travel->departure_time)->format('h:m')}} Uhr</p>
+                            </div>
 
-                        <p><span>wie:</span> {{$travel->transportation_mean->name}}</p>
+                            <div class="col-md-9">
+
+                                <p>{{$travel->street_address}}, {{$travel->postcode}}, {{$travel->city}}</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+
+                                <p><span>Nach:</span></p>
+
+                            </div>
+
+                            <div class="col-md-9">
+
+                                <p>{{$travel->destination->name}}</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+
+                                <p><span>geplante Abfahrt:</span></p>
+
+                            </div>
+
+                            <div class="col-md-9">
+
+                                <p>{{ Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y, h:m')}} Uhr</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+
+                                <p><span>Verkehrsmittel:</span></p>
+
+                            </div>
+
+                            <div class="col-md-9">
+
+                                <p>{{$travel->transportation_mean->name}}</p>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
