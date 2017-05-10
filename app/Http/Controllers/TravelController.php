@@ -36,15 +36,11 @@ class TravelController extends Controller
             $travel->save();
 
             $user_activated = $this->confirmEmail($travel->user_id);
-            $message = "Die Fahrt";
+            $message = 'Hier können Sie sich auf der Mitfahrbörse einloggen und Ihren Eintrag bearbeiten, oder auch löschen.';
 
-            if ($user_activated) {
+            if (!$user_activated) {
 
-                $message .= " und der zugehörige Benutzer wurden freigeschaltet.";
-
-            } else {
-
-                $message .= " wurde freigeschaltet.";
+                $message .= '<br /><br />Die Zugangsdaten wurden Ihnen per Email zugesendet.';
 
             }
 
