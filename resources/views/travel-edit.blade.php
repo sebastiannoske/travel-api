@@ -80,8 +80,10 @@
 
                         <div id="datepicker-btn" class="form-group <?php if ($errors->has('departure_time')) echo 'has-error'; ?>">
 
+                            <?php $departure_time = ($travel->departure_time && count($travel->departure_time)) ? Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y H:i') : ''; ?>
+
                             {{ Form::label('departure_time', 'Abfahrt')}}
-                            {{ Form::text('departure_time', Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y h:i'), array_merge(['class' => 'form-control', 'id' => 'departure_time'])) }}
+                            {{ Form::text('departure_time',$departure_time , array_merge(['class' => 'form-control', 'id' => 'departure_time'])) }}
 
                         </div>
 

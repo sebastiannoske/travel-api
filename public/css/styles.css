@@ -94,8 +94,6 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
 
 .travel-details p span {
     font-weight: bold;
-    display: inline-block;
-    min-width:120px;
 }
 
 .travel-details .section-wrap {
@@ -106,8 +104,12 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
 }
 
 @media ( max-width: 992px ) {
-    .travel-details .section-wrap .col-md-9 {
-        margin-bottom: 20px;
+    .travel-details .section-wrap .row {
+        margin-bottom: 10px;
+    }
+
+    .container.details-container {
+        width: calc(100% - 30px);
     }
 }
 

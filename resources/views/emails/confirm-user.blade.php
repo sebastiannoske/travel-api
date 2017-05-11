@@ -10,7 +10,7 @@
 
 <body>
 
-<h1>Welcome zum Reiseportal, {{ $user->name }}!</h1>
+<h1>Willkommen zur Mitfahrbörse,</h1>
 
 <p>
 

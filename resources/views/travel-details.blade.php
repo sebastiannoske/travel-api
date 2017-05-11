@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container details-container">
 
         @if (isset($travel) && count($travel))
 
@@ -12,7 +12,7 @@
 
             <div class="row travel-details">
 
-                <div class="col-md-6 col-md-push-6">
+                <div class="col-sm-6 col-sm-push-6">
 
                     <div class="section-wrap wide">
 
@@ -20,15 +20,15 @@
 
                         <div class="row">
 
-                            <div class="col-md-3">
+                            <div class="col-sm-3">
 
                                 <p><span>Organisation:</span></p>
 
                             </div>
 
-                            <div class="col-md-9">
+                            <div class="col-sm-9">
 
-                                <p>{{$travel->contact->organisation}}</p>
+                                <p>@if ($travel->contact->organisation) {{$travel->contact->organisation}}  @else nicht angegeben @endif</p>
 
                             </div>
 
@@ -36,13 +36,13 @@
 
                         <div class="row">
 
-                            <div class="col-md-3">
+                            <div class="col-sm-3">
 
                                 <p><span>Name:</span></p>
 
                             </div>
 
-                            <div class="col-md-9">
+                            <div class="col-sm-9">
 
                                 <p>{{$travel->contact->name}}</p>
 
@@ -52,15 +52,15 @@
 
                         <div class="row">
 
-                            <div class="col-md-3">
+                            <div class="col-sm-3">
 
                                 <p><span>E-Mail:</span></p>
 
                             </div>
 
-                            <div class="col-md-9">
+                            <div class="col-sm-9">
 
-                                <p><a href="mailto:{{$travel->contact->email}}">{{$travel->contact->email}}</a></p>
+                                <p>@if ($travel->contact->email) <a href="mailto:{{$travel->contact->email}}">{{$travel->contact->email}}</a>  @else nicht angegeben @endif</p>
 
                             </div>
 
@@ -68,15 +68,15 @@
 
                         <div class="row">
 
-                            <div class="col-md-3">
+                            <div class="col-sm-3">
 
                                 <p><span>Telefon:</span></p>
 
                             </div>
 
-                            <div class="col-md-9">
+                            <div class="col-sm-9">
 
-                                <p><a href="tel:{{$travel->contact->phone_number}}">{{$travel->contact->phone_number}}</a></p>
+                                <p>@if ($travel->contact->phone_number) <a href="tel:{{$travel->contact->phone_number}}">{{$travel->contact->phone_number}}</a>  @else nicht angegeben @endif</p>
 
                             </div>
 
@@ -86,7 +86,7 @@
 
                 </div>
 
-                <div class="col-md-6 col-md-pull-6">
+                <div class="col-sm-6 col-sm-pull-6">
 
                     <div class="section-wrap">
 
@@ -96,13 +96,13 @@
 
                         <div class="row">
 
-                            <div class="col-md-3">
+                            <div class="col-sm-3">
 
                                 <p><span>Von:</span></p>
 
                             </div>
 
-                            <div class="col-md-9">
+                            <div class="col-sm-9">
 
                                 <p>{{$travel->street_address}}, {{$travel->postcode}}, {{$travel->city}}</p>
 
@@ -112,13 +112,13 @@
 
                         <div class="row">
 
-                            <div class="col-md-3">
+                            <div class="col-sm-3">
 
                                 <p><span>Nach:</span></p>
 
                             </div>
 
-                            <div class="col-md-9">
+                            <div class="col-sm-9">
 
                                 <p>{{$travel->destination->name}}</p>
 
@@ -128,29 +128,58 @@
 
                         <div class="row">
 
-                            <div class="col-md-3">
+                            <div class="col-sm-3">
 
-                                <p><span>geplante Abfahrt:</span></p>
+                                <p><span>Abfahrt:</span></p>
 
                             </div>
 
-                            <div class="col-md-9">
+                            <div class="col-sm-9">
 
-                                <p>{{ Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y, h:m')}} Uhr</p>
+                                <p>@if ($travel->departure_time && count($travel->departure_time)) {{ Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y, H:i')}} Uhr ( geplant )@else nicht angegeben @endif</p>
 
                             </div>
 
                         </div>
 
+                        @if ($travel->transportation_mean_id === 2)
+
+                            @if ($travel->stopover)
+
+                                @foreach ( $travel->stopover as $stopover )
+
+
+                                    <div class="row">
+
+                                        <div class="col-sm-3">
+
+                                            <p><span>über:</span></p>
+
+                                        </div>
+
+                                        <div class="col-sm-9">
+
+                                            <p>{{$stopover->street_address}}, {{$stopover->postcode}} {{$stopover->city}}</p>
+
+                                        </div>
+
+                                    </div>
+
+                                @endforeach
+
+                            @endif
+
+                        @endif
+
                         <div class="row">
 
-                            <div class="col-md-3">
+                            <div class="col-sm-3">
 
-                                <p><span>Verkehrsmittel:</span></p>
+                                <p><span>Womit:</span></p>
 
                             </div>
 
-                            <div class="col-md-9">
+                            <div class="col-sm-9">
 
                                 <p>{{$travel->transportation_mean->name}}</p>
 
@@ -174,7 +203,7 @@
 
         @else
 
-            <h5>Diese Fahrt existiert nicht.</h5>
+            <h5>Diese Fahrt existiert nicht oder wurde noch nicht freigegeben.</h5>
 
         @endif
 

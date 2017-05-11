@@ -40,7 +40,7 @@ class TravelController extends Controller
 
             if ($user_activated) {
 
-                $message .= '<br /><br />Die Zugangsdaten wurden Ihnen per Email zugesendet.';
+                $message .= '<br /><br />Herzlich Willkommen auf der Mitfahrbörse. Sie bekommen die Zugangsdaten in Kürze zugesendet.';
 
             }
 
@@ -331,6 +331,7 @@ class TravelController extends Controller
                 'passenger' => $passenger,
                 'cost' => $cost
             ]);
+
         }
 
         \Mail::to($user)->send(new ConfirmTravel($user, $travel));
@@ -410,7 +411,12 @@ class TravelController extends Controller
         $travel->city = $request->city;
         $travel->postcode = $request->postcode;
         $travel->street_address = $request->street_address;
-        $travel->departure_time = Carbon::createFromFormat('d.m.Y H:i', $request->departure_time);
+        $carbon_date = null;
+        if ($request->departure_time && count_chars($request->departure_time) > 0) {
+            $carbon_date = Carbon::createFromFormat('d.m.Y H:i', $request->departure_time);
+        }
+
+        $travel->departure_time = $carbon_date;
         $travel->description = $request->description;
         $travel->save();
 

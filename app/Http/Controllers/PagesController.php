@@ -119,8 +119,6 @@ class PagesController extends Controller
         $auth_user = \Auth::user();
         $user = null;
 
-        dd($auth_user);
-
         if ($auth_user) {
 
             if ($auth_user->hasRole('admin')) {

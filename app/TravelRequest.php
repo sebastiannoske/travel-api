@@ -12,7 +12,7 @@ class TravelRequest extends Model
      * @var array
      */
 
-    protected $fillable = ['passenger', 'cost'];
+    protected $fillable = ['travel_id', 'passenger', 'cost'];
 
     /**
      * The attributes that should be hidden for arrays.
