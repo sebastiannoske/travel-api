@@ -119,6 +119,8 @@ class PagesController extends Controller
         $auth_user = \Auth::user();
         $user = null;
 
+        dd($auth_user);
+
         if ($auth_user) {
 
             if ($auth_user->hasRole('admin')) {
@@ -175,6 +177,26 @@ class PagesController extends Controller
         return view('email-edit', ['templates' => $templates]);
 
     }
+
+    public function createUser() {
+
+        $auth_user = \Auth::user();
+        $user = null;
+
+        if ($auth_user) {
+
+            if ($auth_user->hasRole('admin')) {
+
+                return view('user-create', ['user' => $user]);
+
+            }
+
+        }
+
+        return redirect()->back()->with('error', ['Du hast nicht die nötigen Rechte einen neuen Benutzer anzulegen.']);
+
+    }
+
 
     /**
      * Show content for a travel bei url_token.

@@ -27,6 +27,7 @@ Route::get('/travel/confirm/{token}', 'TravelController@confirmTravel');
 Route::get('/travel/{url_token}', 'PagesController@showByUrlToken');
 
 Route::get('/user', 'PagesController@editUser');
+Route::post('/user/create', 'UserController@create');
 Route::post('/user/{user}/update', 'UserController@update');
 Route::post('/user/{user}/updatepassword', 'UserController@updatePassword');
 
@@ -36,6 +37,7 @@ Route::post('/email/{email}/update', 'EmailController@update');
 Route::get('/emails', 'PagesController@editEmails');
 
 Route::get('/users', 'PagesController@editAllUser');
-Route::get('/users/{user}', 'PagesController@editUserById');
+Route::get('/users/edit/{user}', 'PagesController@editUserById');
+Route::get('/users/create', 'PagesController@createUser');
 Route::post('/users/{user}/destroy', 'UserController@destroy');
 Route::post('/users/{user}/apikey', 'UserController@generateApikey');

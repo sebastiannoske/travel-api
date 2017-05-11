@@ -16,6 +16,12 @@
 
         @endif
 
+        <div style="text-align: right;">
+
+            <a href="{{ url('/users/create') }}" target="_self"><button type="button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">Moderator anlegen</button></a>
+
+        </div>
+
         <ul class="nav nav-tabs">
             <!-- <li role="presentation" class="@if (!$kind) active @endif"><a href="{{ URL::action('PagesController@index') }}">Alle Fahrten</a></li> -->
             <!-- <li role="presentation" class="@if ($kind && $kind === 'offer') active @endif"><a href="{{ URL::action('PagesController@index', ['kind=offer']) }}">Nur Angebote anzeigen</a></li>
@@ -60,7 +66,7 @@
                                 @if ($current_user->verified === 1) <img src="{{ URL::to('/') }}/img/checked.svg"/> @else <img src="{{ URL::to('/') }}/img/not-checked.svg"/> @endif
                             </td>
                             <td>{{$current_user->roles[0]->name}}</td>
-                            <td><a href="{{ url('/users', $current_user->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a></td>
+                            <td><a href="{{ url('/users/edit', $current_user->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a></td>
 
                         </tr>
 

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\UserConfirmed;
 use App\Http\Requests;
 use Illuminate\Hashing\BcryptHasher;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -24,9 +26,41 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Requests\UpdateUserRequest $request)
     {
         //
+        $user = User::where('email', $request->userEmail)->first();
+
+        if (!$user) {
+
+            $pw = str_random(10);
+
+            $user = User::firstOrCreate([
+                'email' => $request->email,
+                'password' => bcrypt($pw),
+                'name' => $request->name,
+                'street_address' => $request->street_address,
+                'postcode' => $request->postcode,
+                'city' => $request->city,
+                'phone_number' => $request->phone_number
+            ]);
+
+            $user->verified = true;
+            $user->token = null;
+            $user->save();
+
+            DB::table('role_user')->insert(
+                ['user_id' => $user->id, 'role_id' => 2]
+            );
+
+            \Mail::to($user)->send(new UserConfirmed($user, $pw));
+
+            return redirect()->back()->with('message', ['Benutzer angelegt.']);
+
+        }
+
+        return redirect()->back()->with('error', ['EMail-Adresse bereits vorhanden.']);
+
     }
 
     /**
