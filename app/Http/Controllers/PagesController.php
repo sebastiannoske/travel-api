@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Travel;
 use App\EmailTemplate;
 
@@ -28,13 +29,13 @@ class PagesController extends Controller
 
                     $travel = Travel::where('user_id', '=', $user->id)->whereHas($request->kind, function ($query) {
                         $query->where('id', '>', 0);
-                    })->with($request->kind)->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+                    })->with($request->kind)->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(30);
 
 
 
                 } else {
 
-                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(30);
 
                 }
             } else {
@@ -47,7 +48,7 @@ class PagesController extends Controller
 
                 } else {
 
-                    $travel = Travel::with('offer')->with('request')->with('stopover')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+                    $travel = Travel::with('offer')->with('request')->with('stopover')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(30);
 
                 }
 
@@ -104,6 +105,55 @@ class PagesController extends Controller
         $user = \Auth::user();
 
         return view('user-edit', ['user' => $user]);
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editUserById(Request $request, $user_id)
+    {
+
+        $auth_user = \Auth::user();
+        $user = null;
+
+        if ($auth_user) {
+
+            if ($auth_user->hasRole('admin')) {
+
+                $user = User::find($user_id);
+
+            }
+
+        }
+
+        return view('user-edit', ['user' => $user]);
+
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editAllUser(Request $request)
+    {
+
+        $user = \Auth::user();
+        $users = null;
+
+        if ($user) {
+
+            if ($user->hasRole('admin')) {
+
+                $users = User::with('roles')->with('travel')->paginate(30);
+            }
+        }
+
+        return view('users-management', ['users' => $users, 'kind' => $request->kind]);
 
     }
 

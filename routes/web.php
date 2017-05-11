@@ -32,3 +32,10 @@ Route::post('/user/{user}/updatepassword', 'UserController@updatePassword');
 
 Route::get('/emails', 'PagesController@editEmails');
 Route::post('/email/{email}/update', 'EmailController@update');
+
+Route::get('/emails', 'PagesController@editEmails');
+
+Route::get('/users', 'PagesController@editAllUser');
+Route::get('/users/{user}', 'PagesController@editUserById');
+Route::post('/users/{user}/destroy', 'UserController@destroy');
+Route::post('/users/{user}/apikey', 'UserController@generateApikey');

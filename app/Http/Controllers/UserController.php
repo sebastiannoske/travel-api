@@ -114,14 +114,26 @@ class UserController extends Controller
 
     }
 
+    public function generateApikey(Request $request, $user_id) {
+
+        $user = User::find($user_id);
+        $user->api_token = str_random(60);
+        $user->save();
+
+        return redirect()->back()->with('message', ['Ein neuer API-Token wurde generiert.']);
+
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+
+        // todo
+        return response()->json(['status' => 'success']);
     }
 }

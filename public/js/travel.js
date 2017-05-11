@@ -31,7 +31,7 @@ var Global = Global || {};
 
             });
 
-            $('.btn-delete').on('click', function(e) {
+            $('.btn-delete-travel').on('click', function(e) {
 
                 e.preventDefault();
 
@@ -46,6 +46,30 @@ var Global = Global || {};
                 });
 
                 $.post('/travel/'+$(this).data('ref-id')+'/destroy', { }, function(data) {
+
+                    window.location.reload();
+
+                });
+
+                return false;
+
+            });
+
+            $('.btn-delete-user').on('click', function(e) {
+
+                e.preventDefault();
+
+                $.ajaxSetup({
+
+                    headers: {
+
+                        'X-CSRF-TOKEN': values.crsfToken
+
+                    }
+
+                });
+
+                $.post('/users/'+$(this).data('ref-id')+'/destroy', { }, function(data) {
 
                     window.location.reload();
 

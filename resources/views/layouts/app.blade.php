@@ -105,7 +105,7 @@
                         <li><a href="/">Fahrten</a></li>
                         @can('edit_all')
                             <!-- <li><a href="/">Einstellungen</a></li> -->
-                            <!-- <li><a href="/">Userverwaltung</a></li> -->
+                            <li><a href="/users">Userverwaltung</a></li>
                             <li><a href="/emails">Email Templates</a></li>
                         @endcan
                         <li><a href="/user">Benutzereinstellungen</a></li>

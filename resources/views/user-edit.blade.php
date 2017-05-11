@@ -130,6 +130,33 @@
 
                     {!! Form::close() !!}
 
+                    @can('edit_all')
+
+                    <h5>API Key</h5>
+
+
+                    <div class="form-group">
+
+                        <span class="form-control">{{$user->api_token}}</span>
+
+                    </div>
+
+                    <div style="text-align: right;">
+
+                        {!! Form::open(['url' => "/users/$user->id/apikey"]) !!}
+
+                        <div class="form-group">
+
+                            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">Neu generieren</button>
+
+                        </div>
+
+                        {!! Form::close() !!}
+
+                    </div>
+
+                    @endcan
+
                 </div>
 
             </div>
