@@ -130,7 +130,7 @@
 
                     {!! Form::close() !!}
 
-                    @can('edit_all')
+                    @if ($user->roles[0]->id === 1)
 
                     <h5>API Key</h5>
 
@@ -155,7 +155,7 @@
 
                     </div>
 
-                    @endcan
+                    @endif
 
                 </div>
 
