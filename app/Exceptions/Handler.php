@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Illuminate\Database\QueryException;
 use InvalidArgumentException;
+use Swift_RfcComplianceException;
 
 class Handler extends ExceptionHandler
 {
@@ -72,6 +73,10 @@ class Handler extends ExceptionHandler
 
         if ($request->wantsJson() && $exception instanceof InvalidArgumentException) {
             return response()->json(['status' => 'error', 'message' => 'invalid argument exception ( departureTime )', 'code' => 422], 422);
+        }
+
+        if ($request->wantsJson() && $exception instanceof Swift_RfcComplianceException) {
+            return response()->json(['status' => 'error', 'message' => 'Address in mailbox given does not comply with RFC 2822, 3.6.2.', 'code' => 422], 422);
         }
 
         //dd(get_class($exception));

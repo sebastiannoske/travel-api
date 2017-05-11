@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
         $this->call(EventsTableSeeder::class);
         $this->call(EmailTemplateSeeder::class);
         $this->call(DestinationsTableSeeder::class);
+        $this->call(TransportationMeansTableSeeder::class);
 
         /*
-        $this->call(TransportationMeansTableSeeder::class);
         $this->call(TravelTableSeeder::class);
         $this->call(TravelRequestsTableSeeder::class);
         $this->call(TravelOffersTableSeeder::class);

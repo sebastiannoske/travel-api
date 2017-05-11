@@ -29,7 +29,7 @@ class UserController extends Controller
     public function create(Requests\UpdateUserRequest $request)
     {
         //
-        $user = User::where('email', $request->userEmail)->first();
+        $user = User::where('email', $request->email)->first();
 
         if (!$user) {
 
