@@ -20,22 +20,22 @@ class UsersTableSeeder extends Seeder
             'api_token' => env('APP_APITOKEN', str_random(60))
         ]);
 
-        /*
-        App\User::create([
-            'name' => 'Stefan',
-            'email' => 'stefan@bassliner.org',
-            'password' => bcrypt('stefan123attravelapi'),
-            'verified' => true,
-            'api_token' => null
-        ]);
-
-        App\User::create([
-            'name' => 'Philipp',
-            'email' => 'philipp@urban-digitals.com',
-            'password' => bcrypt('philipp123attravelapi'),
-            'verified' => true,
-            'api_token' => null
-        ]);
-        */
     }
 }
+/*
+       App\User::create([
+           'name' => 'Stefan',
+           'email' => 'stefan@bassliner.org',
+           'password' => bcrypt('stefan123attravelapi'),
+           'verified' => true,
+           'api_token' => null
+       ]);
+
+       App\User::create([
+           'name' => 'Philipp',
+           'email' => 'philipp@urban-digitals.com',
+           'password' => bcrypt('philipp123attravelapi'),
+           'verified' => true,
+           'api_token' => null
+       ]);
+       */
