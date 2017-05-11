@@ -65,7 +65,7 @@
                             <td>
                                 @if ($current_user->verified === 1) <img src="{{ URL::to('/') }}/img/checked.svg"/> @else <img src="{{ URL::to('/') }}/img/not-checked.svg"/> @endif
                             </td>
-                            <td>{{$current_user->roles[0]->name}}</td>
+                            <td>{{$current_user->roles[0]->fullname}}</td>
                             <td><a href="{{ url('/users/edit', $current_user->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a></td>
 
                         </tr>
