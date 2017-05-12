@@ -60,7 +60,7 @@
 
                             <div class="col-sm-9">
 
-                                <p>@if ($travel->contact->email) <a href="mailto:{{$travel->contact->email}}">{{$travel->contact->email}}</a>  @else nicht angegeben @endif</p>
+                                <p>@if ($travel->contact->email) <?php echo str_replace( '@', '(at)', $travel->contact->email); ?>  @else nicht angegeben @endif</p>
 
                             </div>
 

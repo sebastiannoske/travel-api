@@ -111,6 +111,48 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
     .container.details-container {
         width: calc(100% - 30px);
     }
+
+
+
+    .travel-details {
+        margin-top: 0px;
+    }
+}
+
+@media ( max-width: 500px ) {
+
+    .container.details-container h4 {
+        font-size: 20px;
+    }
+
+}
+
+@media ( max-width: 768px ) {
+
+    .travel-details p span {
+        display: block;
+        width: 80px;
+    }
+}
+
+@media ( max-width: 400px ) {
+
+    .container.details-container h4, .container.details-container h5 {
+        font-size: 16px;
+    }
+
+}
+
+@media (min-width: 500px) {
+
+    .container.details-container .col-sm-3, .container.details-container .col-sm-9 {
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
 }
 
 .travel-details .section-wrap p {
