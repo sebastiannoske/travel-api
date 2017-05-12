@@ -187,6 +187,62 @@
 
                         </div>
 
+                        @if (($is_offer && $travel->offer->passenger) || (!$is_offer && $travel->request->passenger))
+
+                        <div class="row">
+
+                            <div class="col-sm-3">
+
+                                <p><span>Plätze:</span></p>
+
+                            </div>
+
+                            <div class="col-sm-9">
+
+                               @if ($is_offer)
+
+                                    <p>{{$travel->offer->passenger}}</p>
+
+                                @else
+
+                                    <p>{{$travel->request->passenger}}</p>
+
+                                @endif
+
+                            </div>
+
+                        </div>
+
+                        @endif
+
+                        @if (($is_offer && $travel->offer->cost) || (!$is_offer && $travel->request->cost))
+
+                            <div class="row">
+
+                                <div class="col-sm-3">
+
+                                    <p><span>Preis:</span></p>
+
+                                </div>
+
+                                <div class="col-sm-9">
+
+                                    @if ($is_offer)
+
+                                        <p>{{$travel->offer->cost}} ( pro Person )</p>
+
+                                    @else
+
+                                        <p>{{$travel->request->cost}} ( pro Person )</p>
+
+                                    @endif
+
+                                </div>
+
+                            </div>
+
+                        @endif
+
                     </div>
 
                     <div class="section-wrap">

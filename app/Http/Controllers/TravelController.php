@@ -420,6 +420,22 @@ class TravelController extends Controller
         $travel->description = $request->description;
         $travel->save();
 
+        $travel_kind = null;
+
+        if ($request->kind === 'offer') {
+
+            $travel_kind = TravelOffer::where('travel_id', '=', $id)->first();
+
+        } elseif ($request->kind === 'request') {
+
+            $travel_kind = TravelRequest::where('travel_id', '=', $id)->first();
+
+        }
+
+        $travel_kind->passenger = $request->passenger;
+        $travel_kind->cost = $request->cost;
+        $travel_kind->save();
+
         $travel_contact = TravelContact::where('travel_id', '=', $travel->id)->first();
         $travel_contact->organisation = $request->organisation;
         $travel_contact->name = $request->name;

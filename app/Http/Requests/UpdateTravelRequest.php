@@ -29,7 +29,9 @@ class UpdateTravelRequest extends FormRequest
             'description' => 'required',
             'name' => 'required',
             'email' => 'required_without:phone_number',
-            'phone_number' => 'required_without:email'
+            'phone_number' => 'required_without:email',
+            'passenger' => 'numeric',
+            'cost' => 'numeric'
         ];
     }
 }

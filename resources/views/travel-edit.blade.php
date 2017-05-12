@@ -8,6 +8,8 @@
 
             <?php $stopoverError = ($errors->has('administrative_area_level_1') || $errors->has('postal_code') || $errors->has('lat') || $errors->has('lng')); ?>
 
+            <?php $formError = (!$stopoverError && $errors->all()) ? true : false; ?>
+
             <?php $is_offer = $travel->offer; ?>
 
             <h4 style="text-align: center;"><?php if ($is_offer) : echo 'Angebot'; else: echo 'Gesuch'; endif; ?> / <span class="small">Fahrt nach</span> {{$travel->destination->name}}</h4>
@@ -17,6 +19,18 @@
                 <p class="alert alert-danger">
 
                     Es ist ein Fehler im Formular beim Anlegen eines neuen Zwischenstopps aufgetreten.
+
+                </p>
+
+                <br/><br/><br/>
+
+            @endif
+
+            @if ($formError)
+
+                <p class="alert alert-danger">
+
+                    Es ist ein Fehler im Formular beim Anpassen der Fahrt aufgetreten.
 
                 </p>
 
@@ -87,12 +101,34 @@
 
                         </div>
 
+                        <div class="form-group <?php if ($errors->has('passenger')) echo 'has-error'; ?>">
+
+                            <?php $passenger = ( $is_offer ) ? $travel->offer->passenger : $travel->request->passenger; ?>
+
+                            {{ Form::label('passenger', 'Freie Plätze')}}
+                            {{ Form::text('passenger',$passenger , array_merge(['class' => 'form-control', 'id' => 'passenger'])) }}
+
+                        </div>
+
+                        <div class="form-group <?php if ($errors->has('cost')) echo 'has-error'; ?>">
+
+                            <?php $cost = ( $is_offer ) ? $travel->offer->cost : $travel->request->cost; ?>
+
+                            {{ Form::label('cost', 'Preis pro Person')}}
+                            {{ Form::text('cost', $cost, array_merge(['class' => 'form-control', 'id' => 'cost'])) }}
+
+                        </div>
+
                         <div class="form-group <?php if ($errors->has('description')) echo 'has-error'; ?>">
 
                             {{ Form::label('description', 'Beschreibung')}}
                             {{ Form::textarea('description', $travel->description, array_merge(['class' => 'form-control', 'id' => 'description'])) }}
 
                         </div>
+
+                        <?php $kind = ( $is_offer ) ? 'offer' : 'request' ?>
+
+                        <input type="hidden" name="kind" value="{{$kind}}">
 
                     </div>
 
