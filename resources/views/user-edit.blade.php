@@ -147,7 +147,7 @@
 
                             <div class="form-group">
 
-                                <span class="form-control">{{$user->api_token}}</span>
+                                <span>{{$user->api_token}}</span>
 
                             </div>
 
