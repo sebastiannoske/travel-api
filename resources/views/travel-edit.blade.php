@@ -69,99 +69,106 @@
 
                     <div class="col-md-6">
 
-                        <h5>Abfahrt</h5>
+                        <div class="section-wrap">
 
-                        <div class="form-group <?php if ($errors->has('city')) echo 'has-error'; ?>">
+                            <h5>Abfahrt</h5>
 
-                            {{ Form::label('city', 'Stadt')}}
-                            {{ Form::text('city', $travel->city, array_merge(['class' => 'form-control', 'id' => 'city'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('city')) echo 'has-error'; ?>">
+
+                                {{ Form::text('city', $travel->city, array_merge(['class' => 'mdl-textfield__input', 'id' => 'city'])) }}
+                                {{ Form::label('city', 'Stadt', array('class' => 'mdl-textfield__label'))}}
+
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('postcode')) echo 'has-error'; ?>">
+
+                                {{ Form::text('postcode', $travel->postcode, array_merge(['class' => 'mdl-textfield__input', 'id' => 'postcode'])) }}
+                                {{ Form::label('postcode', 'Postleitzahl', array('class' => 'mdl-textfield__label'))}}
+
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('street_address')) echo 'has-error'; ?>">
+
+                                {{ Form::text('street_address', $travel->street_address, array_merge(['class' => 'mdl-textfield__input', 'id' => 'street_address'])) }}
+                                {{ Form::label('street_address', 'Straße, Nr.', array('class' => 'mdl-textfield__label'))}}
+
+                            </div>
+
+                            <div id="datepicker-btn" class="mdl-textfield mdl-js-textfield <?php if ($errors->has('departure_time')) echo 'has-error'; ?>">
+
+                                <?php $departure_time = ($travel->departure_time && count($travel->departure_time)) ? Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y H:i') : ''; ?>
+
+                                {{ Form::text('departure_time',$departure_time , array_merge(['class' => 'mdl-textfield__input', 'id' => 'departure_time'])) }}
+                                {{ Form::label('departure_time', 'Abfahrt', array('class' => 'mdl-textfield__label'))}}
+
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('passenger')) echo 'has-error'; ?>">
+
+                                <?php $passenger = ( $is_offer ) ? $travel->offer->passenger : $travel->request->passenger; ?>
+
+                                {{ Form::text('passenger',$passenger , array_merge(['class' => 'mdl-textfield__input', 'id' => 'passenger'])) }}
+                                {{ Form::label('passenger', 'Freie Plätze', array('class' => 'mdl-textfield__label'))}}
+
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('cost')) echo 'has-error'; ?>">
+
+                                <?php $cost = ( $is_offer ) ? $travel->offer->cost : $travel->request->cost; ?>
+
+                                {{ Form::text('cost', $cost, array_merge(['class' => 'mdl-textfield__input', 'id' => 'cost'])) }}
+                                {{ Form::label('cost', 'Preis pro Person', array('class' => 'mdl-textfield__label'))}}
+
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('description')) echo 'has-error'; ?>">
+
+                                {{ Form::textarea('description', $travel->description, array_merge(['class' => 'mdl-textfield__input', 'id' => 'description'])) }}
+                                {{ Form::label('description', 'Beschreibung', array('class' => 'mdl-textfield__label'))}}
+
+                            </div>
+
+                            <?php $kind = ( $is_offer ) ? 'offer' : 'request' ?>
+
+                            <input type="hidden" name="kind" value="{{$kind}}">
 
                         </div>
-
-                        <div class="form-group <?php if ($errors->has('postcode')) echo 'has-error'; ?>">
-
-                            {{ Form::label('postcode', 'Postleitzahl')}}
-                            {{ Form::text('postcode', $travel->postcode, array_merge(['class' => 'form-control', 'id' => 'postcode'])) }}
-
-                        </div>
-
-                        <div class="form-group <?php if ($errors->has('street_address')) echo 'has-error'; ?>">
-
-                            {{ Form::label('street_address', 'Straße, Nr.')}}
-                            {{ Form::text('street_address', $travel->street_address, array_merge(['class' => 'form-control', 'id' => 'street_address'])) }}
-
-                        </div>
-
-                        <div id="datepicker-btn" class="form-group <?php if ($errors->has('departure_time')) echo 'has-error'; ?>">
-
-                            <?php $departure_time = ($travel->departure_time && count($travel->departure_time)) ? Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y H:i') : ''; ?>
-
-                            {{ Form::label('departure_time', 'Abfahrt')}}
-                            {{ Form::text('departure_time',$departure_time , array_merge(['class' => 'form-control', 'id' => 'departure_time'])) }}
-
-                        </div>
-
-                        <div class="form-group <?php if ($errors->has('passenger')) echo 'has-error'; ?>">
-
-                            <?php $passenger = ( $is_offer ) ? $travel->offer->passenger : $travel->request->passenger; ?>
-
-                            {{ Form::label('passenger', 'Freie Plätze')}}
-                            {{ Form::text('passenger',$passenger , array_merge(['class' => 'form-control', 'id' => 'passenger'])) }}
-
-                        </div>
-
-                        <div class="form-group <?php if ($errors->has('cost')) echo 'has-error'; ?>">
-
-                            <?php $cost = ( $is_offer ) ? $travel->offer->cost : $travel->request->cost; ?>
-
-                            {{ Form::label('cost', 'Preis pro Person')}}
-                            {{ Form::text('cost', $cost, array_merge(['class' => 'form-control', 'id' => 'cost'])) }}
-
-                        </div>
-
-                        <div class="form-group <?php if ($errors->has('description')) echo 'has-error'; ?>">
-
-                            {{ Form::label('description', 'Beschreibung')}}
-                            {{ Form::textarea('description', $travel->description, array_merge(['class' => 'form-control', 'id' => 'description'])) }}
-
-                        </div>
-
-                        <?php $kind = ( $is_offer ) ? 'offer' : 'request' ?>
-
-                        <input type="hidden" name="kind" value="{{$kind}}">
 
                     </div>
 
-
                     <div class="col-md-6">
 
-                        <h5>Kontakt</h5>
+                        <div class="section-wrap">
 
-                        <div class="form-group <?php if ($errors->has('organisation')) echo 'has-error'; ?>">
+                            <h5>Kontakt</h5>
 
-                            {{ Form::label('organisation', 'Organisation')}}
-                            {{ Form::text('organisation', $travel->contact->organisation, array_merge(['class' => 'form-control', 'id' => 'organisation'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('organisation')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::text('organisation', $travel->contact->organisation, array_merge(['class' => 'mdl-textfield__input', 'id' => 'organisation'])) }}
+                                {{ Form::label('organisation', 'Organisation', array('class' => 'mdl-textfield__label'))}}
 
-                        <div class="form-group <?php if ($errors->has('name')) echo 'has-error'; ?>">
+                            </div>
 
-                            {{ Form::label('name', 'Kontakt-Person')}}
-                            {{ Form::text('name', $travel->contact->name, array_merge(['class' => 'form-control', 'id' => 'name'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('name')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::text('name', $travel->contact->name, array_merge(['class' => 'mdl-textfield__input', 'id' => 'name'])) }}
+                                {{ Form::label('name', 'Kontakt-Person', array('class' => 'mdl-textfield__label'))}}
 
-                        <div class="form-group <?php if ($errors->has('email')) echo 'has-error'; ?>">
+                            </div>
 
-                            {{ Form::label('email', 'E-Mail')}}
-                            {{ Form::text('email', $travel->contact->email, array_merge(['class' => 'form-control', 'id' => 'email'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('email')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::text('email', $travel->contact->email, array_merge(['class' => 'mdl-textfield__input', 'id' => 'email'])) }}
+                                {{ Form::label('email', 'E-Mail', array('class' => 'mdl-textfield__label'))}}
 
-                        <div class="form-group <?php if ($errors->has('phone_number')) echo 'has-error'; ?>">
+                            </div>
 
-                            {{ Form::label('phone_number', 'Telefon')}}
-                            {{ Form::text('phone_number', $travel->contact->phone_number, array_merge(['class' => 'form-control', 'id' => 'phone_number'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('phone_number')) echo 'has-error'; ?>">
+
+                                {{ Form::text('phone_number', $travel->contact->phone_number, array_merge(['class' => 'mdl-textfield__input', 'id' => 'phone_number'])) }}
+                                {{ Form::label('phone_number', 'Telefon', array('class' => 'mdl-textfield__label'))}}
+
+                            </div>
 
                         </div>
 
@@ -204,7 +211,7 @@
 
                 <div class="collapse @if ($stopoverError) in @endif" id="collapse">
 
-                    <div class="form-group">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 
                         <input id="searchTextField" class="form-control" type="text" size="50" placeholder="Suche und finde">
 
@@ -212,45 +219,45 @@
 
                      {!! Form::open(['url' => "/travel/$travel->id/stopover"]) !!}
 
-                        <div class="form-group <?php if ($errors->has('administrative_area_level_1')) echo 'has-error'; ?>">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('administrative_area_level_1')) echo 'has-error'; ?>">
 
-                            {{ Form::label('administrative_area_level_1', 'Stadt')}}
-                            {{ Form::text('administrative_area_level_1', null, array_merge(['class' => 'form-control', 'id' => 'administrative_area_level_1'])) }}
-
-                        </div>
-
-                        <div class="form-group <?php if ($errors->has('postal_code')) echo 'has-error'; ?>">
-
-                            {{ Form::label('postal_code', 'Postleitzahl')}}
-                            {{ Form::text('postal_code', null, array_merge(['class' => 'form-control', 'id' => 'postal_code'])) }}
+                            {{ Form::text('administrative_area_level_1', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'administrative_area_level_1'])) }}
+                            {{ Form::label('administrative_area_level_1', 'Stadt', array('class' => 'mdl-textfield__label'))}}
 
                         </div>
 
-                        <div class="form-group">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('postal_code')) echo 'has-error'; ?>">
 
-                            {{ Form::label('Straße')}}
-                            {{ Form::text('route', null, array_merge(['class' => 'form-control', 'id' => 'route'])) }}
-
-                        </div>
-
-                        <div class="form-group">
-
-                            {{ Form::label('Nr.')}}
-                            {{ Form::text('street_number', null, array_merge(['class' => 'form-control', 'id' => 'street_number'])) }}
+                            {{ Form::text('postal_code', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'postal_code'])) }}
+                            {{ Form::label('postal_code', 'Postleitzahl', array('class' => 'mdl-textfield__label'))}}
 
                         </div>
 
-                        <div class="form-group <?php if ($errors->has('lat')) echo 'has-error'; ?>">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 
-                            {{ Form::label('lat', 'Latitude')}}
-                            {{ Form::text('lat', null, array_merge(['class' => 'form-control', 'id' => 'lat'])) }}
+                            {{ Form::text('route', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'route'])) }}
+                            {{ Form::label('route', 'Straße', array('class' => 'mdl-textfield__label'))}}
 
                         </div>
 
-                        <div class="form-group <?php if ($errors->has('lng')) echo 'has-error'; ?>">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 
-                            {{ Form::label('lng', 'Longitude')}}
-                            {{ Form::text('lng', null, array_merge(['class' => 'form-control', 'id' => 'lng'])) }}
+                            {{ Form::text('street_number', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'street_number'])) }}
+                            {{ Form::label('street_number', 'Nr.', array('class' => 'mdl-textfield__label'))}}
+
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('lat')) echo 'has-error'; ?>">
+
+                            {{ Form::text('lat', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'lat'])) }}
+                            {{ Form::label('lat', 'Latitude', array('class' => 'mdl-textfield__label'))}}
+
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('lng')) echo 'has-error'; ?>">
+
+                            {{ Form::text('lng', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'lng'])) }}
+                            {{ Form::label('lng', 'Longitude', array('class' => 'mdl-textfield__label'))}}
 
                         </div>
 

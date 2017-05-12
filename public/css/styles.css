@@ -96,11 +96,15 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
     font-weight: bold;
 }
 
-.travel-details .section-wrap {
+.section-wrap {
     background-color: #fff;
     padding: 5px 15px 15px;
     margin-bottom: 30px;
     box-shadow: 0 2px 7px 2px rgba(0,0,0,.1);
+}
+
+.mdl-textfield {
+    width: 100% !important;
 }
 
 @media ( max-width: 992px ) {
@@ -126,6 +130,11 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
         font-size: 20px;
     }
 
+}
+
+.mdl-textfield__label {
+    margin-bottom: 0;
+    color: rgba(0,0,0,.26) !important;
 }
 
 @media ( max-width: 768px ) {
