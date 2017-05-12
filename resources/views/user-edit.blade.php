@@ -38,122 +38,134 @@
 
                 <div class="col-md-6">
 
-                    <h5>Hinterlegte Daten</h5>
+                    <div class="section-wrap">
 
-                    {!! Form::open(['url' => "/user/$user->id/update"]) !!}
+                        <h5>Hinterlegte Daten</h5>
 
-                        <div class="form-group <?php if ($errors->has('name')) echo 'has-error'; ?>">
+                        {!! Form::open(['url' => "/user/$user->id/update"]) !!}
 
-                            {{ Form::label('name', 'Name')}}
-                            {{ Form::text('name', $user->name, array_merge(['class' => 'form-control', 'id' => 'name'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('name')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::text('name', $user->name, array_merge(['class' => 'mdl-textfield__input', 'id' => 'name'])) }}
+                                {{ Form::label('name', 'Name', array('class' => 'mdl-textfield__label'))}}
 
-                        <div class="form-group <?php if ($errors->has('email')) echo 'has-error'; ?>">
+                            </div>
 
-                            {{ Form::label('email', 'E-Mail ')}}
-                            {{ Form::text('email', $user->email, array_merge(['class' => 'form-control', 'id' => 'email'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('email')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::text('email', $user->email, array_merge(['class' => 'mdl-textfield__input', 'id' => 'email'])) }}
+                                {{ Form::label('email', 'E-Mail', array('class' => 'mdl-textfield__label'))}}
 
-                        <div class="form-group <?php if ($errors->has('phone_number')) echo 'has-error'; ?>">
+                            </div>
 
-                            {{ Form::label('phone_number', 'Telefon')}}
-                            {{ Form::text('phone_number', $user->phone_number, array_merge(['class' => 'form-control', 'id' => 'phone_number'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('phone_number')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::text('phone_number', $user->phone_number, array_merge(['class' => 'mdl-textfield__input', 'id' => 'phone_number'])) }}
+                                {{ Form::label('phone_number', 'Telefon', array('class' => 'mdl-textfield__label'))}}
 
-                        <div class="form-group <?php if ($errors->has('street_address')) echo 'has-error'; ?>">
+                            </div>
 
-                            {{ Form::label('street_address', 'Straße')}}
-                            {{ Form::text('street_address', $user->street_address, array_merge(['class' => 'form-control', 'id' => 'street_address'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('street_address')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::text('street_address', $user->street_address, array_merge(['class' => 'mdl-textfield__input', 'id' => 'street_address'])) }}
+                                {{ Form::label('street_address', 'Straße', array('class' => 'mdl-textfield__label'))}}
 
-                        <div class="form-group <?php if ($errors->has('postcode')) echo 'has-error'; ?>">
+                            </div>
 
-                            {{ Form::label('postcode', 'Postleitzahl')}}
-                            {{ Form::text('postcode', $user->postcode, array_merge(['class' => 'form-control', 'id' => 'postcode'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('postcode')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::text('postcode', $user->postcode, array_merge(['class' => 'mdl-textfield__input', 'id' => 'postcode'])) }}
+                                {{ Form::label('postcode', 'Postleitzahl', array('class' => 'mdl-textfield__label'))}}
 
-                        <div class="form-group <?php if ($errors->has('city')) echo 'has-error'; ?>">
+                            </div>
 
-                            {{ Form::label('city', 'Wohnort')}}
-                            {{ Form::text('city', $user->city, array_merge(['class' => 'form-control', 'id' => 'city'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('city')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::text('city', $user->city, array_merge(['class' => 'mdl-textfield__input', 'id' => 'city'])) }}
+                                {{ Form::label('city', 'Wohnort', array('class' => 'mdl-textfield__label'))}}
 
-                        <div style="text-align: right;">
+                            </div>
 
-                            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">speichern</button>
+                            <div style="text-align: right;">
 
-                        </div>
+                                <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">speichern</button>
 
-                    {!! Form::close() !!}
+                            </div>
+
+                        {!! Form::close() !!}
+
+                    </div>
 
                 </div>
 
 
                 <div class="col-md-6">
 
-                    <h5>Passwort ändern</h5>
+                    <div class="section-wrap">
 
-                    {!! Form::open(['url' => "/user/$user->id/updatepassword"]) !!}
+                        <h5>Passwort ändern</h5>
 
-                        <div class="form-group <?php if ($errors->has('current_password')) echo 'has-error'; ?>">
+                        {!! Form::open(['url' => "/user/$user->id/updatepassword"]) !!}
 
-                            {{ Form::label('current_password', 'Aktuelles Passwort')}}
-                            {{ Form::password('current_password', array_merge(['class' => 'form-control', 'id' => 'current_password', 'placeholder' => '*************'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('current_password')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::password('current_password', array_merge(['class' => 'mdl-textfield__input', 'id' => 'current_password', 'placeholder' => '*************'])) }}
+                                {{ Form::label('current_password', 'Aktuelles Passwort', array('class' => 'mdl-textfield__label'))}}
 
-                        <div class="form-group <?php if ($errors->has('password')) echo 'has-error'; ?>">
+                            </div>
 
-                            {{ Form::label('password', 'Neues Passwort')}}
-                            {{ Form::password('password', array_merge(['class' => 'form-control', 'id' => 'password'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('password')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::password('password', array_merge(['class' => 'mdl-textfield__input', 'id' => 'password'])) }}
+                                {{ Form::label('password', 'Neues Passwort', array('class' => 'mdl-textfield__label'))}}
 
-                        <div class="form-group <?php if ($errors->has('password2')) echo 'has-error'; ?>">
+                            </div>
 
-                            {{ Form::label('password2', 'Neues Passwort wiederholen')}}
-                            {{ Form::password('password2', array_merge(['class' => 'form-control', 'id' => 'password2'])) }}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('password2')) echo 'has-error'; ?>">
 
-                        </div>
+                                {{ Form::password('password2', array_merge(['class' => 'mdl-textfield__input', 'id' => 'password2'])) }}
+                                {{ Form::label('password2', 'Neues Passwort wiederholen', array('class' => 'mdl-textfield__label'))}}
 
-                        <div style="text-align: right;">
+                            </div>
 
-                            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">speichern</button>
+                            <div style="text-align: right;">
 
-                        </div>
+                                <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">speichern</button>
 
-                    {!! Form::close() !!}
-
-                    @if ($user->roles[0]->id === 1)
-
-                    <h5>API Key</h5>
-
-
-                    <div class="form-group">
-
-                        <span class="form-control">{{$user->api_token}}</span>
-
-                    </div>
-
-                    <div style="text-align: right;">
-
-                        {!! Form::open(['url' => "/users/$user->id/apikey"]) !!}
-
-                        <div class="form-group">
-
-                            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">Neu generieren</button>
-
-                        </div>
+                            </div>
 
                         {!! Form::close() !!}
 
                     </div>
+
+                    @if ($user->roles[0]->id === 1)
+
+                        <div class="section-wrap">
+
+                            <h5>API Key</h5>
+
+
+                            <div class="form-group">
+
+                                <span class="form-control">{{$user->api_token}}</span>
+
+                            </div>
+
+                            <div style="text-align: right;">
+
+                                {!! Form::open(['url' => "/users/$user->id/apikey"]) !!}
+
+                                <div class="form-group">
+
+                                    <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">Neu generieren</button>
+
+                                </div>
+
+                                {!! Form::close() !!}
+
+                            </div>
+
+                        </div>
 
                     @endif
 

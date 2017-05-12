@@ -40,38 +40,42 @@
 
                 <div class="col-md-6">
 
-                    <h5>{{$current_template->template_name}}</h5>
+                    <div class="section-wrap">
 
-                    {!! Form::open(['url' => "/email/$current_template->id/update"]) !!}
+                        <h5>{{$current_template->template_name}}</h5>
 
-                    <div class="form-group <?php if ($errors->has('title')) echo 'has-error'; ?>">
+                        {!! Form::open(['url' => "/email/$current_template->id/update"]) !!}
 
-                        {{ Form::label('title', 'Anrede')}}
-                        {{ Form::text('title', $current_template->title, array_merge(['class' => 'form-control', 'id' => 'title'])) }}
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('title')) echo 'has-error'; ?>">
+
+                            {{ Form::text('title', $current_template->title, array_merge(['class' => 'mdl-textfield__input', 'id' => 'title'])) }}
+                            {{ Form::label('title', 'Anrede', array('class' => 'mdl-textfield__label'))}}
+
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('text')) echo 'has-error'; ?>">
+
+                            {{ Form::textarea('text', $current_template->text, array_merge(['class' => 'mdl-textfield__input', 'id' => 'text'])) }}
+                            {{ Form::label('text', 'Inhalt', array('class' => 'mdl-textfield__label'))}}
+
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('closing')) echo 'has-error'; ?>">
+
+                            {{ Form::textarea('closing', $current_template->closing, array_merge(['class' => 'mdl-textfield__input', 'id' => 'closing'])) }}
+                            {{ Form::label('closing', 'Abschluss', array('class' => 'mdl-textfield__label'))}}
+
+                        </div>
+
+                        <div style="text-align: right;">
+
+                            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">speichern</button>
+
+                        </div>
+
+                        {!! Form::close() !!}
 
                     </div>
-
-                    <div class="form-group <?php if ($errors->has('text')) echo 'has-error'; ?>">
-
-                        {{ Form::label('text', 'Inhalt')}}
-                        {{ Form::textarea('text', $current_template->text, array_merge(['class' => 'form-control', 'id' => 'text'])) }}
-
-                    </div>
-
-                    <div class="form-group <?php if ($errors->has('closing')) echo 'has-error'; ?>">
-
-                        {{ Form::label('closing', 'Abschluss')}}
-                        {{ Form::textarea('closing', $current_template->closing, array_merge(['class' => 'form-control', 'id' => 'closing'])) }}
-
-                    </div>
-
-                    <div style="text-align: right;">
-
-                        <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">speichern</button>
-
-                    </div>
-
-                    {!! Form::close() !!}
 
                 </div>
 
