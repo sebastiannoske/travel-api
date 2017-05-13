@@ -25,6 +25,7 @@ Route::post('/travel/{travel}/destroy', 'TravelController@destroy');
 Route::get('/register/confirm/{token}', 'Auth\RegisterController@confirmEmail');
 Route::get('/travel/confirm/{token}', 'TravelController@confirmTravel');
 Route::get('/travel/{url_token}', 'PagesController@showByUrlToken');
+Route::get('/export', 'TravelController@generateCsv');
 
 Route::get('/user', 'PagesController@editUser');
 Route::post('/user/create', 'UserController@create');

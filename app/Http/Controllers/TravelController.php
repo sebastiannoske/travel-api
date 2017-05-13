@@ -86,6 +86,65 @@ class TravelController extends Controller
 
     }
 
+    public function generateCsv() {
+
+        $auth_user = \Auth::user();
+        $user = null;
+
+        if ($auth_user) {
+
+            if ($auth_user->hasRole('admin') || $auth_user->hasRole('editor')) {
+
+                $travel = Travel::with('offer')
+                    ->with('request')
+                    ->with('contact')
+                    ->with('transportation_mean')
+                    ->with('stopover')
+                    ->orderBy('id', 'desc')
+                    ->get();
+
+                $data = [];
+
+                foreach($travel as $current_travel)
+                {
+                    $data[] = [
+                        'Verkehrsmittel' => $current_travel->transportation_mean->name,
+                        'Beschreibung' => $current_travel->description,
+                        'Straße' => $current_travel->street_address,
+                        'Postleitzahl' => $current_travel->postcode,
+                        'Ort' => $current_travel->city,
+                        'Latitude' => $current_travel->lat,
+                        'Longitude' => $current_travel->long,
+                        'Abfahrtzeit' => $current_travel->departure_time,
+                        'Art' => ($current_travel->offer) ? 'Angebot' : 'Gesuch',
+                        'Passagiere' => ($current_travel->offer) ? $current_travel->offer->passenger : $current_travel->request->passenger,
+                        'Kosten' => ($current_travel->offer) ? $current_travel->offer->cost : $current_travel->request->cost,
+                        'URL' => 'http://mfz.g20-protestwelle.de/travel/' . $current_travel->url_token,
+                        'Organisation' => $current_travel->contact->organisation,
+                        'Name' => $current_travel->contact->name,
+                        'Telefon' => $current_travel->contact->phone_number,
+                        'EMail' => $current_travel->contact->email,
+
+
+                        // And many more, lots of them are null
+                    ];
+                }
+
+                $collection = collect($data);
+
+                \Excel::create('fahrten', function($excel) use ($collection) {
+                    $excel->sheet('Sheetname', function($sheet) use ($collection) {
+                        $sheet->fromArray($collection);
+                    });
+                })->export('xls');
+
+            }
+
+        }
+
+        return redirect('/');
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -160,7 +219,7 @@ class TravelController extends Controller
 
             }
 
-        } else { // not geo stuff given
+        } else { // no geo stuff given
 
             if ( sizeof($request->input('bbox')) > 0 ) {
 

@@ -20,6 +20,7 @@
             <li role="presentation" class="@if (!$kind) active @endif"><a href="{{ URL::action('PagesController@index') }}">Alle Fahrten</a></li>
             <li role="presentation" class="@if ($kind && $kind === 'offer') active @endif"><a href="{{ URL::action('PagesController@index', ['kind=offer']) }}">Nur Angebote anzeigen</a></li>
             <li role="presentation" class="@if ($kind && $kind === 'request') active @endif"><a href="{{ URL::action('PagesController@index', ['kind=request']) }}">Nur Gesuche anzeigen</a></li>
+            @can ('edit_travel') <a style="float:right;padding:10px 0;" href="{{ url('/export') }}">csv exportieren</a> @endcan
         </ul>
 
         @if (isset($travel) && count($travel))
