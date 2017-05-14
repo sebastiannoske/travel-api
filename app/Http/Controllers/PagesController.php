@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Travel;
 use App\EmailTemplate;
+use Carbon\Carbon;
 
 class PagesController extends Controller
 {
@@ -29,13 +30,13 @@ class PagesController extends Controller
 
                     $travel = Travel::where('user_id', '=', $user->id)->whereHas($request->kind, function ($query) {
                         $query->where('id', '>', 0);
-                    })->with($request->kind)->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(30);
+                    })->with($request->kind)->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
 
 
                 } else {
 
-                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(30);
+                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 }
             } else {
@@ -44,15 +45,27 @@ class PagesController extends Controller
 
                     $travel = Travel::whereHas($request->kind, function ($query) {
                         $query->where('id', '>', 0);
-                    })->with($request->kind)->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(15);
+                    })->with($request->kind)->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 } else {
 
-                    $travel = Travel::with('offer')->with('request')->with('stopover')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(30);
+                    $travel = Travel::with('offer')->with('request')->with('stopover')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 }
 
             }
+
+            foreach ( $travel as $current_travel ) {
+
+                $current_travel->dateHuman = $current_travel->created_at->diffForHumans();
+                $current_travel->label = 'switch-' . $current_travel->id;
+                $current_travel->editURL = '/edit-travel/' . $current_travel->id;
+                $current_travel->isPublic = $current_travel->public;
+                $current_travel->isVerified = $current_travel->verified;
+
+            }
+
+
 
             return view('travel', ['travel' => $travel, 'kind' => $request->kind]);
 

@@ -13,7 +13,7 @@ var Global = Global || {};
             setValues();
             setElements();
 
-            $('.mdl-switch__input').on('change', function(e) {
+            $(document).on('change', '.mdl-switch__input', function(e) {
 
                 $.ajaxSetup({
 
@@ -31,9 +31,11 @@ var Global = Global || {};
 
             });
 
-            $('.btn-delete-travel').on('click', function(e) {
+            $(document).on('click', '.btn-delete-travel', function(e) {
 
                 e.preventDefault();
+
+                alert("cool")
 
                 $.ajaxSetup({
 
