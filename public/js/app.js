@@ -1703,6 +1703,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['travel'],
@@ -31794,15 +31802,21 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('input', {
+  return _c('div', [_c('div', {
+    staticClass: "mdl-textfield mdl-js-textfield mdl-textfield--expandable"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "mdl-textfield__expandable-holder"
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: (_vm.search),
       expression: "search"
     }],
+    staticClass: "mdl-textfield__input",
     attrs: {
-      "type": "text"
+      "type": "text",
+      "id": "sample6"
     },
     domProps: {
       "value": (_vm.search)
@@ -31813,9 +31827,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.search = $event.target.value
       }
     }
-  }), _vm._v(" "), _c('table', {
+  }), _vm._v(" "), _c('label', {
+    staticClass: "mdl-textfield__label",
+    attrs: {
+      "for": "sample-expandable"
+    }
+  }, [_vm._v("Expandable Input")])])]), _vm._v(" "), _c('table', {
     staticClass: "table table-striped"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.filteredTravel), function(key, val) {
+  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.filteredTravel), function(key, val) {
     return _c('tr', [_c('td', [_vm._v(_vm._s(key.dateHuman))]), _vm._v(" "), (key.offer) ? _c('td', [_vm._v("Angebot")]) : _vm._e(), _vm._v(" "), (key.request) ? _c('td', [_vm._v("Gesuch")]) : _vm._e(), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.postcode))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.city))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.transportation_mean.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.destination.name))]), _vm._v(" "), (key.isVerified) ? _c('td', [_c('img', {
       attrs: {
         "src": "/img/checked.svg"
@@ -31884,6 +31903,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v("löschen")])])])
   }))])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "mdl-button mdl-js-button mdl-button--icon",
+    attrs: {
+      "for": "sample6"
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("search")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("erstellt")]), _vm._v(" "), _c('th', [_vm._v("Art")]), _vm._v(" "), _c('th', [_vm._v("PLZ")]), _vm._v(" "), _c('th', [_vm._v("Abfahrtsort")]), _vm._v(" "), _c('th', [_vm._v("Verkehrsmittel")]), _vm._v(" "), _c('th', [_vm._v("Aktionsort")]), _vm._v(" "), _c('th', [_vm._v("per Mail bestätigt?")]), _vm._v(" "), _c('th', [_vm._v("Aktiv?")]), _vm._v(" "), _c('th'), _vm._v(" "), _c('th')])])
 }]}
 module.exports.render._withStripped = true
