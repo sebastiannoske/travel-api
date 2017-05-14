@@ -86,6 +86,7 @@
                              || travel.postcode.toLowerCase().indexOf(that.search.toLowerCase())>=0
                              || travel.destination.name.toLowerCase().indexOf(that.search.toLowerCase())>=0
                              || travel.transportation_mean.name.toLowerCase().indexOf(that.search.toLowerCase())>=0
+                             || travel.userData.toLowerCase().indexOf(that.search.toLowerCase())>=0
                     }
                 );
             }

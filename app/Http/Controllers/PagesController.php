@@ -30,13 +30,13 @@ class PagesController extends Controller
 
                     $travel = Travel::where('user_id', '=', $user->id)->whereHas($request->kind, function ($query) {
                         $query->where('id', '>', 0);
-                    })->with($request->kind)->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+                    })->with($request->kind)->with('destination')->with('contact')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
 
 
                 } else {
 
-                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('contact')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 }
             } else {
@@ -45,11 +45,11 @@ class PagesController extends Controller
 
                     $travel = Travel::whereHas($request->kind, function ($query) {
                         $query->where('id', '>', 0);
-                    })->with($request->kind)->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+                    })->with($request->kind)->with('contact')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 } else {
 
-                    $travel = Travel::with('offer')->with('request')->with('stopover')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+                    $travel = Travel::with('offer')->with('contact')->with('request')->with('stopover')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 }
 
@@ -62,9 +62,9 @@ class PagesController extends Controller
                 $current_travel->editURL = '/edit-travel/' . $current_travel->id;
                 $current_travel->isPublic = $current_travel->public;
                 $current_travel->isVerified = $current_travel->verified;
+                $current_travel->userData = $current_travel->contact->organisation . ' ' . $current_travel->contact->name . ' ' . $current_travel->contact->email;
 
             }
-
 
 
             return view('travel', ['travel' => $travel, 'kind' => $request->kind]);
