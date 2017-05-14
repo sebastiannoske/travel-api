@@ -81,6 +81,9 @@
                     }
                 );
             }
+        },
+        updated() {
+            componentHandler.upgradeDom();
         }
     }
 </script>

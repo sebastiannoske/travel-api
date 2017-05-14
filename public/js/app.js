@@ -1722,6 +1722,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return travel.city.toLowerCase().indexOf(that.search.toLowerCase()) >= 0 || travel.postcode.toLowerCase().indexOf(that.search.toLowerCase()) >= 0 || travel.destination.name.toLowerCase().indexOf(that.search.toLowerCase()) >= 0 || travel.transportation_mean.name.toLowerCase().indexOf(that.search.toLowerCase()) >= 0;
             });
         }
+    },
+    updated: function updated() {
+        componentHandler.upgradeDom();
     }
 });
 
