@@ -35,8 +35,6 @@ var Global = Global || {};
 
                 e.preventDefault();
 
-                alert("cool")
-
                 $.ajaxSetup({
 
                     headers: {

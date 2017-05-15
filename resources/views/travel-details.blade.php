@@ -28,7 +28,7 @@
 
                             <div class="col-sm-9">
 
-                                <p>@if ($travel->contact->organisation) {{$travel->contact->organisation}}  @else nicht angegeben @endif</p>
+                                <p>@if ($travel->contact->organisation) {{$travel->contact->organisation}}  @else - @endif</p>
 
                             </div>
 
@@ -60,7 +60,7 @@
 
                             <div class="col-sm-9">
 
-                                <p>@if ($travel->contact->email) <?php echo str_replace( '@', '(at)', $travel->contact->email); ?>  @else nicht angegeben @endif</p>
+                                <p>@if ($travel->contact->email) <a href="mailto:{{$travel->contact->email}}"><?php echo str_replace( '@', '(at)', $travel->contact->email); ?></a>  @else - @endif</p>
 
                             </div>
 
@@ -76,7 +76,7 @@
 
                             <div class="col-sm-9">
 
-                                <p>@if ($travel->contact->phone_number) <a href="tel:{{$travel->contact->phone_number}}">{{$travel->contact->phone_number}}</a>  @else nicht angegeben @endif</p>
+                                <p>@if ($travel->contact->phone_number) <a href="tel:{{$travel->contact->phone_number}}">{{$travel->contact->phone_number}}</a>  @else - @endif</p>
 
                             </div>
 
@@ -136,7 +136,7 @@
 
                             <div class="col-sm-9">
 
-                                <p>@if ($travel->departure_time && count($travel->departure_time)) {{ Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y, H:i')}} Uhr ( geplant )@else nicht angegeben @endif</p>
+                                <p>@if ($travel->departure_time && count($travel->departure_time)) {{ Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y, H:i')}} Uhr ( geplant )@else - @endif</p>
 
                             </div>
 
