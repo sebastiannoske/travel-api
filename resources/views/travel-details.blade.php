@@ -249,7 +249,7 @@
 
                         <h5>Beschreibung</h5>
 
-                        <p>{!! nl2br(e($travel->description)) !!}</p>
+                        <p>{!! $travel->description !!}</p>
 
                     </div>
 
