@@ -249,7 +249,9 @@
 
                         <h5>Beschreibung</h5>
 
-                        <p>{!! $travel->description !!}</p>
+                        <?php $description = nl2br($travel->description); ?>
+
+                        <p>{!! $description !!}</p>
 
                     </div>
 
