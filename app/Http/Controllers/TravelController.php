@@ -169,6 +169,7 @@ class TravelController extends Controller
                     $data[] = [
                         'Verkehrsmittel' => $current_travel->transportation_mean->name,
                         'Beschreibung' => $current_travel->description,
+                        'Link' => $current_travel->link,
                         'Straße' => $current_travel->street_address,
                         'Postleitzahl' => $current_travel->postcode,
                         'Ort' => $current_travel->city,
@@ -412,6 +413,7 @@ class TravelController extends Controller
 
         $travel = new Travel([
             'description' => $request->description,
+            'link' => $request->link,
             'departure_time' => $departure,
             'lat' => $request->lat,
             'long' => $request->long,
@@ -536,6 +538,7 @@ class TravelController extends Controller
 
         $travel->departure_time = $carbon_date;
         $travel->description = $request->description;
+        $travel->link = $request->link;
         $travel->save();
 
         $travel_kind = null;

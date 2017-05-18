@@ -15,7 +15,8 @@ class CreateTravelsTable extends Migration
     {
         Schema::create('travels', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('description');
+            $table->text('description')->default(null);
+            $table->string('link')->nullable()->default(null);
             $table->dateTime('departure_time')->nullable()->default(null);
             $table->string('city');
             $table->string('postcode');

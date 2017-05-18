@@ -249,9 +249,7 @@
 
                         <h5>Beschreibung</h5>
 
-                        <?php $description = nl2br($travel->description); ?>
-
-                        <p>{!! $description !!}</p>
+                        <p>{{nl2br($travel->description)}}<br/><br/><a href="{{$travel->link}}" target="_blank">{{$travel->link}}</a></p>
 
                     </div>
 

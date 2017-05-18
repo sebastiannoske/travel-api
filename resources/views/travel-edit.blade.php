@@ -128,6 +128,13 @@
 
                             </div>
 
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('link')) echo 'has-error'; ?>">
+
+                                {{ Form::text('link', $travel->link, array_merge(['class' => 'mdl-textfield__input', 'id' => 'link'])) }}
+                                {{ Form::label('link', 'Link', array('class' => 'mdl-textfield__label'))}}
+
+                            </div>
+
                             <?php $kind = ( $is_offer ) ? 'offer' : 'request' ?>
 
                             <input type="hidden" name="kind" value="{{$kind}}">
