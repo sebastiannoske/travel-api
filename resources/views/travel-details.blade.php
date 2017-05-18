@@ -249,7 +249,7 @@
 
                         <h5>Beschreibung</h5>
 
-                        <p>{{nl2br(e($travel->description))}}<br/><br/><a href="{{$travel->link}}" target="_blank">{{$travel->link}}</a></p>
+                        <p>{!! nl2br(e($travel->description)) !!}<br/><br/><a href="{{$travel->link}}" target="_blank">{{$travel->link}}</a></p>
 
                     </div>
 
