@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
 */
 
 
+// CORS
+header('Access-Control-Allow-Origin: https://www.g20-protestwelle.de');
+header('Access-Control-Allow-Credentials: true');
+
+
 Route::group(['middleware' => 'auth:api'], function() {
 
     Route::resource('events', 'EventController', [
