@@ -18,13 +18,13 @@
 
                         <div class="row">
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
 
                                 <h5>Teilen</h5>
 
                             </div>
 
-                            <div class="col-md-8">
+                            <div class="col-md-9">
 
                                 <div class="row social-share-links">
 
@@ -32,7 +32,37 @@
 
                                     <div class="col-xs-4">
 
-                                        <a role="button" href="{{$link}}" target="_blank" class="{{$key}}">{{$key}}</a>
+                                        <a role="button" href="{{$link}}" target="_blank" class="{{$key}}">
+
+                                            @if ($key === 'facebook')
+
+                                                <span class="social-icon">
+
+                                                    <svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 32"><path d="M17.1 0.2v4.7h-2.8q-1.5 0-2.1 0.6t-0.5 1.9v3.4h5.2l-0.7 5.3h-4.5v13.6h-5.5v-13.6h-4.5v-5.3h4.5v-3.9q0-3.3 1.9-5.2t5-1.8q2.6 0 4.1 0.2z"></path></svg>
+
+                                                </span>
+
+                                            @elseif ($key === 'twitter')
+
+                                                <span class="social-icon">
+
+                                                    <svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 32"><path d="M29.7 6.8q-1.2 1.8-3 3.1 0 0.3 0 0.8 0 2.5-0.7 4.9t-2.2 4.7-3.5 4-4.9 2.8-6.1 1q-5.1 0-9.3-2.7 0.6 0.1 1.5 0.1 4.3 0 7.6-2.6-2-0.1-3.5-1.2t-2.2-3q0.6 0.1 1.1 0.1 0.8 0 1.6-0.2-2.1-0.4-3.5-2.1t-1.4-3.9v-0.1q1.3 0.7 2.8 0.8-1.2-0.8-2-2.2t-0.7-2.9q0-1.7 0.8-3.1 2.3 2.8 5.5 4.5t7 1.9q-0.2-0.7-0.2-1.4 0-2.5 1.8-4.3t4.3-1.8q2.7 0 4.5 1.9 2.1-0.4 3.9-1.5-0.7 2.2-2.7 3.4 1.8-0.2 3.5-0.9z"></path></svg>
+
+                                                </span>
+
+                                            @elseif ($key === 'gplus')
+
+                                                <span class="social-icon">
+
+                                                    <svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M31.6 14.7h-3.3v-3.3h-2.6v3.3h-3.3v2.6h3.3v3.3h2.6v-3.3h3.3zM10.8 14v4.1h5.7c-0.4 2.4-2.6 4.2-5.7 4.2-3.4 0-6.2-2.9-6.2-6.3s2.8-6.3 6.2-6.3c1.5 0 2.9 0.5 4 1.6v0l2.9-2.9c-1.8-1.7-4.2-2.7-7-2.7-5.8 0-10.4 4.7-10.4 10.4s4.7 10.4 10.4 10.4c6 0 10-4.2 10-10.2 0-0.8-0.1-1.5-0.2-2.2 0 0-9.8 0-9.8 0z"></path></svg>
+
+                                                </span>
+
+                                            @endif
+
+                                            <span>{{$key}}</span>
+
+                                        </a>
 
                                     </div>
 

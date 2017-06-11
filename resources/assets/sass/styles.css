@@ -134,8 +134,8 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
 
 #content-stuff .social-share-links a {
     color: #fff;
-    text-align: center;
-    padding: 7px 10px;
+    position: relative;
+    padding: 6px 5px;
     display: block;
     width: 100%;
     background-color: #aaa;
@@ -159,6 +159,14 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
 
 #content-stuff .mdl-button--accent.mdl-button--accent.mdl-button--raised, #content-stuff .mdl-button--accent.mdl-button--accent.mdl-button--fab {
     background-color: #BA0116;
+}
+
+#content-stuff .social-share-links a .social-icon svg {
+    width: 32px;
+    height: 20px;
+    padding: 7px 1px;
+    box-sizing: content-box;
+    fill: #fff;
 }
 
 @media ( max-width: 992px ) {
