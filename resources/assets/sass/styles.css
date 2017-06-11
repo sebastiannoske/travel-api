@@ -157,13 +157,15 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
     background-color: #DB4C32;
 }
 
+#content-stuff .mdl-button--accent.mdl-button--accent.mdl-button--raised, #content-stuff .mdl-button--accent.mdl-button--accent.mdl-button--fab {
+    background-color: #BA0116;
+}
+
 @media ( max-width: 992px ) {
 
     .container.details-container {
         width: calc(100% - 30px);
     }
-
-
 
     .travel-details {
         margin-top: 0px;
@@ -220,11 +222,11 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
 }
 
 .nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover {
-    color: lightgrey;
+    color: lightgrey !important;
     background-color: #fcfcfc !important;
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-    color: #000;
+    color: #000 !important;
     background-color: #fff !important;
 }
