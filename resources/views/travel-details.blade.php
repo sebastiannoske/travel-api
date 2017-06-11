@@ -30,7 +30,7 @@
 
                                 @foreach ($share as $key => $link)
 
-                                    <div class="col-xs-4">
+                                    <div class="col-sm-4">
 
                                         <a role="button" href="{{$link}}" target="_blank" class="{{$key}}">
 
