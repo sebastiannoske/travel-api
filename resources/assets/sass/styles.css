@@ -8,11 +8,11 @@ body {
     padding-bottom: 50px;
 }
 
-#app a {
+#content-stuff a {
     color: #BA0116;
 }
 
-#app a:hover {
+#content-stuff a:hover {
     color: #87000F;
 }
 
@@ -132,7 +132,7 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
     padding-right: 3px;
 }
 
-#app .social-share-links a {
+#content-stuff .social-share-links a {
     color: #fff;
     text-align: center;
     padding: 7px 10px;
@@ -141,19 +141,19 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
     background-color: #aaa;
 }
 
-#app .social-share-links a:hover, #app .social-share-links a:active, #app .social-share-links a:visited {
+#content-stuff .social-share-links a:hover, #content-stuff .social-share-links a:active, #content-stuff .social-share-links a:visited {
     color: #fff;
 }
 
-#app .social-share-links a.twitter {
+#content-stuff .social-share-links a.twitter {
     background-color: #00ACF5;
 }
 
-#app .social-share-links a.facebook {
+#content-stuff .social-share-links a.facebook {
     background-color: #1E599B;
 }
 
-#app .social-share-links a.gplus {
+#content-stuff .social-share-links a.gplus {
     background-color: #DB4C32;
 }
 

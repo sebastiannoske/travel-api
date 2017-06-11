@@ -116,7 +116,10 @@
 
         @endcan
 
-        @yield('content')
+        <div id="content-stuff">
+            @yield('content')
+
+        </div>
     </div>
 
 
