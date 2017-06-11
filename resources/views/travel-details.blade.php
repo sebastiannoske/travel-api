@@ -8,13 +8,45 @@
 
             <?php $is_offer = $travel->offer; ?>
 
-            <h4>Detail- und Kontaktinformationen</h4>
-
             <div class="row travel-details">
 
                 <div class="col-sm-6 col-sm-push-6">
 
-                    <div class="section-wrap wide">
+                    <br/><br/>
+
+                    <div class="section-wrap">
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+
+                                <h5>Teilen</h5>
+
+                            </div>
+
+                            <div class="col-md-8">
+
+                                <div class="row social-share-links">
+
+                                @foreach ($share as $key => $link)
+
+                                    <div class="col-xs-4">
+
+                                        <a role="button" href="{{$link}}" target="_blank" class="{{$key}}">{{$key}}</a>
+
+                                    </div>
+
+                                @endforeach
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="section-wrap">
 
                         <h5>Kontakt & Ansprechpartner</h5>
 
@@ -83,10 +115,6 @@
                         </div>
 
                     </div>
-
-                </div>
-
-                <div class="col-sm-6 col-sm-pull-6">
 
                     <div class="section-wrap">
 
@@ -189,29 +217,29 @@
 
                         @if (($is_offer && $travel->offer->passenger) || (!$is_offer && $travel->request->passenger))
 
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="col-sm-3">
+                                <div class="col-sm-3">
 
-                                <p><span>Plätze:</span></p>
+                                    <p><span>Plätze:</span></p>
+
+                                </div>
+
+                                <div class="col-sm-9">
+
+                                    @if ($is_offer)
+
+                                        <p>{{$travel->offer->passenger}}</p>
+
+                                    @else
+
+                                        <p>{{$travel->request->passenger}}</p>
+
+                                    @endif
+
+                                </div>
 
                             </div>
-
-                            <div class="col-sm-9">
-
-                               @if ($is_offer)
-
-                                    <p>{{$travel->offer->passenger}}</p>
-
-                                @else
-
-                                    <p>{{$travel->request->passenger}}</p>
-
-                                @endif
-
-                            </div>
-
-                        </div>
 
                         @endif
 
@@ -255,7 +283,54 @@
 
                 </div>
 
+                <div class="col-sm-6 col-sm-pull-6">
+
+                    <div id="map" style="width:100%;height: calc(100vh - 100px);min-height:300px;"></div>
+
+                </div>
+
             </div>
+
+            <input type="hidden" id="input-lat" value="{{$travel->lat}}">
+            <input type="hidden" id="input-lng" value="{{$travel->long}}">
+            <input type="hidden" id="input-dest" value="{{$travel->destination->name}}">
+
+            <script>
+                function initMap() {
+
+                    var directionsService = new google.maps.DirectionsService;
+                    var directionsDisplay = new google.maps.DirectionsRenderer;
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 7,
+                        center: {lat: 51.163375, lng: 10.447683}
+                    });
+                    directionsDisplay.setMap(map);
+
+                    calculateAndDisplayRoute(directionsService, directionsDisplay);
+
+                }
+
+                function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+
+                    var lat = document.getElementById('input-lat').value;
+                    var lng = document.getElementById('input-lng').value;
+                    var dest = document.getElementById('input-dest').value;
+
+                    directionsService.route({
+                        origin: lat + ',' + lng,
+                        destination: dest,
+                        travelMode: 'DRIVING'
+                    }, function(response, status) {
+                        if (status === 'OK') {
+                            directionsDisplay.setDirections(response);
+                        } else {
+                            window.alert('Directions request failed due to ' + status);
+                        }
+                    });
+                }
+            </script>
+
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbZ4hrT0d_RIaXoaCbUCwSIB3uo90bHAM&libraries=places&callback=initMap"></script>
 
         @else
 

@@ -7,6 +7,7 @@ use App\User;
 use App\Travel;
 use App\EmailTemplate;
 use Carbon\Carbon;
+use Share;
 
 class PagesController extends Controller
 {
@@ -223,7 +224,9 @@ class PagesController extends Controller
             ['verified', '=', '1'],
         ])->with('stopover')->with('offer')->with('request')->with('contact')->with('destination')->with('transportation_mean')->first();
 
-        return view('travel-details', ['travel' => $travel]);
+        $share = Share::load('http://mfz.g20-protestwelle.de/travel/' . $travel->url_token , 'Mitfahrzentrale')->services('facebook', 'gplus', 'twitter');
+
+        return view('travel-details', ['travel' => $travel, 'share' => $share]);
 
     }
 

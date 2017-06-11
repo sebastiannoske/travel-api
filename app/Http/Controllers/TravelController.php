@@ -411,7 +411,7 @@ class TravelController extends Controller
 
         }
 
-        $request->description = ( !$request->description ) ? '' : $request->description;
+        $request->description = ( !$request->description ) ? '  ' : $request->description;
         $travel = new Travel([
             'description' => $request->description,
             'link' => $request->link,

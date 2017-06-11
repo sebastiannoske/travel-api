@@ -120,6 +120,7 @@
     </div>
 
 
+    <script src="{{ asset('js/material-datetime-picker.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

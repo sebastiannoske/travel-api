@@ -4,7 +4,17 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+#app {
+    padding-bottom: 50px;
+}
 
+#app a {
+    color: #BA0116;
+}
+
+#app a:hover {
+    color: #87000F;
+}
 
 tr.request {
     border-left: 3px solid #C21C34;
@@ -109,6 +119,42 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
 
 .has-error .mdl-textfield__input {
     border-color: #C21C34 !important;
+}
+
+.row.social-share-links {
+    padding-top: 20px;
+    margin-left: -3px;
+    margin-right: -3px;
+}
+
+.row.social-share-links > div {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+#app .social-share-links a {
+    color: #fff;
+    text-align: center;
+    padding: 7px 10px;
+    display: block;
+    width: 100%;
+    background-color: #aaa;
+}
+
+#app .social-share-links a:hover, #app .social-share-links a:active, #app .social-share-links a:visited {
+    color: #fff;
+}
+
+#app .social-share-links a.twitter {
+    background-color: #00ACF5;
+}
+
+#app .social-share-links a.facebook {
+    background-color: #1E599B;
+}
+
+#app .social-share-links a.gplus {
+    background-color: #DB4C32;
 }
 
 @media ( max-width: 992px ) {

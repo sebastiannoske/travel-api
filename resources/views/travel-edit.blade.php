@@ -14,6 +14,8 @@
 
             <h4 style="text-align: center;"><?php if ($is_offer) : echo 'Angebot'; else: echo 'Gesuch'; endif; ?> / <span class="small">Fahrt nach</span> {{$travel->destination->name}}</h4>
 
+            <div id="map" style="width:100%;height: 500px; margin-bottom: 30px;"></div>
+
             @if ($stopoverError)
 
                 <p class="alert alert-danger">
@@ -192,7 +194,7 @@
 
             {!! Form::close() !!}
 
-            @if ($travel->transportation_mean_id === 2)
+            @if ($travel->transportation_mean_id === 2 && $is_offer)
 
                 <h5 style="text-align: center;">Zwischenstopps</h5>
 
@@ -278,13 +280,50 @@
 
                 </div>
 
-                <br/><br/><br/><br/><br/>
+                <input type="hidden" id="input-lat" value="{{$travel->lat}}">
+                <input type="hidden" id="input-lng" value="{{$travel->long}}">
+                <input type="hidden" id="input-dest" value="{{$travel->destination->name}}">
 
-                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDS1rNqI3ZCpJu0fd8Rkyo5SAi8EPIna5g&libraries=places"></script>
+                <script>
+                    function initMap() {
+
+                        var directionsService = new google.maps.DirectionsService;
+                        var directionsDisplay = new google.maps.DirectionsRenderer;
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 7,
+                            center: {lat: 51.163375, lng: 10.447683}
+                        });
+                        directionsDisplay.setMap(map);
+
+                        calculateAndDisplayRoute(directionsService, directionsDisplay);
+
+                    }
+
+                    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+
+                        var lat = document.getElementById('input-lat').value;
+                        var lng = document.getElementById('input-lng').value;
+                        var dest = document.getElementById('input-dest').value;
+
+                        directionsService.route({
+                            origin: lat + ',' + lng,
+                            destination: dest,
+                            travelMode: 'DRIVING'
+                        }, function(response, status) {
+                            if (status === 'OK') {
+                                directionsDisplay.setDirections(response);
+                            } else {
+                                window.alert('Directions request failed due to ' + status);
+                            }
+                        });
+                    }
+                </script>
+
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbZ4hrT0d_RIaXoaCbUCwSIB3uo90bHAM&libraries=places&callback=initMap"></script>
 
             @endif
 
-                <script src="/js/travel-details.js"></script>
+            <script src="/js/travel-details.js"></script>
 
 
         @else
