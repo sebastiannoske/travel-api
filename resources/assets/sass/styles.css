@@ -141,6 +141,13 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
     background-color: #aaa;
 }
 
+@media ( max-width: 750px ) {
+
+    #content-stuff .social-share-links a {
+        margin-bottom: 5px;
+    }
+}
+
 #content-stuff .social-share-links a:hover, #content-stuff .social-share-links a:active, #content-stuff .social-share-links a:visited {
     color: #fff;
 }
