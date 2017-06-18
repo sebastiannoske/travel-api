@@ -325,6 +325,24 @@
             <input type="hidden" id="input-lng" value="{{$travel->long}}">
             <input type="hidden" id="input-dest" value="{{$travel->destination->name}}">
 
+            <?php if ( $travel->transportation_mean->id === 1 || $travel->transportation_mean->id === 2 || $travel->transportation_mean->id === 6 ) : ?>
+
+                <input type="hidden" id="input-travelmode" value="DRIVING">
+
+            <?php elseif ($travel->transportation_mean->id === 3) : ?>
+
+                <input type="hidden" id="input-travelmode" value="TRANSIT">
+
+            <?php elseif ($travel->transportation_mean->id === 4) : ?>
+
+                <input type="hidden" id="input-travelmode" value="BICYCLING">
+
+            <?php elseif ($travel->transportation_mean->id === 5) : ?>
+
+                <input type="hidden" id="input-travelmode" value="WALKING">
+
+            <?php endif; ?>
+
             <script>
                 function initMap() {
 
@@ -345,11 +363,12 @@
                     var lat = document.getElementById('input-lat').value;
                     var lng = document.getElementById('input-lng').value;
                     var dest = document.getElementById('input-dest').value;
+                    var travelMode = document.getElementById('input-travelmode').value;
 
                     directionsService.route({
                         origin: lat + ',' + lng,
                         destination: dest,
-                        travelMode: 'DRIVING'
+                        travelMode: travelMode
                     }, function(response, status) {
                         if (status === 'OK') {
                             directionsDisplay.setDirections(response);
