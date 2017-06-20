@@ -157,7 +157,7 @@
 
                                 <div class="col-sm-9">
 
-                                    <p><a href="{{$travel->link}}" target="_blank">{{$travel->link}}</a></p>
+                                    <p><a href="{{$travel->link}}" target="_blank">Jetzt Tickets ordnern</a></p>
 
                                 </div>
 
