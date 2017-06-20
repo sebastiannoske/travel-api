@@ -144,6 +144,27 @@
 
                         </div>
 
+
+                        @if ($travel->link)
+
+                            <div class="row">
+
+                                <div class="col-sm-3">
+
+                                    <p><span>Tickets:</span></p>
+
+                                </div>
+
+                                <div class="col-sm-9">
+
+                                    <p><a href="{{$travel->link}}" target="_blank">{{$travel->link}}</a></p>
+
+                                </div>
+
+                            </div>
+
+                         @endif
+
                     </div>
 
                     <div class="section-wrap">
@@ -307,7 +328,7 @@
 
                         <h5>Beschreibung</h5>
 
-                        <p>{!! nl2br(e($travel->description)) !!}<br/><br/><a href="{{$travel->link}}" target="_blank">{{$travel->link}}</a></p>
+                        <p>{!! nl2br(e($travel->description)) !!}</p>
 
                     </div>
 
