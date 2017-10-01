@@ -12,19 +12,18 @@ class EventsTableSeeder extends Seeder
      */
     public function run()
     {
-
+        /**
         DB::table('events')->insert([
             'name' => 'G20 Protestwelle'
-        ]);
-        /** $faker = Faker::create();
+        ]); **/
+
+        $faker = Faker::create();
 
         foreach (range(1,7) as $index) {
             DB::table('events')->insert([
                 'name' => 'Demo  ' . $faker->word
             ]);
         }
-
-        */
 
     }
 }

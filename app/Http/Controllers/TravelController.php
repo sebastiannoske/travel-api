@@ -205,6 +205,40 @@ class TravelController extends Controller
         return redirect('/');
 
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexByEventId(Request $request, $event_id)
+    {
+        $destinations = Destination::where('event_id', '=', $event_id)->get();
+
+        foreach ($destinations as $destination) {
+
+            $travel = Travel::whereHas('destination', function ($query) use ($destination) {
+                $query->where('id', '=', $destination->id);
+            })
+                ->with('offer')
+                ->with('request')
+                ->with('contact')
+                ->with('transportation_mean')
+                ->with('stopover')
+                ->where([
+                    ['public', '=', '1'],
+                    ['verified', '=', '1'],
+                ])
+                ->orderBy('id', 'desc')
+                ->get();
+
+            $destination->travel = $travel;
+        }
+
+        return response()->json(['data' => $destinations, 'status' => 'success', 'total' => $destinations->count()]);
+
+    }
+
     /**
      * Display a listing of the resource.
      *

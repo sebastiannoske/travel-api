@@ -39,13 +39,9 @@ Route::group(['middleware' => 'auth:api'], function() {
         ]
     ]);
 
-    Route::resource('transportation_means', 'TransportationMeanController', [
-        'only' => [
-            'index', 'show'
-        ]
-    ]);
 
     Route::get('destinations/{destination_id}/transportation_means', 'TransportationMeanController@indexByTravelId');
+    Route::get('events/{event_id}/travel', 'TravelController@indexByEventId');
 
 
 });
