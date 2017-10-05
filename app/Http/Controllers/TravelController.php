@@ -430,9 +430,9 @@ class TravelController extends Controller
      */
     public function store(Request $request, $destination_id)
     {
-        dd($request);
+        var_dump($request);
         $user = $this->firstOrCreateUser($request);
-        
+
         $departure = (isset($request->departureTime)) ? Carbon::createFromFormat('Y-m-d H:i:s', $request->departureTime) : null;
         $passenger = (isset($request->passenger)) ? $request->passenger : null;
         $cost = (isset($request->cost)) ? $request->cost : null;
