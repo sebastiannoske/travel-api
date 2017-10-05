@@ -430,8 +430,8 @@ class TravelController extends Controller
      */
     public function store(Request $request, $destination_id)
     {
-        echo var_dump($request);
-        $user = $this->firstOrCreateUser($request);
+        return response()->json(['data' => $request]);
+        /* $user = $this->firstOrCreateUser($request);
 
         $departure = (isset($request->departureTime)) ? Carbon::createFromFormat('Y-m-d H:i:s', $request->departureTime) : null;
         $passenger = (isset($request->passenger)) ? $request->passenger : null;
@@ -491,7 +491,7 @@ class TravelController extends Controller
 
         \Mail::to($user)->send(new ConfirmTravel($user, $travel));
 
-        return response()->json(['data' => [ 'id' => $travel->id ], 'status' => 'success', 'total' => $travel->count()]);
+        return response()->json(['data' => [ 'id' => $travel->id ], 'status' => 'success', 'total' => $travel->count()]);*/
     }
 
     public function storeStopover(Requests\CreateStopoverRequest $request, $travel_id) {
