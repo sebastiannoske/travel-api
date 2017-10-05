@@ -68,7 +68,7 @@ class Handler extends ExceptionHandler
         }
 
         if ($request->wantsJson() && $exception instanceof QueryException) {
-            return response()->json(['status' => 'error', 'message' => 'unprocessable entity', 'code' => 422], 422);
+            return response()->json(['status' => 'error', 'message' => 'unprocessable entity', 'request' => $request, 'exception' => $exception, 'code' => 422], 422);
         }
 
         if ($request->wantsJson() && $exception instanceof InvalidArgumentException) {
