@@ -398,9 +398,8 @@ class TravelController extends Controller
 
         $user = User::where('email', $request->userEmail)->first();
 
-        dd($user);
-
         if (!$user) {
+            dd($request->all());
 
             $user = User::firstOrCreate([
                 'email' => $request->userEmail,
