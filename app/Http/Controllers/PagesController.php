@@ -63,7 +63,9 @@ class PagesController extends Controller
                 $current_travel->editURL = '/edit-travel/' . $current_travel->id;
                 $current_travel->isPublic = $current_travel->public;
                 $current_travel->isVerified = $current_travel->verified;
-                $current_travel->userData = $current_travel->contact->organisation . ' ' . $current_travel->contact->name . ' ' . $current_travel->contact->email . ' ' . $current_travel->street_address;
+                if ($current_travel->contact) {
+                    $current_travel->userData = $current_travel->contact->organisation . ' ' . $current_travel->contact->name . ' ' . $current_travel->contact->email . ' ' . $current_travel->street_address;
+                }
 
             }
 
