@@ -19,5 +19,13 @@ class UsersTableSeeder extends Seeder
             'verified' => true,
             'api_token' => env('APP_APITOKEN', str_random(60))
         ]);
+
+        App\User::create([
+            'name' => 'Stefan',
+            'email' => 'stefan@bassliner.org',
+            'password' => bcrypt(env('stefanAtTravelApi', str_random(10))),
+            'verified' => true,
+            'api_token' => env('APP_APITOKEN2', str_random(60))
+        ]);
     }
 }
