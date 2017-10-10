@@ -20,7 +20,7 @@ class StopoverTableSeeder extends Seeder
         $travel_ids = $travel->toArray();
         $maxIndex = count($travel_ids) - 1;
 
-        foreach (range(1,500) as $index) {
+        foreach (range(1,200) as $index) {
 
             DB::table('stopovers')->insert([
                 'travel_id' => $travel_ids[$faker->numberBetween(1, $maxIndex)]->id,

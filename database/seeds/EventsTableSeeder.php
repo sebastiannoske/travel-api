@@ -17,6 +17,10 @@ class EventsTableSeeder extends Seeder
             'name' => 'Kohle Klima Demo'
         ]);
 
+        DB::table('events')->insert([
+            'name' => 'Test Demo'
+        ]);
+
         /* $faker = Faker::create();
 
         foreach (range(2,7) as $index) {

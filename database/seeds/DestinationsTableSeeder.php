@@ -21,6 +21,18 @@ class DestinationsTableSeeder extends Seeder
             'date' => Carbon::create(2017, 11, 4, 12, 0, 0)
         ]);
 
+        DB::table('destinations')->insert([
+            'name' => 'Berlin',
+            'event_id' => 2,
+            'date' => Carbon::create(2017, 11, 4, 12, 0, 0)
+        ]);
+
+        DB::table('destinations')->insert([
+            'name' => 'Hamburg',
+            'event_id' => 2,
+            'date' => Carbon::create(2017, 11, 4, 12, 0, 0)
+        ]);
+
         /*$faker = Faker::create();
         $startDate = Carbon::create(2017, 11, 1, 0, 0, 0);
         $dates = [];

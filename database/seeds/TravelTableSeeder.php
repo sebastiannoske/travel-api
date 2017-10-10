@@ -41,28 +41,7 @@ class TravelTableSeeder extends Seeder
 
         shuffle($means);
 
-        foreach (range(1,1500) as $index) {
-
-            DB::table('travels')->insert([
-                'verified' => true,
-                'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
-                'departure_time' => Carbon::create(2017, rand(6, 11), rand(1, 27), rand(0, 23), rand(0, 59), rand(0, 59)),
-                'city' => $faker->city,
-                'postcode' => $faker->postcode,
-                'street_address' => $faker->streetAddress,
-                'user_id' => $faker->numberBetween(1,2),
-                'destination_id' => 1,
-                'verified' => true,
-                'public' => true,
-                'url_token' => $faker->unique->regexify('[A-Z0-9]{4,4}'),
-                'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
-                'lat' => $faker->latitude($min = 48, $max = 54),
-                'long' => $faker->longitude($min = 7, $max = 13),
-                'created_at' => Carbon::now()
-            ]);
-        }
-
-        foreach (range(1501,2000) as $index) {
+        foreach (range(1,100) as $index) {
 
             DB::table('travels')->insert([
                 'verified' => true,
@@ -83,7 +62,7 @@ class TravelTableSeeder extends Seeder
             ]);
         }
 
-        foreach (range(2001,2200) as $index) {
+        foreach (range(101,200) as $index) {
 
             DB::table('travels')->insert([
                 'verified' => true,
@@ -103,29 +82,6 @@ class TravelTableSeeder extends Seeder
                 'created_at' => Carbon::now()
             ]);
         }
-
-        foreach (range(2201,2600) as $index) {
-
-            DB::table('travels')->insert([
-                'verified' => true,
-                'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
-                'departure_time' => Carbon::create(2017, rand(6, 11), rand(1, 27), rand(0, 23), rand(0, 59), rand(0, 59)),
-                'city' => $faker->city,
-                'postcode' => $faker->postcode,
-                'street_address' => $faker->streetAddress,
-                'user_id' => $faker->numberBetween(1,2),
-                'destination_id' => $faker->numberBetween(5,20),
-                'verified' => true,
-                'public' => true,
-                'url_token' => $faker->unique->regexify('[A-Z0-9]{4,4}'),
-                'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
-                'lat' => $faker->latitude($min = 48, $max = 54),
-                'long' => $faker->longitude($min = 7, $max = 13),
-                'created_at' => Carbon::now()
-            ]);
-        }
-
-
     }
 
 }

@@ -15,7 +15,7 @@ class TravelOffersTableSeeder extends Seeder
 
         $faker = Faker::create();
 
-        foreach (range(1,1000) as $index) {
+        foreach (range(1,50) as $index) {
 
 
             DB::table('travel_offers')->insert([
@@ -26,27 +26,8 @@ class TravelOffersTableSeeder extends Seeder
 
         }
 
-        foreach (range(1501,1850) as $index) {
+        foreach (range(101,150) as $index) {
 
-            DB::table('travel_offers')->insert([
-                'travel_id' => $index,
-                'passenger' => $faker->numberBetween(1,8),
-                'cost' => $faker->numberBetween(8,40)
-            ]);
-
-        }
-
-        foreach (range(2001,2130) as $index) {
-
-            DB::table('travel_offers')->insert([
-                'travel_id' => $index,
-                'passenger' => $faker->numberBetween(1,8),
-                'cost' => $faker->numberBetween(8,40)
-            ]);
-
-        }
-
-        foreach (range(2201,2450) as $index) {
 
             DB::table('travel_offers')->insert([
                 'travel_id' => $index,

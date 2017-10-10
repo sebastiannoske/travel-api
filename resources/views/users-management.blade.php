@@ -8,7 +8,7 @@
 
             <h4>Ihr Eintrag ist nun veröffentlicht!</h4>
 
-            <p><a href="#" target="_blank">>>Hier geht’s zur Mitfahrbörse der G20-Protestwelle</a></p>
+            <p><a href="https://www.klima-kohle-demo.de/anreise/">>>Hier geht’s zur Mitfahrbörse der Klima-Kohle-Demo</a></p>
 
             <p><?php echo session('message')[0]; ?></p>
 

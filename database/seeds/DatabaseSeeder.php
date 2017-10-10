@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         $this->call(DestinationsTableSeeder::class);
         $this->call(TransportationMeansTableSeeder::class);
 
-        /*$this->call(TravelTableSeeder::class);
+        $this->call(TravelTableSeeder::class);
         $this->call(TravelRequestsTableSeeder::class);
         $this->call(TravelOffersTableSeeder::class);
         $this->call(StopoverTableSeeder::class);
-        $this->call(TravelContactsTableSeeder::class);*/
+        $this->call(TravelContactsTableSeeder::class);
 
     }
 }
