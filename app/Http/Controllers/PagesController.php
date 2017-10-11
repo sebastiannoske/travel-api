@@ -31,13 +31,17 @@ class PagesController extends Controller
 
                     $travel = Travel::where('user_id', '=', $user->id)->whereHas($request->kind, function ($query) {
                         $query->where('id', '>', 0);
-                    })->with($request->kind)->with('destination')->with('contact')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+                    })->with($request->kind)->whereHas('destination', function ($query) {
+                        $query->where('id', '=', 1);
+                    })->with('contact')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
 
 
                 } else {
 
-                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('contact')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('contact')->with('request')->whereHas('destination', function ($query) {
+                        $query->where('id', '=', 1);
+                    })->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 }
             } else {
@@ -46,11 +50,15 @@ class PagesController extends Controller
 
                     $travel = Travel::whereHas($request->kind, function ($query) {
                         $query->where('id', '>', 0);
-                    })->with($request->kind)->with('contact')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+                    })->with($request->kind)->with('contact')->whereHas('destination', function ($query) {
+                        $query->where('id', '=', 1);
+                    })->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 } else {
 
-                    $travel = Travel::with('offer')->with('contact')->with('request')->with('stopover')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+                    $travel = Travel::with('offer')->with('contact')->with('request')->with('stopover')->whereHas('destination', function ($query) {
+                        $query->where('id', '=', 1);
+                    })->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 }
 
