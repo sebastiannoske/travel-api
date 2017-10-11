@@ -234,7 +234,7 @@ class PagesController extends Controller
             ['verified', '=', '1'],
         ])->with('stopover')->with('offer')->with('request')->with('contact')->with('destination')->with('transportation_mean')->first();
 
-        $share = Share::load('http://mfz.g20-protestwelle.de/travel/' . $travel->url_token , 'Mitfahrzentrale')->services('facebook', 'gplus', 'twitter');
+        $share = Share::load('https://mfz.klima-kohle-demo.de/travel/' . $travel->url_token , 'Mitfahrzentrale')->services('facebook', 'gplus', 'twitter');
 
         return view('travel-details', ['travel' => $travel, 'share' => $share]);
 
