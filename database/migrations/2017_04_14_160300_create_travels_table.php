@@ -23,6 +23,7 @@ class CreateTravelsTable extends Migration
             $table->string('street_address')->nullable()->default(null);
             $table->double('lat', 12, 10);
             $table->double('long', 13,10);
+            $table->double('distance',10, 3)->nullable()->default(null);
             $table->boolean('public')->default(false);
             $table->boolean('verified')->default(false);
             $table->string('token')->nullable()->unique();

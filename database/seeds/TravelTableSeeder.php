@@ -58,6 +58,7 @@ class TravelTableSeeder extends Seeder
                 'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
                 'lat' => $faker->latitude($min = 48, $max = 54),
                 'long' => $faker->longitude($min = 7, $max = 13),
+                'distance' => $faker->numberBetween(9523,873723),
                 'created_at' => Carbon::now()
             ]);
         }
@@ -79,6 +80,7 @@ class TravelTableSeeder extends Seeder
                 'transportation_mean_id' => $means[$faker->numberBetween(0,99)],
                 'lat' => $faker->latitude($min = 48, $max = 54),
                 'long' => $faker->longitude($min = 7, $max = 13),
+                'distance' => $faker->numberBetween(9523,873723),
                 'created_at' => Carbon::now()
             ]);
         }

@@ -451,6 +451,7 @@ class TravelController extends Controller
             'departure_time' => $departure,
             'lat' => $request->lat,
             'long' => $request->long,
+            'distance' => $request->distance,
             'city' => $request->city,
             'street_address' => $request->streetAddress,
             'postcode' => $request->postcode,
