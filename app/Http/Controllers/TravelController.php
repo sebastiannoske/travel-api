@@ -438,7 +438,7 @@ class TravelController extends Controller
         $phone_number = $request->phoneNumber;
         $contact_email = $request->contactEmail;
 
-        $distance = null;
+        $distance = 0;
 
         if ($request->distance) {
             $distance = $request->distance;
