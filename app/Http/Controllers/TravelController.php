@@ -438,6 +438,12 @@ class TravelController extends Controller
         $phone_number = $request->phoneNumber;
         $contact_email = $request->contactEmail;
 
+        $distance = null;
+
+        if ($request->distance) {
+            $distance = $request->distance;
+        }
+
         if (!$phone_number && !$contact_email) {
 
             return response()->json(['status' => 'error', 'message' => 'unprocessable entity. at least a phone number or a contact e-email must be specified.', 'code' => 422], 422);
@@ -451,7 +457,7 @@ class TravelController extends Controller
             'departure_time' => $departure,
             'lat' => $request->lat,
             'long' => $request->long,
-            'distance' => $request->distance,
+            'distance' => $distance,
             'city' => $request->city,
             'street_address' => $request->streetAddress,
             'postcode' => $request->postcode,
