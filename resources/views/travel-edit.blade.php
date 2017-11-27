@@ -285,6 +285,8 @@
             <input type="hidden" id="input-lat" value="{{$travel->lat}}">
             <input type="hidden" id="input-lng" value="{{$travel->long}}">
             <input type="hidden" id="input-dest" value="{{$travel->destination->name}}">
+            <input type="hidden" id="input-dest-lat" value="{{$travel->destination->lat}}">
+            <input type="hidden" id="input-dest-lng" value="{{$travel->destination->long}}">
 
             <?php if ( $travel->transportation_mean->id === 1 || $travel->transportation_mean->id === 2 || $travel->transportation_mean->id === 6 ) : ?>
 
@@ -325,12 +327,14 @@
                     var lat = document.getElementById('input-lat').value;
                     var lng = document.getElementById('input-lng').value;
                     var dest = document.getElementById('input-dest').value;
+                    var destLng = document.getElementById('input-dest-lng').value;
+                    var destLat = document.getElementById('input-dest-lat').value;
                     var travelMode = document.getElementById('input-travelmode').value;
 
                     directionsService.route({
 
                         origin: lat + ',' + lng,
-                        destination: dest,
+                        destination: destLat + ', ' + destLng,
                         travelMode: travelMode
                     }, function(response, status) {
                         if (status === 'OK') {
