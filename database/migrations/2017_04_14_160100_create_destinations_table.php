@@ -16,6 +16,10 @@ class CreateDestinationsTable extends Migration
         Schema::create('destinations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('postcode')->nullable()->default(null);
+            $table->string('street_address')->nullable()->default(null);
+            $table->double('lat', 12, 10);
+            $table->double('long', 13,10);
             $table->integer('event_id')->unsigned();
             $table->date('date');
             $table->timestamps();
