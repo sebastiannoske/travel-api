@@ -14,7 +14,7 @@ class EventsTableSeeder extends Seeder
     {
 
         DB::table('events')->insert([
-            'name' => 'Kohle Klima Demo'
+            'name' => 'Wir haben es satt!'
         ]);
 
         DB::table('events')->insert([

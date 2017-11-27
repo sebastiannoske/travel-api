@@ -16,21 +16,21 @@ class DestinationsTableSeeder extends Seeder
 
 
         DB::table('destinations')->insert([
-            'name' => 'Bonn',
+            'name' => 'Berlin',
             'event_id' => 1,
-            'date' => Carbon::create(2017, 11, 4, 12, 0, 0)
+            'date' => Carbon::create(2018, 01, 20, 11, 0, 0)
         ]);
 
         DB::table('destinations')->insert([
             'name' => 'Berlin',
             'event_id' => 2,
-            'date' => Carbon::create(2017, 11, 4, 12, 0, 0)
+            'date' => Carbon::create(2018, 03, 04, 12, 0, 0)
         ]);
 
         DB::table('destinations')->insert([
             'name' => 'Hamburg',
             'event_id' => 2,
-            'date' => Carbon::create(2017, 11, 4, 12, 0, 0)
+            'date' => Carbon::create(2018, 03, 04, 12, 0, 0)
         ]);
 
         /*$faker = Faker::create();
