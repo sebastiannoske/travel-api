@@ -10,6 +10,7 @@
 
             <p><a href="http://www.wir-haben-es-satt.de/mfz">>>Hier geht’s zur Mitfahrbörse von Wir-haben-es-satt.de</a></p>
 
+        
             <p><?php echo session('message')[0]; ?></p>
 
             <br/><br/><br/>
