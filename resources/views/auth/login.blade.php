@@ -6,6 +6,7 @@
     @if (session()->has('message'))
 
         <div class="row">
+
             <div class="col-md-8 col-md-offset-2">
 
                 <h4>Ihr Eintrag ist nun veröffentlicht!</h4>
