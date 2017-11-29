@@ -8,7 +8,7 @@
 
             <h4>Ihr Eintrag ist nun veröffentlicht!</h4>
 
-            <p><a href="https://www.klima-kohle-demo.de/anreise/">>>Hier geht’s zur Mitfahrbörse der Klima-Kohle-Demo</a></p>
+            <p><a href="http://www.wir-haben-es-satt.de/mfz">>>Hier geht’s zur Mitfahrbörse der Wir-haben-es-satt-Demo</a></p>
 
             <p><?php echo session('message')[0]; ?></p>
 
