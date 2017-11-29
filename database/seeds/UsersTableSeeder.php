@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
         App\User::create([
             'name' => 'Stefan',
             'email' => 'stefan@bassliner.org',
-            'password' => bcrypt(env('APP_USERPASSWORD2', str_random(10))),
+            'password' => bcrypt(env('APP_USERPASSWORD', str_random(10))),
             'verified' => true,
             'api_token' => null
         ]);
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
         App\User::create([
             'name' => 'User',
             'email' => 'rollmann@meine-landwirtschaft.de',
-            'password' => bcrypt(env('APP_USERPASSWORD2', str_random(10))),
+            'password' => bcrypt(env('APP_USERPASSWORD', str_random(10))),
             'verified' => true,
             'api_token' => null
         ]);
