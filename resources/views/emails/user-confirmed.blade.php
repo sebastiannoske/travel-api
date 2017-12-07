@@ -18,7 +18,7 @@
 
         <p>
 
-            Passwort: "{{ $pw }}"
+            Passwort: {{ $pw }}
 
             <br />
             <a href='{{ url("login") }}'>Jetzt einloggen</a>
