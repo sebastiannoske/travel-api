@@ -54,6 +54,7 @@ class DestinationController extends Controller
     {
         //
         $streetAddress = $request->route;
+        
 
         if (count($request->street_number)) {
             $streetAddress .= ' ' . $request->street_number;
