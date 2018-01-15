@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Event;
 use App\User;
 use App\Travel;
 use App\EmailTemplate;
 use Carbon\Carbon;
 use Share;
+use Image;
+use URL;
 
 class PagesController extends Controller
 {
@@ -178,6 +181,67 @@ class PagesController extends Controller
         }
 
         return view('users-management', ['users' => $users, 'kind' => $request->kind]);
+
+    }
+
+    public function fileUpload(Request $request)
+
+    {
+
+        $this->validate($request, [
+
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+
+
+        $image = $request->file('image');
+
+        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+
+        $destinationPath = public_path('/images');
+
+        $image->move($destinationPath, $input['imagename']);
+
+        $user = \Auth::user();
+        $event = null;
+
+        if ($user) {
+
+            if ($user->hasRole('admin')) {
+
+                $event = Event::find(1);
+                $event->imagePath = URL::to('/').'/images/'.$input['imagename'];
+                $event->save();
+
+            }
+        }
+
+
+        return back()->with('success','Image Upload successful');
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editSettings(Request $request)
+    {
+
+        $user = \Auth::user();
+        $event = null;
+
+        if ($user) {
+
+            if ($user->hasRole('admin')) {
+
+                $event = Event::where('id', '=', 1)->with('destinations')->first();
+            }
+        }
+
+        return view('settings', ['event' => $event]);
 
     }
 

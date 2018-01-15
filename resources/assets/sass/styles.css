@@ -8,8 +8,46 @@ body {
     padding-bottom: 50px;
 }
 
+img {
+    display: block;
+    max-width: 100%;
+    margin: 0;
+}
+
+.dark {
+    background-color: #4A4A4A;
+    padding: 20px 15px;
+    margin-bottom: 30px;
+}
+
+h4 {
+    font-size: 26px !important;
+    color: #000000 !important;
+}
+
+.dark h4 {
+    color: #fff !important;
+}
+
+.dark p {
+    color: #fff;
+    line-height: 1.2em;
+}
+
+div.hline {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: #CCCCCC;
+    margin: 50px 0 30px;
+}
+
 #content-stuff a {
     color: #BA0116;
+}
+
+#content-stuff h4 a {
+    color: #000;
 }
 
 #content-stuff a:hover {

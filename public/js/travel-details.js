@@ -102,6 +102,9 @@ var Global = Global || {};
             document.getElementById('lat').value = place.geometry.location.lat();
             document.getElementById('lng').value = place.geometry.location.lng();
 
+            document.getElementById('lat').parentNode.classList.add('is-dirty');
+            document.getElementById('lng').parentNode.classList.add('is-dirty');
+
             // Get each component of the address from the place details
             // and fill the corresponding field on the form.
             for (var i = 0; i < place.address_components.length; i++) {
@@ -109,6 +112,7 @@ var Global = Global || {};
                 if (values.componentForm[addressType]) {
                     var val = place.address_components[i][values.componentForm[addressType]];
                     document.getElementById(addressType).value = val;
+                    document.getElementById(addressType).parentNode.classList.add('is-dirty');
                 }
             }
         };
@@ -117,7 +121,7 @@ var Global = Global || {};
 
             values.crsfToken = $('meta[name="csrf-token"]').attr('content');
             values.componentForm = {
-                administrative_area_level_1: 'long_name',
+                locality: 'long_name',
                 route: 'long_name',
                 postal_code: 'short_name',
                 street_number: 'short_name',

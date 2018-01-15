@@ -6,7 +6,7 @@
 
         @if (isset($travel) && count($travel))
 
-            <?php $stopoverError = ($errors->has('administrative_area_level_1') || $errors->has('postal_code') || $errors->has('lat') || $errors->has('lng')); ?>
+            <?php $stopoverError = ($errors->has('locality') || $errors->has('postal_code') || $errors->has('lat') || $errors->has('lng')); ?>
 
             <?php $formError = (!$stopoverError && $errors->all()) ? true : false; ?>
 
@@ -228,10 +228,10 @@
 
                      {!! Form::open(['url' => "/travel/$travel->id/stopover"]) !!}
 
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('administrative_area_level_1')) echo 'has-error'; ?>">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('locality')) echo 'has-error'; ?>">
 
-                            {{ Form::text('administrative_area_level_1', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'administrative_area_level_1'])) }}
-                            {{ Form::label('administrative_area_level_1', 'Stadt', array('class' => 'mdl-textfield__label'))}}
+                            {{ Form::text('locality', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'locality'])) }}
+                            {{ Form::label('locality', 'Stadt', array('class' => 'mdl-textfield__label'))}}
 
                         </div>
 

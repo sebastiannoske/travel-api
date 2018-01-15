@@ -512,7 +512,7 @@ class TravelController extends Controller
             'travel_id' => $travel_id,
             'lat' => $request->lat,
             'long' => $request->lng,
-            'city' => $request->administrative_area_level_1,
+            'city' => $request->locality,
             'street_address' => $streetAddress,
             'postcode' => $request->postal_code
 

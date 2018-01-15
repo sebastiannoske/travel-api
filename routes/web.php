@@ -28,6 +28,13 @@ Route::get('/travel/{url_token}', 'PagesController@showByUrlToken');
 Route::get('/exportcsv', 'TravelController@generateCsv');
 Route::get('/exportxls', 'TravelController@generateXls');
 
+
+Route::get('/settings', 'PagesController@editSettings');
+Route::post('/fileUpload', ['as'=>'fileUpload','uses'=>'PagesController@fileUpload']);
+Route::post('/settings/{event_id}/update', 'EventController@update');
+Route::post('/settings/{event_id}/destination', 'DestinationController@storeDestination');
+
+
 Route::get('/user', 'PagesController@editUser');
 Route::post('/user/create', 'UserController@create');
 Route::post('/user/{user}/update', 'UserController@update');
@@ -35,8 +42,6 @@ Route::post('/user/{user}/updatepassword', 'UserController@updatePassword');
 
 Route::get('/emails', 'PagesController@editEmails');
 Route::post('/email/{email}/update', 'EmailController@update');
-
-Route::get('/emails', 'PagesController@editEmails');
 
 Route::get('/users', 'PagesController@editAllUser');
 Route::get('/users/edit/{user}', 'PagesController@editUserById');

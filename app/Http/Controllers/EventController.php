@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use App\Travel;
+use App\Destination;
 
 class EventController extends Controller
 {
@@ -50,7 +52,32 @@ class EventController extends Controller
     public function show($id)
     {
         $event = Event::find($id);
-        return response()->json(['data' => $event, 'status' => 'success', 'total' => $event->count()]);
+
+        $destinations = Destination::where('event_id', '=', $id)->get();
+
+        foreach ($destinations as $destination) {
+
+            $travel = Travel::whereHas('destination', function ($query) use ($destination) {
+                $query->where('id', '=', $destination->id);
+            })
+                ->with('offer')
+                ->with('request')
+                ->with('contact')
+                ->with('transportation_mean')
+                ->with('stopover')
+                ->where([
+                    ['public', '=', '1'],
+                    ['verified', '=', '1'],
+                ])
+                ->orderBy('id', 'desc')
+                ->get();
+
+            $destination->travel = $travel;
+        }
+
+        $event->destinations = $destinations;
+
+        return response()->json(['data' => $event, 'status' => 'success', 'total' => $destinations->count()]);
     }
 
     /**
@@ -73,7 +100,21 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return 'halo';
+        $event = Event::find($id);
+
+        if ($request->campaignText) {
+
+            $event->campaignText = $request->campaignText;
+
+        } else if ($request->googleApiKey) {
+
+            $event->googleApiKey = $request->googleApiKey;
+
+        }
+
+        $event->save();
+
+        return redirect()->back()->with('message', ['Änderungen gespeichert.']);
     }
 
     /**

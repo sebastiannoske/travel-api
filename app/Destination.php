@@ -13,7 +13,7 @@ class Destination extends Model
      * @var array
      */
 
-    protected $fillable = [];
+    protected $fillable = ['name', 'event_id', 'postcode', 'street_address', 'lat', 'long', 'date'];
 
     /**
      * The attributes that should be hidden for arrays.

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateStopoverRequest extends FormRequest
+class CreateDestinationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class CreateStopoverRequest extends FormRequest
     {
         return [
             'locality' => 'required',
-            'postal_code' => 'required|min:5',
+            'city' => 'required|min:2',
             'lat' => 'required',
             'lng' => 'required'
         ];

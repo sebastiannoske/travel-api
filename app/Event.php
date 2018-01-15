@@ -13,7 +13,7 @@ class Event extends Model
      * @var array
      */
 
-    protected $fillable = [];
+    protected $fillable = ['name', 'campaignText', 'imagePath'];
 
     /**
      * The attributes that should be hidden for arrays.

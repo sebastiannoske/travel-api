@@ -16,6 +16,9 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->text('campaignText')->nullable()->default(null);
+            $table->string('imagePath')->nullable()->default(null);
+            $table->string('googleApiKey')->nullable()->default(null);
             $table->timestamps();
         });
     }

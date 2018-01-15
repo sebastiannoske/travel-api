@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Destination;
+use Carbon\Carbon;
 
 class DestinationController extends Controller
 {
@@ -33,12 +35,45 @@ class DestinationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param $event_id
+     * @return \Illuminate\Http\Response
+     */
+    public function storeDestination(Request $request, $event_id)
+    {
+        //
+        $streetAddress = $request->route;
+
+        if (count($request->street_number)) {
+            $streetAddress .= ' ' . $request->street_number;
+        }
+
+        $destination = new Destination([
+            'name' => $request->locality,
+            'event_id' => $event_id,
+            'lat' => $request->lat,
+            'long' => $request->lng,
+            'street_address' => $streetAddress,
+            'postcode' => $request->postal_code,
+            'date' => Carbon::create(2018, 01, 20, 11, 0, 0)
+
+        ]);
+
+        $destination->save();
+
+        return redirect()->back()->with('message', ['Zwischenstopp hinzugefügt.']);
+
     }
 
     /**
