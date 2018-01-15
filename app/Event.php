@@ -32,4 +32,10 @@ class Event extends Model
         return $this->hasMany('App\Destination');
 
     }
+
+    public function users() {
+
+        return $this->hasMany('App\UsersEvent');
+
+    }
 }

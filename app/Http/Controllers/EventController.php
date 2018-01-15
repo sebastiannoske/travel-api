@@ -91,6 +91,31 @@ class EventController extends Controller
         return 'halo';
     }
 
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editEvents()
+    {
+        $auth_user = \Auth::user();
+        $events = null;
+
+        if ($auth_user) {
+
+            if ($auth_user->hasRole('superadmin')) {
+
+                $events = Event::all();
+
+            }
+
+        }
+
+        return view('events', ['events' => $events]);
+    }
     /**
      * Update the specified resource in storage.
      *

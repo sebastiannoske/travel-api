@@ -12,6 +12,12 @@ class RoleTableSeeder extends Seeder
     public function run()
     {
         App\Role::create([
+            'name' => 'superadmin',
+            'fullname' => 'Super Administrator',
+            'label' => 'A backend super administrator'
+        ]);
+
+        App\Role::create([
             'name' => 'admin',
             'fullname' => 'Administrator',
             'label' => 'A backend administrator'

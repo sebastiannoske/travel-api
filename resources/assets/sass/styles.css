@@ -50,6 +50,10 @@ div.hline {
     color: #000;
 }
 
+.inline-form-wrap form {
+    display: inline-block;
+}
+
 #content-stuff a:hover {
     color: #87000F;
 }

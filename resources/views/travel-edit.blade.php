@@ -91,7 +91,7 @@
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('street_address')) echo 'has-error'; ?>">
 
-                                {{ Form::text('street_address', $travel->street_address, array_merge(['class' => 'mdl-textfield__input', 'id' => 'street_address'])) }}
+                                {{ Form::text('street_address', $travel->street_address, array_merge(['class' => 'mdl-textfield__input', 'id' => 'street_address_travel'])) }}
                                 {{ Form::label('street_address', 'Straße, Nr.', array('class' => 'mdl-textfield__label'))}}
 
                             </div>
@@ -244,15 +244,8 @@
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 
-                            {{ Form::text('route', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'route'])) }}
-                            {{ Form::label('route', 'Straße', array('class' => 'mdl-textfield__label'))}}
-
-                        </div>
-
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-
-                            {{ Form::text('street_number', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'street_number'])) }}
-                            {{ Form::label('street_number', 'Nr.', array('class' => 'mdl-textfield__label'))}}
+                            {{ Form::text('street_address', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'street_address'])) }}
+                            {{ Form::label('street_address', 'Straße, Nr.', array('class' => 'mdl-textfield__label'))}}
 
                         </div>
 

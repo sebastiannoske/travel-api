@@ -100,6 +100,9 @@
                 <div class="container">
                     <ul>
                         <li><a href="/">Fahrten</a></li>
+                        @can('edit_super_all')
+                            <li><a href="/events">Events</a></li>
+                        @endcan
                         @can('edit_all')
                             <li><a href="/settings">Einstellungen</a></li>
                             <li><a href="/users">Userverwaltung</a></li>

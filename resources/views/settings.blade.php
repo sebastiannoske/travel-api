@@ -12,6 +12,44 @@
 
                 <?php $stopoverError = ($errors->has('locality') || $errors->has('postal_code') || $errors->has('lat') || $errors->has('lng')); ?>
 
+                <?php $formError = (!$stopoverError && $errors->all()) ? true : false; ?>
+
+                @if ($stopoverError)
+
+                    <p class="alert alert-danger">
+
+                        Es ist ein Fehler im Formular beim Anlegen eines neuen Zwischenstopps aufgetreten.
+
+                    </p>
+
+                    <br/><br/><br/>
+
+                @endif
+
+                @if ($formError)
+
+                    <p class="alert alert-danger">
+
+                        Es ist ein Fehler im Formular beim Anpassen der Fahrt aufgetreten.
+
+                    </p>
+
+                    <br/><br/><br/>
+
+                @endif
+
+                @if (session()->has('message'))
+
+                    <p class="alert alert-success">
+
+                        <?php echo session('message')[0]; ?>
+
+                    </p>
+
+                    <br/><br/><br/>
+
+                @endif
+
                 <div class="dark">
 
                     <div class="row">
@@ -168,9 +206,22 @@
 
                         </div>
 
-                        <div class="col-md-6" style="text-align: right; padding-top:20px;">
+                        <div class="col-md-6 inline-form-wrap" style="text-align: right; padding-top:20px;">
 
-                            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">löschen</button>
+
+                                @if (sizeof($event->destinations) > 1)
+
+                                    {!! Form::open(['url' => "/settings/destination/$destination->id/delete"]) !!}
+
+                                        <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">löschen</button>
+
+                                    {!! Form::close() !!}
+
+                                @endif
+
+                                <a href="{{ url('/settings/destination', $destination->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a>
+
+
 
                         </div>
 
@@ -208,15 +259,8 @@
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 
-                        {{ Form::text('route', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'route'])) }}
-                        {{ Form::label('route', 'Straße', array('class' => 'mdl-textfield__label'))}}
-
-                    </div>
-
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-
-                        {{ Form::text('street_number', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'street_number'])) }}
-                        {{ Form::label('street_number', 'Nr.', array('class' => 'mdl-textfield__label'))}}
+                        {{ Form::text('street_address', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'street_address'])) }}
+                        {{ Form::label('street_address', 'Straße, Nr.', array('class' => 'mdl-textfield__label'))}}
 
                     </div>
 

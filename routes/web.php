@@ -28,11 +28,16 @@ Route::get('/travel/{url_token}', 'PagesController@showByUrlToken');
 Route::get('/exportcsv', 'TravelController@generateCsv');
 Route::get('/exportxls', 'TravelController@generateXls');
 
+Route::get('/events', 'EventController@editEvents');
+
 
 Route::get('/settings', 'PagesController@editSettings');
 Route::post('/fileUpload', ['as'=>'fileUpload','uses'=>'PagesController@fileUpload']);
 Route::post('/settings/{event_id}/update', 'EventController@update');
 Route::post('/settings/{event_id}/destination', 'DestinationController@storeDestination');
+Route::post('/settings/{event_id}/update', 'DestinationController@update');
+Route::post('/settings/destination/{destination_id}/delete', 'DestinationController@destroy');
+Route::get('/settings/destination/{destination_id}', 'DestinationController@editDestination');
 
 
 Route::get('/user', 'PagesController@editUser');

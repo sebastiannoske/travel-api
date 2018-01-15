@@ -50,22 +50,14 @@ class DestinationController extends Controller
      * @param $event_id
      * @return \Illuminate\Http\Response
      */
-    public function storeDestination(Request $request, $event_id)
+    public function storeDestination(Requests\CreateDestinationRequest $request, $event_id)
     {
-        //
-        $streetAddress = $request->route;
-        
-
-        if (count($request->street_number)) {
-            $streetAddress .= ' ' . $request->street_number;
-        }
-
         $destination = new Destination([
             'name' => $request->locality,
             'event_id' => $event_id,
             'lat' => $request->lat,
             'long' => $request->lng,
-            'street_address' => $streetAddress,
+            'street_address' => $request->street_address,
             'postcode' => $request->postal_code,
             'date' => Carbon::create(2018, 01, 20, 11, 0, 0)
 
@@ -73,7 +65,7 @@ class DestinationController extends Controller
 
         $destination->save();
 
-        return redirect()->back()->with('message', ['Zwischenstopp hinzugefügt.']);
+        return redirect()->back()->with('message', ['Neuer Demonstrationsort hinzugefügt.']);
 
     }
 
@@ -101,6 +93,24 @@ class DestinationController extends Controller
         //
     }
 
+    public function editDestination($destinations_id)
+    {
+        $auth_user = \Auth::user();
+        $destination = null;
+
+        if ($auth_user) {
+
+            if ($auth_user->hasRole('superadmin') || $auth_user->hasRole('admin')) {
+
+                $destination = Destination::find($destinations_id);
+
+            }
+
+        }
+
+        return view('destination-edit', ['destination' => $destination]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -108,9 +118,18 @@ class DestinationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CreateDestinationRequest $request, $destination_id)
     {
-        //
+        $destination = Destination::find($destination_id);
+        $destination->name = $request->locality;
+        $destination->lat = $request->lat;
+        $destination->long = $request->lng;
+        $destination->street_address = $request->street_address;
+        $destination->postcode = $request->postal_code;
+
+        $destination->save();
+
+        return redirect()->back()->with('message', ['Änderungen gespeichert.']);
     }
 
     /**
@@ -122,5 +141,12 @@ class DestinationController extends Controller
     public function destroy($id)
     {
         //
+        $destination = Destination::findOrFail($id);
+
+        if ($destination) {
+            $destination->delete();
+        }
+
+        return redirect()->back()->with('message', ['Demonstrationsort wurde gelöscht.']);
     }
 }

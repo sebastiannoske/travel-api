@@ -25,7 +25,6 @@ class CreateDestinationRequest extends FormRequest
     {
         return [
             'locality' => 'required',
-            'city' => 'required|min:2',
             'lat' => 'required',
             'lng' => 'required'
         ];

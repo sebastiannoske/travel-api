@@ -93,7 +93,7 @@ class TravelController extends Controller
 
         if ($auth_user) {
 
-            if ($auth_user->hasRole('admin') || $auth_user->hasRole('editor')) {
+            if ($auth_user->hasRole('superadmin') || $auth_user->hasRole('admin') || $auth_user->hasRole('editor')) {
 
                 $travel = Travel::with('offer')
                     ->with('request')
@@ -152,7 +152,7 @@ class TravelController extends Controller
 
         if ($auth_user) {
 
-            if ($auth_user->hasRole('admin') || $auth_user->hasRole('editor')) {
+            if ($auth_user->hasRole('superadmin') || $auth_user->hasRole('admin') || $auth_user->hasRole('editor')) {
 
                 $travel = Travel::with('offer')
                     ->with('request')
@@ -502,18 +502,12 @@ class TravelController extends Controller
 
     public function storeStopover(Requests\CreateStopoverRequest $request, $travel_id) {
 
-        $streetAddress = $request->route;
-
-        if (count($request->street_number)) {
-            $streetAddress .= ' ' . $request->street_number;
-        }
-
         $stopover = new Stopover([
             'travel_id' => $travel_id,
             'lat' => $request->lat,
             'long' => $request->lng,
             'city' => $request->locality,
-            'street_address' => $streetAddress,
+            'street_address' => $request->street_address,
             'postcode' => $request->postal_code
 
         ]);

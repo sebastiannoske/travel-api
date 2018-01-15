@@ -34,34 +34,21 @@ class PagesController extends Controller
 
                     $travel = Travel::where('user_id', '=', $user->id)->whereHas($request->kind, function ($query) {
                         $query->where('id', '>', 0);
-                    })->with($request->kind)->whereHas('destination', function ($query) {
-                        $query->where('id', '=', 1);
-                    })->with('destination')->with('contact')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
-
-
+                    })->with($request->kind)->with('destination')->with('contact')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 } else {
-
-                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('contact')->with('request')->whereHas('destination', function ($query) {
-                        $query->where('id', '=', 1);
-                    })->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
-
+                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('contact')->with('request')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
                 }
             } else {
-
                 if ($request->kind) {
 
                     $travel = Travel::whereHas($request->kind, function ($query) {
                         $query->where('id', '>', 0);
-                    })->with($request->kind)->with('contact')->whereHas('destination', function ($query) {
-                        $query->where('id', '=', 1);
-                    })->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+                    })->with($request->kind)->with('contact')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 } else {
 
-                    $travel = Travel::with('offer')->with('contact')->with('request')->with('stopover')->whereHas('destination', function ($query) {
-                        $query->where('id', '=', 1);
-                    })->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+                    $travel = Travel::with('offer')->with('contact')->with('request')->with('stopover')->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
 
                 }
 
@@ -148,7 +135,7 @@ class PagesController extends Controller
 
         if ($auth_user) {
 
-            if ($auth_user->hasRole('admin')) {
+            if ($auth_user->hasRole('superadmin') || $auth_user->hasRole('admin')) {
 
                 $user = User::find($user_id);
 
@@ -174,7 +161,7 @@ class PagesController extends Controller
 
         if ($user) {
 
-            if ($user->hasRole('admin')) {
+            if ($user->hasRole('superadmin') || $user->hasRole('admin')) {
 
                 $users = User::with('roles')->with('travel')->paginate(30);
             }
@@ -208,7 +195,7 @@ class PagesController extends Controller
 
         if ($user) {
 
-            if ($user->hasRole('admin')) {
+            if ($user->hasRole('superadmin') || $user->hasRole('admin')) {
 
                 $event = Event::find(1);
                 $event->imagePath = URL::to('/').'/images/'.$input['imagename'];
@@ -235,7 +222,7 @@ class PagesController extends Controller
 
         if ($user) {
 
-            if ($user->hasRole('admin')) {
+            if ($user->hasRole('superadmin') || $user->hasRole('admin')) {
 
                 $event = Event::where('id', '=', 1)->with('destinations')->first();
             }
@@ -252,7 +239,7 @@ class PagesController extends Controller
 
         if ($user) {
 
-            if ($user->hasRole('admin')) {
+            if ($user->hasRole('superadmin') || $user->hasRole('admin')) {
 
                 $templates = EmailTemplate::all();
 
@@ -271,7 +258,7 @@ class PagesController extends Controller
 
         if ($auth_user) {
 
-            if ($auth_user->hasRole('admin')) {
+            if ($auth_user->hasRole('superadmin') ||$auth_user->hasRole('admin')) {
 
                 return view('user-create', ['user' => $user]);
 

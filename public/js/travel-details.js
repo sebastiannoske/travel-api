@@ -91,19 +91,35 @@ var Global = Global || {};
             // Get the place details from the autocomplete object.
             var place = autocomplete.getPlace();
 
-            console.log(place);
-            //console.log(place.address_components.geometry.location.lng());
+            // console.log(place);
+            // console.log(place.address_components.geometry.location.lng());
+
+            var element = null;
+            var street_number = '';
+            var street_name = '';
 
             for (var component in values.componentForm) {
-                document.getElementById(component).value = '';
-                document.getElementById(component).disabled = false;
+                element = document.getElementById(component);
+
+                if (element) {
+                    element.value = '';
+                    element.disabled = false;
+                }
             }
 
-            document.getElementById('lat').value = place.geometry.location.lat();
-            document.getElementById('lng').value = place.geometry.location.lng();
+            element = document.getElementById('lat');
 
-            document.getElementById('lat').parentNode.classList.add('is-dirty');
-            document.getElementById('lng').parentNode.classList.add('is-dirty');
+            if (element) {
+                element.value = place.geometry.location.lat();
+                element.parentNode.classList.add('is-dirty');
+            }
+
+            element = document.getElementById('lng');
+
+            if (element) {
+                element.value = place.geometry.location.lng();
+                element.parentNode.classList.add('is-dirty');
+            }
 
             // Get each component of the address from the place details
             // and fill the corresponding field on the form.
@@ -111,8 +127,47 @@ var Global = Global || {};
                 var addressType = place.address_components[i].types[0];
                 if (values.componentForm[addressType]) {
                     var val = place.address_components[i][values.componentForm[addressType]];
-                    document.getElementById(addressType).value = val;
-                    document.getElementById(addressType).parentNode.classList.add('is-dirty');
+                    console.log(addressType);
+                    console.log(val);
+                    if (addressType !== 'route' && addressType !== 'street_number') {
+                        element = document.getElementById(addressType);
+
+                        if (element) {
+                            element.value = '';
+                            element.disabled = false;
+                        }
+                    } else {
+
+                        if (addressType === 'route') {
+                            street_name = val;
+                        }
+
+                        if (addressType === 'street_number') {
+                            street_number += val;
+                        }
+
+                    }
+
+                    element = document.getElementById(addressType);
+
+                    if (element) {
+                        element.value = val;
+                        element.parentNode.classList.add('is-dirty');
+                    }
+                }
+            }
+
+            if (street_name && street_name.length) {
+                element = document.getElementById('street_address');
+                street_address = street_name;
+
+                if (street_number && street_number.length) {
+                    street_address += ' ' + street_number;
+                }
+
+                if (element) {
+                    element.value = street_address;
+                    element.parentNode.classList.add('is-dirty');
                 }
             }
         };

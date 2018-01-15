@@ -12,6 +12,11 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         App\Permission::create([
+            'name' => 'edit_super_all',
+            'label' => 'Edit really everything'
+        ]);
+
+        App\Permission::create([
             'name' => 'edit_all',
             'label' => 'Edit everything'
         ]);
