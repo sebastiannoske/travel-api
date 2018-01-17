@@ -100,7 +100,7 @@
 
                                 <?php $departure_time = ($travel->departure_time && count($travel->departure_time)) ? Carbon\Carbon::parse($travel->departure_time)->format('d.m.Y H:i') : ''; ?>
 
-                                {{ Form::text('departure_time',$departure_time , array_merge(['class' => 'mdl-textfield__input', 'id' => 'departure_time'])) }}
+                                {{ Form::text('departure_time',$departure_time , array_merge(['class' => 'mdl-textfield__input', 'id' => 'date_time'])) }}
                                 {{ Form::label('departure_time', 'Abfahrt', array('class' => 'mdl-textfield__label'))}}
 
                             </div>

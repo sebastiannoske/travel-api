@@ -69,9 +69,11 @@ var Global = Global || {};
                     elements.dateInput.attr({'value': ''});
                 });
 
-            elements.datePickerBtn.addEventListener('click', function() {
-                picker.open();
-            }, false);
+            if (elements.datePickerBtn) {
+                elements.datePickerBtn.addEventListener('click', function () {
+                    picker.open();
+                }, false);
+            }
 
         };
 

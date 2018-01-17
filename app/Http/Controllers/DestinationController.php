@@ -52,6 +52,8 @@ class DestinationController extends Controller
      */
     public function storeDestination(Requests\CreateDestinationRequest $request, $event_id)
     {
+        $date = (isset($request->date)) ? Carbon::createFromFormat('d.m.Y H:i', $request->date) : null;
+
         $destination = new Destination([
             'name' => $request->locality,
             'event_id' => $event_id,
@@ -59,7 +61,7 @@ class DestinationController extends Controller
             'long' => $request->lng,
             'street_address' => $request->street_address,
             'postcode' => $request->postal_code,
-            'date' => Carbon::create(2018, 01, 20, 11, 0, 0)
+            'date' => $date
 
         ]);
 
@@ -120,12 +122,15 @@ class DestinationController extends Controller
      */
     public function update(Requests\CreateDestinationRequest $request, $destination_id)
     {
+        $date = (isset($request->date)) ? Carbon::createFromFormat('d.m.Y H:i', $request->date) : null;
+
         $destination = Destination::find($destination_id);
         $destination->name = $request->locality;
         $destination->lat = $request->lat;
         $destination->long = $request->lng;
         $destination->street_address = $request->street_address;
         $destination->postcode = $request->postal_code;
+        $destination->date = $date;
 
         $destination->save();
 

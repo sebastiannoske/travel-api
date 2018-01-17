@@ -8,6 +8,8 @@
 
         <div class="col-md-12">
 
+            @can('edit_all')
+
             @if (isset($event))
 
                 <?php $stopoverError = ($errors->has('locality') || $errors->has('postal_code') || $errors->has('lat') || $errors->has('lng')); ?>
@@ -47,6 +49,87 @@
                     </p>
 
                     <br/><br/><br/>
+
+                @endif
+
+                @if (isset($admins) && sizeof($admins) > 0)
+
+                    @can('edit_super_all')
+
+                        <div class="dark">
+
+                            <div class="row">
+
+                                <div class="col-md-9">
+
+                                    <h4>Festlegen, welcher Benutzer dem aktuellen Event zugeordnet ist</h4>
+                                    <p>Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc,  litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.</p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 col-md-offset-3">
+
+                                <ul class="demo-list-item mdl-list">
+                                    @foreach ($admins as $admin)
+
+                                        <li class="mdl-list__item">
+                                            <span class="mdl-list__item-primary-content">
+                                              <i class="material-icons  mdl-list__item-avatar">person</i>
+                                                {{$admin->name}}<br/>({{$admin->email}})
+                                            </span>
+                                            <span class="mdl-list__item-secondary-action">
+                                              <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-{{$admin->id}}">
+                                                <input type="checkbox" id="list-checkbox-{{$admin->id}}" data-event-id="{{$event->id}}" data-user-id="{{$admin->id}}" class="mdl-checkbox__input"/>
+                                              </label>
+                                            </span>
+                                        </li>
+
+                                    @endforeach
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                        <script>
+
+                            $(document).ready(function() {
+                                var crsfToken = $('meta[name="csrf-token"]').attr('content');
+
+                                $('input:checkbox').on('change', function(e) {
+                                    var target = $(e.target);
+
+                                    $.ajaxSetup({
+
+                                        headers: {
+
+                                            'X-CSRF-TOKEN': crsfToken
+
+                                        }
+
+                                    });
+
+                                    var state = target.is(':checked')
+
+                                    $.post('/events/'+target.data('event-id')+'/hasuser/'+target.data('user-id'), { 'state' : state }, function(data) {
+
+                                    });
+                                })
+
+
+                            });
+
+                        </script>
+
+                        <br/><br/><br/>
+
+                    @endcan
 
                 @endif
 
@@ -120,7 +203,7 @@
 
                             @endif
 
-                            {!! Form::open(array('route' => 'fileUpload','enctype' => 'multipart/form-data')) !!}
+                            {!! Form::open(array('route' => array('fileUpload', $event->id), 'enctype' => 'multipart/form-data')) !!}
 
                                 <div class="row">
 
@@ -278,6 +361,13 @@
 
                     </div>
 
+                    <div id="datepicker-btn" class="mdl-textfield mdl-js-textfield <?php if ($errors->has('date')) echo 'has-error'; ?>">
+
+                        {{ Form::text('date',null , array_merge(['class' => 'mdl-textfield__input', 'id' => 'date_time'])) }}
+                        {{ Form::label('date', 'Veranstaltungsbeginn', array('class' => 'mdl-textfield__label'))}}
+
+                    </div>
+
                     <div style="text-align: right;">
 
                         <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">Demonstrationsort hinzufügen</button>
@@ -293,6 +383,12 @@
                 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbZ4hrT0d_RIaXoaCbUCwSIB3uo90bHAM&libraries=places"></script>
 
                 <script src="/js/travel-details.js"></script>
+
+            @else
+
+                <h5>Keine ausreichenden Rechte vorhanden.</h5>
+
+            @endcan
 
         </div>
 

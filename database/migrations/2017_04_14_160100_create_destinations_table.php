@@ -21,7 +21,7 @@ class CreateDestinationsTable extends Migration
             $table->double('lat', 12, 10);
             $table->double('long', 13,10);
             $table->integer('event_id')->unsigned();
-            $table->date('date');
+            $table->dateTime('date')->nullable()->default(null);;
             $table->timestamps();
             $table->foreign('event_id')->references('id')->on('events');
         });

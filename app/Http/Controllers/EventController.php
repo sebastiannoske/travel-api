@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Event;
 use App\Travel;
+use App\User;
+use App\UsersEvent;
 use App\Destination;
 
 class EventController extends Controller
@@ -27,9 +30,17 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Requests\CreateEventRequest $request)
     {
-        return 'halo';
+        $event = new Event([
+            'name' => $request->name,
+            'campaignText' => $request->campaignText
+        ]);
+
+        $event->save();
+
+        return redirect()->back()->with('message', ['Neues Event hinzugefügt.']);
+
     }
 
     /**
@@ -116,6 +127,35 @@ class EventController extends Controller
 
         return view('events', ['events' => $events]);
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editEvent($event_id)
+    {
+        $auth_user = \Auth::user();
+        $event = null;
+        $admins = null;
+
+        if ($auth_user) {
+
+            if ($auth_user->hasRole('superadmin')) {
+
+                $event = Event::find($event_id);
+                $admins = User::whereHas('roles', function ($query) {
+                    $query->where('roles.id', '=', 2);
+                })->get();
+
+            }
+
+        }
+
+        return view('settings', ['event' => $event, 'admins' => $admins]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -127,11 +167,19 @@ class EventController extends Controller
     {
         $event = Event::find($id);
 
+        if ($request->name) {
+
+            $event->name = $request->name;
+
+        }
+
         if ($request->campaignText) {
 
             $event->campaignText = $request->campaignText;
 
-        } else if ($request->googleApiKey) {
+        }
+
+        if ($request->googleApiKey) {
 
             $event->googleApiKey = $request->googleApiKey;
 
@@ -151,5 +199,36 @@ class EventController extends Controller
     public function destroy($id)
     {
         return 'halo';
+    }
+
+    public function setHasUserValue(Request $request, $event_id, $user_id) {
+
+
+        if ( $request->state === 'true') {
+
+            $user_event = UsersEvent::where([['event_id', '=', $event_id], ['user_id', '=', $user_id]])->first();
+
+            if (!$user_event) {
+                $user_event = new UsersEvent(
+                    [
+                        'event_id' => $event_id,
+                        'user_id' => $user_id
+                    ]
+                );
+
+                $user_event->save();
+            }
+
+        } else {
+
+            $user_event = UsersEvent::where([['event_id', '=', $event_id], ['user_id', '=', $user_id]])->first();
+
+            if ($user_event) {
+                $user_event->delete();
+            }
+
+        }
+
+        return $user_id;
     }
 }

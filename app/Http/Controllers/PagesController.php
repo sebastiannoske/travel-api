@@ -171,8 +171,7 @@ class PagesController extends Controller
 
     }
 
-    public function fileUpload(Request $request)
-
+    public function fileUpload(Request $request, $event_id)
     {
 
         $this->validate($request, [
@@ -197,7 +196,7 @@ class PagesController extends Controller
 
             if ($user->hasRole('superadmin') || $user->hasRole('admin')) {
 
-                $event = Event::find(1);
+                $event = Event::find($event_id);
                 $event->imagePath = URL::to('/').'/images/'.$input['imagename'];
                 $event->save();
 
@@ -219,16 +218,20 @@ class PagesController extends Controller
 
         $user = \Auth::user();
         $event = null;
+        $admins = null;
 
         if ($user) {
 
             if ($user->hasRole('superadmin') || $user->hasRole('admin')) {
 
                 $event = Event::where('id', '=', 1)->with('destinations')->first();
+                $admins = User::whereHas('roles', function ($query) {
+                    $query->where('roles.id', '=', 2);
+                })->get();
             }
         }
 
-        return view('settings', ['event' => $event]);
+        return view('settings', ['event' => $event, 'admins' => $admins]);
 
     }
 

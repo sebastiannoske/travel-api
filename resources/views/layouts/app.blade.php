@@ -104,7 +104,10 @@
                             <li><a href="/events">Events</a></li>
                         @endcan
                         @can('edit_all')
-                            <li><a href="/settings">Einstellungen</a></li>
+                            @cannot('edit_super_all')
+                                <li><a href="/settings">Einstellungen</a></li>
+                            @endcannot
+
                             <li><a href="/users">Userverwaltung</a></li>
                             <li><a href="/emails">Email Templates</a></li>
                         @endcan
