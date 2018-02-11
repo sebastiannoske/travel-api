@@ -292,7 +292,7 @@
                         <div class="col-md-6 inline-form-wrap" style="text-align: right; padding-top:20px;">
 
 
-                                @if (sizeof($event->destinations) > 1)
+                                @if (sizeof($event->destinations) > 1 && false) <!-- TODO -->
 
                                     {!! Form::open(['url' => "/settings/destination/$destination->id/delete"]) !!}
 

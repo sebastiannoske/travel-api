@@ -91,7 +91,7 @@
 
             <div id="datepicker-btn" class="mdl-textfield mdl-js-textfield <?php if ($errors->has('date')) echo 'has-error'; ?>">
 
-                <?php $date = ($destination->date && count($destination->date)) ? Carbon\Carbon::parse($destination->date)->format('d.m.Y H:i') : ''; ?>
+                <?php $date = ($destination->date) ? Carbon\Carbon::parse($destination->date)->format('d.m.Y H:i') : ''; ?>
                 {{ Form::text('date', $date, array_merge(['class' => 'mdl-textfield__input', 'id' => 'date_time'])) }}
                 {{ Form::label('date', 'Veranstaltungsbeginn', array('class' => 'mdl-textfield__label'))}}
 

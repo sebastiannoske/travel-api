@@ -64,12 +64,15 @@
 
                         <div class="col-md-6 inline-form-wrap" style="text-align: right; padding-top:20px;">
 
+                            @if (false) <!-- TODO -->
 
-                            {!! Form::open(['url' => "/events/$event->id/delete"]) !!}
+                                {!! Form::open(['url' => "/events/$event->id/delete"]) !!}
 
-                            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">löschen</button>
+                                <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">löschen</button>
 
-                            {!! Form::close() !!}
+                                {!! Form::close() !!}
+
+                            @endif
 
                             <a href="{{ url('/events', $event->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a>
 

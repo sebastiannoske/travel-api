@@ -4,7 +4,7 @@
 
     <div class="container">
 
-        @if (isset($user) && count($user))
+        @if (isset($user))
 
             <h4 style="text-align: center;">Benutzereinstellungen</h4>
 
