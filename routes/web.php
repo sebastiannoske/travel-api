@@ -17,6 +17,7 @@ Route::any('/register', function() {
 });
 
 Route::get('/', 'PagesController@index');
+Route::get('/events/{event_id}/travel', 'PagesController@showTravel');
 Route::get('/edit-travel/{travel}', 'PagesController@editTravel');
 Route::post('/travel/{travel}/ispublic', 'TravelController@setPublicValue');
 Route::post('/travel/{travel}/stopover', 'TravelController@storeStopover');
@@ -29,7 +30,7 @@ Route::get('/exportcsv', 'TravelController@generateCsv');
 Route::get('/exportxls', 'TravelController@generateXls');
 
 Route::get('/events', 'EventController@editEvents');
-Route::get('/events/{event_id}', 'EventController@editEvent');
+Route::get('/events/{event_id}/edit', 'EventController@editEvent');
 Route::post('/events/{event_id}/update', 'EventController@update');
 Route::post('/events/create', 'EventController@create');
 Route::post('/events/{event_id}/hasuser/{user_id}', 'EventController@setHasUserValue');

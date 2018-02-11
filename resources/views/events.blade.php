@@ -64,23 +64,39 @@
 
                         <div class="col-md-6 inline-form-wrap" style="text-align: right; padding-top:20px;">
 
-                            @if (false) <!-- TODO -->
+                            @can('edit_super_all')
 
-                                {!! Form::open(['url' => "/events/$event->id/delete"]) !!}
+                                @if (false) <!-- TODO -->
 
-                                <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">löschen</button>
+                                    {!! Form::open(['url' => "/events/$event->id/delete"]) !!}
 
-                                {!! Form::close() !!}
+                                    <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">löschen</button>
 
-                            @endif
+                                    {!! Form::close() !!}
 
-                            <a href="{{ url('/events', $event->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a>
+                                @endif
+
+                                <a href="{{ url('/events/' . $event->id . '/edit') }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a>
+
+                            @endcan
+
+                            @cannot('edit_travel')
+
+                                <a href="{{ url('/events/' . $event->id . '/travel') }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">Meine Fahrten</button></a>
+
+                            @else
+
+                                 <a href="{{ url('/events/' . $event->id . '/travel') }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">Alle Fahrten</button></a>
+
+                            @endcan
 
                         </div>
 
                     </div>
 
                 @endforeach
+
+                    @can('edit_super_all')
 
                     <h4><a role="button" data-toggle="collapse" href="#collapse" aria-expanded="@if ($stopoverError) true @else false @endif" aria-controls="collapse">Event hinzufügen <i class="glyphicon glyphicon-plus"></i></a></h4>
 
@@ -121,6 +137,8 @@
                         {!! Form::close() !!}
 
                     </div>
+
+                    @endif
 
                 @else
 

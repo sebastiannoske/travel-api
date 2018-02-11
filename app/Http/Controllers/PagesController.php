@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Event;
 use App\User;
+use App\UsersEvent;
 use App\Travel;
 use App\EmailTemplate;
 use Carbon\Carbon;
@@ -28,6 +29,10 @@ class PagesController extends Controller
 
         if ($user)
         {
+
+            $usersEvents = UsersEvent::where('user_id', '=', $user->id)->get();
+
+            /*
             if ($user->hasRole('user')) {
 
                 if ($request->kind) {
@@ -52,6 +57,106 @@ class PagesController extends Controller
 
                 }
 
+            } */
+
+
+            if (sizeOf($usersEvents) === 1) {
+
+                return redirect('/events/' . $usersEvents->first()->event_id . '/travel' );
+
+            } else {
+
+
+                return redirect('/events');
+
+            }
+
+
+        } else {
+
+            return redirect('/login');
+
+        }
+
+    }
+
+    /**
+     * List all travel for a sppecific event
+     *
+     * @param $event_id the given event id
+     *
+     */
+    public function showTravel(Request $request, $event_id) {
+        $user = \Auth::user();
+        $travel = null;
+
+        if ($user) {
+
+            if ($user->hasRole('user')) { // get all travel assigned to current user
+
+                if ($request->kind) {
+
+                    $travel = Travel::where('user_id', '=', $user->id)->with('contact')->whereHas($request->kind, function ($query) {
+                        $query->where('id', '>', 0);
+                    })->with($request->kind)->whereHas('destination', function ($query) use ($event_id) {
+                        $query->where('event_id', '=', $event_id);
+                    })->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+
+                } else {
+
+                    $travel = Travel::where('user_id', '=', $user->id)->with('offer')->with('request')->with('contact')->whereHas('destination', function ($query) use ($event_id) {
+                        $query->where('event_id', '=', $event_id);
+                    })->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+
+                }
+
+            } elseif (!$user->hasRole('superadmin')){ // get all travel wich are are assigned to current user's events
+
+                $usersEvents = UsersEvent::where('user_id', '=', $user->id)->get();
+                $userIds = [];
+
+                foreach ( $usersEvents as $usersEvent ) {
+
+                    if ($usersEvent->event_id == $event_id) {
+                        $userIds[] = $usersEvent->event_id;
+                    }
+                }
+
+
+                if ($request->kind) {
+
+                    $travel = Travel::whereHas($request->kind, function ($query) {
+                        $query->where('id', '>', 0);
+                    })->with($request->kind)->with('contact')->whereHas('destination', function ($query) use ($event_id, $userIds) {
+                        $query->whereIn('event_id', $userIds);
+                    })->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+
+                } else {
+
+                    $travel = Travel::with('offer')->with('contact')->with('request')->with('stopover')->whereHas('destination', function ($query) use ($event_id, $userIds) {
+                        $query->whereIn('event_id', $userIds);
+                    })->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+
+                }
+
+            } else { // get all travel i'm a superadmin
+
+                if ($request->kind) {
+
+                    $travel = Travel::whereHas($request->kind, function ($query) {
+                        $query->where('id', '>', 0);
+                    })->with($request->kind)->with('contact')->whereHas('destination', function ($query) use ($event_id) {
+                        $query->where('event_id', '=', $event_id);
+                    })->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+
+                } else {
+
+                    $travel = Travel::with('offer')->with('contact')->with('request')->with('stopover')->whereHas('destination', function ($query) use ($event_id) {
+                        $query->where('event_id', '=', $event_id);
+                    })->with('destination')->with('transportation_mean')->orderBy('created_at', 'desc')->paginate(100);
+
+                }
+
             }
 
             foreach ( $travel as $current_travel ) {
@@ -68,16 +173,13 @@ class PagesController extends Controller
             }
 
 
-            return view('travel', ['travel' => $travel, 'kind' => $request->kind]);
+            return view('travel', ['travel' => $travel, 'kind' => $request->kind, 'event_id' => $event_id]);
 
         } else {
 
             return redirect('/login');
 
         }
-
-
-
     }
 
     /**

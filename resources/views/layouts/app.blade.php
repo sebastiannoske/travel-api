@@ -99,10 +99,12 @@
             <nav class="sub-nav">
                 <div class="container">
                     <ul>
-                        <li><a href="/">Fahrten</a></li>
                         @can('edit_super_all')
                             <li><a href="/events">Events</a></li>
                         @endcan
+
+                        <li><a href="/">Fahrten</a></li>
+
                         @can('edit_all')
                             @cannot('edit_super_all')
                                 <li><a href="/settings">Einstellungen</a></li>

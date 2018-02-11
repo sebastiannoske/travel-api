@@ -14,7 +14,6 @@ class DestinationsTableSeeder extends Seeder
     public function run()
     {
 
-
         DB::table('destinations')->insert([
             'name' => 'Berlin',
             'lat' => 52.525084,

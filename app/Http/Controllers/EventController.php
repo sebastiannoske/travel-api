@@ -117,11 +117,7 @@ class EventController extends Controller
 
         if ($auth_user) {
 
-            if ($auth_user->hasRole('superadmin')) {
-
-                $events = Event::all();
-
-            }
+            $events = Event::all();
 
         }
 

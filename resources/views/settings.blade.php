@@ -52,24 +52,24 @@
 
                 @endif
 
-                @if (isset($admins) && sizeof($admins) > 0)
+                @can('edit_super_all')
 
-                    @can('edit_super_all')
+                    <div class="dark">
 
-                        <div class="dark">
+                        <div class="row">
 
-                            <div class="row">
+                            <div class="col-md-9">
 
-                                <div class="col-md-9">
-
-                                    <h4>Festlegen, welcher Benutzer dem aktuellen Event zugeordnet ist</h4>
-                                    <p>Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc,  litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.</p>
-
-                                </div>
+                                <h4>Festlegen, welcher Benutzer dem aktuellen Event zugeordnet ist</h4>
+                                <p>Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc,  litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.</p>
 
                             </div>
 
                         </div>
+
+                    </div>
+
+                    @if (isset($admins) && sizeof($admins) > 0)
 
                         <div class="row">
 
@@ -129,9 +129,14 @@
 
                         <br/><br/><br/>
 
-                    @endcan
+                    @else
 
-                @endif
+                            <h5>Es existiert noch keine Benutzer mit der Rolle "Admin", welchem ein Event zugeordnet werden kann.</h5>
+                            <br/><br/>
+
+                    @endif
+
+                @endcan
 
                 <div class="dark">
 
