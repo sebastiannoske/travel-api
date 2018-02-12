@@ -35,13 +35,11 @@ Route::post('/events/{event_id}/update', 'EventController@update');
 Route::post('/events/create', 'EventController@create');
 Route::post('/events/{event_id}/hasuser/{user_id}', 'EventController@setHasUserValue');
 
-
-Route::get('/settings', 'PagesController@editSettings');
 Route::post('/fileUpload/{event_id}', ['as'=>'fileUpload','uses'=>'PagesController@fileUpload']);
-Route::post('/settings/{event_id}/destination', 'DestinationController@storeDestination');
-Route::post('/settings/{event_id}/update', 'DestinationController@update');
-Route::post('/settings/destination/{destination_id}/delete', 'DestinationController@destroy');
-Route::get('/settings/destination/{destination_id}', 'DestinationController@editDestination');
+Route::post('/events/{event_id}/destinations', 'DestinationController@storeDestination');
+Route::post('/events/{event_id}/destinations/{destination_id}/update', 'DestinationController@update');
+Route::post('/events/{event_id}/destinations/{destination_id}/delete', 'DestinationController@destroy');
+Route::get('/events/{event_id}/destinations/{destination_id}', 'DestinationController@editDestination');
 
 
 Route::get('/user', 'PagesController@editUser');

@@ -99,17 +99,15 @@
             <nav class="sub-nav">
                 <div class="container">
                     <ul>
-                        @can('edit_super_all')
+                        @can('edit_travel')
                             <li><a href="/events">Events</a></li>
                         @endcan
 
-                        <li><a href="/">Fahrten</a></li>
+                        @cannot('edit_travel')
+                            <li><a href="/">Fahrten</a></li>
+                        @endcannot
 
                         @can('edit_all')
-                            @cannot('edit_super_all')
-                                <li><a href="/settings">Einstellungen</a></li>
-                            @endcannot
-
                             <li><a href="/users">Userverwaltung</a></li>
                             <li><a href="/emails">Email Templates</a></li>
                         @endcan

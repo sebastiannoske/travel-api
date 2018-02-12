@@ -117,7 +117,17 @@ class EventController extends Controller
 
         if ($auth_user) {
 
-            $events = Event::all();
+            if ($auth_user->hasRole('superadmin')) {
+
+                $events = Event::all();
+
+            } else {
+
+                $events = Event::whereHas('users', function ($query) use ($auth_user) {
+                    $query->where('user_id', '=', $auth_user->id);
+                })->get();
+
+            }
 
         }
 
@@ -138,12 +148,37 @@ class EventController extends Controller
 
         if ($auth_user) {
 
-            if ($auth_user->hasRole('superadmin')) {
+            if ($auth_user->hasRole('admin') || $auth_user->hasRole('superadmin')) {
 
-                $event = Event::find($event_id);
-                $admins = User::whereHas('roles', function ($query) {
-                    $query->where('roles.id', '=', 2);
-                })->get();
+                if ($auth_user->hasRole('superadmin')) {
+
+                    $event = Event::find($event_id);
+                    $admins = User::whereHas('roles', function ($query) {
+                        $query->where('roles.id', '=', 2);
+                    })->get();
+
+                    foreach ($admins as $admin) {
+                        $user_event = UsersEvent::where([['event_id', '=', $event_id], ['user_id', '=', $admin->id]])->first();
+                        $admin->has_event = isset($user_event);
+                    }
+
+                } else {
+
+                    $usersEvents = UsersEvent::where('user_id', '=', $auth_user->id)->get();
+                    $userIds = [];
+
+                    foreach ( $usersEvents as $usersEvent ) {
+
+                        if ($usersEvent->event_id == $event_id) {
+                            $userIds[] = $usersEvent->event_id;
+                        }
+                    }
+
+                    $event = Event::whereHas('users', function ($query) use ($userIds) {
+                        $query->whereIn('user_id', $userIds);
+                    })->first();
+
+                }
 
             }
 

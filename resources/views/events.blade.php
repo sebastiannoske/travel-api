@@ -76,7 +76,11 @@
 
                                 @endif
 
-                                <a href="{{ url('/events/' . $event->id . '/edit') }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a>
+                            @endcan
+
+                            @can('edit_all')
+
+                                <a href="{{ url('/events/' . $event->id . '/edit') }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">Einstellungen</button></a>
 
                             @endcan
 

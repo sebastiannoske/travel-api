@@ -52,7 +52,7 @@
 
             </div>
 
-            {!! Form::open(['url' => "/settings/$destination->id/update"]) !!}
+            {!! Form::open(['url' => "/events/$destination->id/destinations/$destination->id/update"]) !!}
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('locality')) echo 'has-error'; ?>">
 

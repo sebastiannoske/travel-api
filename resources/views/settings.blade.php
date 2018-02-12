@@ -85,7 +85,7 @@
                                             </span>
                                             <span class="mdl-list__item-secondary-action">
                                               <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-{{$admin->id}}">
-                                                <input type="checkbox" id="list-checkbox-{{$admin->id}}" data-event-id="{{$event->id}}" data-user-id="{{$admin->id}}" class="mdl-checkbox__input"/>
+                                                <input type="checkbox" id="list-checkbox-{{$admin->id}}" data-event-id="{{$event->id}}" data-user-id="{{$admin->id}}" <?php if ($admin->has_event): echo 'checked="checked"'; endif; ?> class="mdl-checkbox__input"/>
                                               </label>
                                             </span>
                                         </li>
@@ -161,7 +161,7 @@
 
                         <div class="section-wrap">
 
-                            {!! Form::open(['url' => "/settings/$event->id/update"]) !!}
+                            {!! Form::open(['url' => "/events/$event->id/update"]) !!}
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('title')) echo 'has-error'; ?>">
 
@@ -244,7 +244,7 @@
 
                         <div class="section-wrap">
 
-                            {!! Form::open(['url' => "/settings/$event->id/update"]) !!}
+                            {!! Form::open(['url' => "/events/$event->id/update"]) !!}
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('title')) echo 'has-error'; ?>">
 
@@ -299,7 +299,7 @@
 
                                 @if (sizeof($event->destinations) > 1 && false) <!-- TODO -->
 
-                                    {!! Form::open(['url' => "/settings/destination/$destination->id/delete"]) !!}
+                                    {!! Form::open(['url' => "/events/$event->id/destinations/$destination->id/delete"]) !!}
 
                                         <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent">löschen</button>
 
@@ -307,7 +307,7 @@
 
                                 @endif
 
-                                <a href="{{ url('/settings/destination', $destination->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a>
+                                <a href="{{ url('/events/'.$event->id.'/destinations', $destination->id) }}" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a>
 
 
 
@@ -329,7 +329,7 @@
 
                     </div>
 
-                    {!! Form::open(['url' => "/settings/$event->id/destination"]) !!}
+                    {!! Form::open(['url' => "/events/$event->id/destinations"]) !!}
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('locality')) echo 'has-error'; ?>">
 

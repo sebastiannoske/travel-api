@@ -62,7 +62,6 @@ class DestinationController extends Controller
             'street_address' => $request->street_address,
             'postcode' => $request->postal_code,
             'date' => $date
-
         ]);
 
         $destination->save();
@@ -95,7 +94,7 @@ class DestinationController extends Controller
         //
     }
 
-    public function editDestination($destinations_id)
+    public function editDestination($event_id, $destinations_id)
     {
         $auth_user = \Auth::user();
         $destination = null;
