@@ -50,10 +50,21 @@ class UserController extends Controller
             $user->save();
 
             DB::table('role_user')->insert(
-                ['user_id' => $user->id, 'role_id' => 2]
+                ['user_id' => $user->id, 'role_id' => 3]
             );
 
             \Mail::to($user)->send(new UserConfirmed($user, $pw));
+
+
+            // assign user to event
+            /* $user_event = new UsersEvent(
+                [
+                    'event_id' => $event_id,
+                    'user_id' => $user_id
+                ]
+            );
+
+            $user_event->save(); */
 
             return redirect()->back()->with('message', ['Benutzer angelegt.']);
 

@@ -43,7 +43,7 @@ Route::get('/events/{event_id}/destinations/{destination_id}', 'DestinationContr
 
 
 Route::get('/user', 'PagesController@editUser');
-Route::post('/user/create', 'UserController@create');
+Route::post('/events/{event_id}/user/create', 'UserController@create');
 Route::post('/user/{user}/update', 'UserController@update');
 Route::post('/user/{user}/updatepassword', 'UserController@updatePassword');
 

@@ -145,6 +145,7 @@ class EventController extends Controller
         $auth_user = \Auth::user();
         $event = null;
         $admins = null;
+        $editors = null;
 
         if ($auth_user) {
 
@@ -157,9 +158,18 @@ class EventController extends Controller
                         $query->where('roles.id', '=', 2);
                     })->get();
 
+                    $editors = User::whereHas('roles', function ($query) {
+                        $query->where('roles.id', '=', 3);
+                    })->get();
+
                     foreach ($admins as $admin) {
                         $user_event = UsersEvent::where([['event_id', '=', $event_id], ['user_id', '=', $admin->id]])->first();
                         $admin->has_event = isset($user_event);
+                    }
+
+                    foreach ($editors as $editor) {
+                        $user_event = UsersEvent::where([['event_id', '=', $event_id], ['user_id', '=', $editor->id]])->first();
+                        $editor->has_event = isset($user_event);
                     }
 
                 } else {
@@ -178,13 +188,22 @@ class EventController extends Controller
                         $query->whereIn('user_id', $userIds);
                     })->first();
 
+                    $editors = User::whereHas('roles', function ($query) {
+                        $query->where('roles.id', '=', 3);
+                    })->get();
+
+                    foreach ($editors as $editor) {
+                        $user_event = UsersEvent::where([['event_id', '=', $event_id], ['user_id', '=', $editor->id]])->first();
+                        $editor->has_event = isset($user_event);
+                    }
+
                 }
 
             }
 
         }
 
-        return view('settings', ['event' => $event, 'admins' => $admins]);
+        return view('settings', ['event' => $event, 'admins' => $admins, 'editors' => $editors]);
     }
 
     /**

@@ -52,7 +52,7 @@
 
                 @endif
 
-                @can('edit_super_all')
+                @can('edit_all')
 
                     <div class="dark">
 
@@ -60,7 +60,7 @@
 
                             <div class="col-md-9">
 
-                                <h4>Festlegen, welcher Benutzer dem aktuellen Event zugeordnet ist</h4>
+                                <h4>Benutzer festlegendem welche dem aktuellen Event zugeordnet sind</h4>
                                 <p>Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc,  litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.</p>
 
                             </div>
