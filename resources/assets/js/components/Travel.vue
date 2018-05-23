@@ -1,16 +1,18 @@
 <template>
 
-    <div>
+    <div id="vue-wrap">
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-        <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-          <i class="material-icons">search</i>
-        </label>
-        <div class="mdl-textfield__expandable-holder">
-          <input class="mdl-textfield__input" type="text" id="sample6" v-model="search">
-          <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+        <div id="filter-input-wrap">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" id="sample6" v-model="search">
+                    <label class="mdl-textfield__label" for="sample-expandable">Volltextsuche</label>
+                </div>
+            </div>
         </div>
-      </div>
 
         <table class="table table-striped">
 
@@ -35,7 +37,7 @@
 
             <tbody>
 
-                <tr v-for='(key, val) in filteredTravel'>
+                <tr v-for='(key, val) in filteredTravel' v-bind:class="{ request: key.request }">
 
                     <td>{{key.dateHuman}}</td>
                     <td v-if='key.offer'>Angebot</td>

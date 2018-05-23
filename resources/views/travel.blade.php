@@ -20,7 +20,6 @@
             <li role="presentation" class="@if (!$kind) active @endif"><a href="{{ URL::action('PagesController@showTravel', $event_id) }}">Alle Fahrten</a></li>
             <li role="presentation" class="@if ($kind && $kind === 'offer') active @endif"><a href="{{ URL::action('PagesController@showTravel', [$event_id, 'kind=offer']) }}">Nur Angebote anzeigen</a></li>
             <li role="presentation" class="@if ($kind && $kind === 'request') active @endif"><a href="{{ URL::action('PagesController@showTravel', [$event_id, 'kind=request']) }}">Nur Gesuche anzeigen</a></li>
-            @can ('edit_travel') <span style="float:right;padding:10px 0;">export <a href="{{ url('/exportxls') }}">.xls</a> / <a href="{{ url('/exportcsv') }}">.csv</a></span>@endcan
         </ul>
 
         @if (isset($travel) && count($travel))
@@ -32,6 +31,8 @@
                 {{ $travel->links() }}
 
             </div>
+
+            @can ('edit_travel') <span style="padding:10px 0;">export <a href="{{ url('/exportxls') }}">.xls</a> / <a href="{{ url('/exportcsv') }}">.csv</a></span>@endcan
 
             <script src="/js/travel.js"></script>
 

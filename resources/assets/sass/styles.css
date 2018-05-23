@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Karla');
+
 body {
     background-color: rgba(244,244,244,1) !important;
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Karla', sans-serif !important;;
     -webkit-font-smoothing: antialiased;
+    padding-top: 156px;
 }
 
 #app {
@@ -43,7 +46,7 @@ div.hline {
 }
 
 #content-stuff a {
-    color: #BA0116;
+    color: #C21C34;
 }
 
 #content-stuff h4 a {
@@ -58,10 +61,6 @@ div.hline {
     color: #87000F;
 }
 
-tr.request {
-    border-left: 3px solid #C21C34;
-}
-
 .table-striped>thead>tr {
     background-color: #fff;
 }
@@ -72,11 +71,34 @@ tr.request {
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: rgba(0,0,0,.02);
+    background-color: rgba(250,250,250,1);
 }
 
 .table-striped>tbody>tr:nth-of-type(even) {
-    background-color: rgba(0,0,0,.05);
+    background-color: rgba(242,242,242,1);
+}
+
+.table-striped {
+    border-left: 1px solid rgb(216,216,216);
+    border-right: 1px solid rgb(216,216,216);
+}
+
+.table-striped>tbody>tr {
+    border-bottom: 1px solid rgb(216,216,216);
+}
+
+.table-striped>tbody>tr.request>td:first-child {
+    border-left: 2px solid #C21C34;
+}
+
+.table-striped>tbody>tr>td {
+    border-top: none;
+    color: #000;
+    vertical-align: middle !important;
+}
+
+.table > tbody > tr > td {
+    padding: 16px 8px !important;
 }
 
 .c-datepicker__header-date {
@@ -101,10 +123,44 @@ tr.request {
     margin-bottom: 0 !important;
 }
 
+.navbar-static-top, .sub-nav {
+    position: fixed !important;
+    width: 100%;
+    top: 0;
+    z-index: 9;
+}
+
+#vue-wrap {
+    position: relative;
+}
+
+#filter-input-wrap {
+    position: absolute;
+    top: -45px;
+    right: 0;
+    width: 215px;
+    height: 50px;
+}
+
+#filter-input-wrap .mdl-textfield {
+    padding: 6px 0 4px;
+    background-color: #fff;
+}
+
+#filter-input-wrap .mdl-textfield label {
+    top: 5px;
+}
+
+#content-stuff .table-responsive {
+    overflow: visible;
+}
+
+.sub-nav {
+    top: 51px;
+}
 
 .sub-nav {
     background-color: #4A4A4A;
-    margin-bottom: 40px;
 }
 
 .sub-nav ul {
@@ -113,12 +169,24 @@ tr.request {
 }
 
 .sub-nav ul li {
+    position: relative;
     margin: 0;
     padding: 0;
-    display: inline-block;
+    display: block;
+    float: left;
     list-style: none;
     background-color: transparent;
     transition: .15s ease background-color;
+}
+
+.sub-nav ul li:not(:first-child):before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 1px;
+    height: 39px;
+    background-color: rgba(255,255,255,.2);
 }
 
 .sub-nav ul li:hover {
@@ -207,7 +275,31 @@ body[class^="template-travel-"] nav.navbar, body[class^="template-travel-"] nav.
 }
 
 #content-stuff .mdl-button--accent.mdl-button--accent.mdl-button--raised, #content-stuff .mdl-button--accent.mdl-button--accent.mdl-button--fab {
-    background-color: #BA0116;
+    background-color: #C21C34;
+}
+
+#content-stuff .mdl-button {
+    border-radius: 18px;
+}
+
+#content-stuff .mdl-button--raised.mdl-button--colored {
+    background-color: #4A4A4A;
+}
+
+#content-stuff .mdl-switch__thumb {
+    background: #BDBDBD;
+}
+
+#content-stuff .mdl-switch__track {
+    background: rgba(0,0,0,.1);
+}
+
+#content-stuff .mdl-switch.is-checked .mdl-switch__track {
+    background: rgba(115,200,23,.5);
+}
+
+#content-stuff .mdl-switch.is-checked .mdl-switch__thumb {
+    background: #73C817;
 }
 
 #content-stuff .social-share-links a .social-icon svg {
