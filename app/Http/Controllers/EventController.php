@@ -128,7 +128,7 @@ class EventController extends Controller
                 })->get();
 
                 if ($events->count() === 0) {
-                    $destinations = Travel::whereHas('travel', function ($query) use ($auth_user) {
+                    $destinations = Destination::whereHas('travel', function ($query) use ($auth_user) {
                         $query->whereHas('user_id', '=', $auth_user->id);
                     })->get('id');
 
