@@ -34,6 +34,6 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt(env('APP_USERPASSWORD2', str_random(10))),
             'verified' => true,
             'api_token' => null
-        ]); */
+        ]);
     }
 }

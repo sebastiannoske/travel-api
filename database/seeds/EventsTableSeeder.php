@@ -15,7 +15,7 @@ class EventsTableSeeder extends Seeder
 
         DB::table('events')->insert([
             'name' => 'AFD Wegbassen',
-            'campaignText' => 'Die Folgende Mitfahrgelegenheit zur Demonstration am 27.5.2018 in Berlin, wird organisiert vom Demobündnis „Aufstehen gegen Rassimus“.'
+            'campaignText' => 'Mitfahrbörse zu Antifaschistischen Afterhour gegen die AFD am 27.05.2018 in Berlin.'
         ]);
 
         /* DB::table('events')->insert([
