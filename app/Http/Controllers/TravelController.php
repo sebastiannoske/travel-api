@@ -428,7 +428,7 @@ class TravelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $destination_id)
+    public function store(Request $request, $destination_id)    
     {
         $user = $this->firstOrCreateUser($request);
 
