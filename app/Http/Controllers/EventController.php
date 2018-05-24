@@ -134,7 +134,7 @@ class EventController extends Controller
 
                     $events = Event::whereHas('destinations', function ($query) use ($destinations) {
                         $query->whereIn('id', $destinations);
-                    });
+                    })->get();
                 }
             }
 
