@@ -127,6 +127,7 @@ class EventController extends Controller
                     $query->where('user_id', '=', $auth_user->id);
                 })->get();
 
+                dd($events);
                 if (!$events) {
 
                     dd($events);
