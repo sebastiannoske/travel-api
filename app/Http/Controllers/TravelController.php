@@ -218,7 +218,7 @@ class TravelController extends Controller
         foreach ($destinations as $destination) {
 
             $travel = Travel::whereHas('destination', function ($query) use ($destination) {
-                $query->where('id', '=', $destination->id);
+                $query->whereHas('id', '=', $destination->id);
             })
                 ->with('offer')
                 ->with('request')
