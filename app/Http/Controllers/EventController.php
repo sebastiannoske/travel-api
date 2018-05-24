@@ -126,6 +126,10 @@ class EventController extends Controller
                 $events = Event::whereHas('users', function ($query) use ($auth_user) {
                     $query->where('user_id', '=', $auth_user->id);
                 })->get();
+
+                if (!$events) {
+                    $events = Event::all();
+                }
             }
 
         }
