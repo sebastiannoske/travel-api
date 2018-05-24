@@ -51,7 +51,7 @@ Tel: 030 81056025-8
 Email: brey@g20-protestwelle.de'
         ]);
 
-        App\EmailTemplate::create([
+        /* App\EmailTemplate::create([
             'event_id' => 2,
             'template_name' => 'Bestätigung des Benutzer-Accounts',
             'title' => 'Hallo,',
@@ -68,7 +68,7 @@ Marius Brey
 Anreisekoordination
 Tel: 030 81056025-8
 Email: brey@g20-protestwelle.de'
-        ]);
+        ]); */
 
     }
 }

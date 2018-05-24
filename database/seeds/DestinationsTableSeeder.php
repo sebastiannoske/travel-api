@@ -16,27 +16,27 @@ class DestinationsTableSeeder extends Seeder
 
         DB::table('destinations')->insert([
             'name' => 'Berlin',
-            'lat' => 52.525084,
-            'long' => 13.369402,
+            'lat' => 52.5185385,
+            'long' => 13.3709998,
             'event_id' => 1,
-            'date' => Carbon::create(2018, 01, 20, 11, 0, 0)
+            'date' => Carbon::create(2018, 05, 27, 11, 0, 0)
         ]);
 
-        DB::table('destinations')->insert([
+        /* DB::table('destinations')->insert([
             'name' => 'Berlin',
             'lat' => 52.525084,
             'long' => 13.369402,
             'event_id' => 2,
             'date' => Carbon::create(2018, 03, 04, 12, 0, 0)
-        ]);
+        ]); */
 
-        DB::table('destinations')->insert([
+        /* DB::table('destinations')->insert([
             'name' => 'Hamburg',
             'lat' => 53.552812,
             'long' => 10.006979,
             'event_id' => 2,
             'date' => Carbon::create(2018, 03, 04, 12, 0, 0)
-        ]);
+        ]); */
 
         /*$faker = Faker::create();
         $startDate = Carbon::create(2017, 11, 1, 0, 0, 0);

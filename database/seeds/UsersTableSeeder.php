@@ -28,12 +28,12 @@ class UsersTableSeeder extends Seeder
             'api_token' => null
         ]);
 
-        App\User::create([
+        /* App\User::create([
             'name' => 'User',
             'email' => 'rollmann@meine-landwirtschaft.de',
             'password' => bcrypt(env('APP_USERPASSWORD2', str_random(10))),
             'verified' => true,
             'api_token' => null
-        ]);
+        ]); */
     }
 }
