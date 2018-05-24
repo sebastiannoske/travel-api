@@ -128,6 +128,8 @@ class EventController extends Controller
                 })->get();
 
                 if (!$events) {
+
+                    dd($events);
                     $events = Event::all();
                 }
             }
