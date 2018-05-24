@@ -132,9 +132,9 @@ class EventController extends Controller
                         $query->where('user_id', '=', $auth_user->id);
                     })->pluck('id')->toArray();
 
-
-                    dd($destinations);
-
+                    $events = Event::whereHas('destinations', function ($query) use ($destinations) {
+                        $query->whereIn('id', $destinations);
+                    });
                 }
             }
 
