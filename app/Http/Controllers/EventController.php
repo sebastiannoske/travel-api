@@ -127,9 +127,9 @@ class EventController extends Controller
                     $query->where('user_id', '=', $auth_user->id);
                 })->get();
 
+                dd($events);
             }
 
-            dd($events);
         }
 
         return view('events', ['events' => $events]);
