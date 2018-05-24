@@ -129,9 +129,8 @@ class EventController extends Controller
 
             }
 
+            dd($events);
         }
-
-        dd($events);
 
         return view('events', ['events' => $events]);
     }
