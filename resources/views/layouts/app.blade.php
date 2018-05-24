@@ -12,7 +12,7 @@
     <title>{{ config('app.name', 'Mitfahrzentrale') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css?test') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css?v1') }}" rel="stylesheet">
 
     <!-- Material Design -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
