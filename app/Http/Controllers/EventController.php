@@ -127,10 +127,7 @@ class EventController extends Controller
                     $query->where('user_id', '=', $auth_user->id);
                 })->get();
 
-                dd($events);
-                if (!$events) {
-
-                    dd($events);
+                if (!$events->count() === 0) {
                     $events = Event::all();
                 }
             }
