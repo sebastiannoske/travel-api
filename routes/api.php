@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get('destinations/{destination_id}/transportation_means', 'TransportationMeanController@indexByTravelId');
     Route::get('events/{event_id}/travel', 'TravelController@indexByEventId');
-    Route::get('sendmail', 'TravelController@sendMail');
+    Route::post('sendmail', 'TravelController@sendMail');
 
 
 });
