@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\TravelContact;
 
-class ConfirmUser extends Mailable
+class ContactUser extends Mailable
 {
     use Queueable, SerializesModels;
 
