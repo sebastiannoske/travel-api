@@ -14,16 +14,18 @@ class ContactUser extends Mailable
 
     public $user;
     public $fromMail;
+    public $message;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(TravelContact $user, $fromMail)
+    public function __construct(TravelContact $user, $fromMail, $message)
     {
         $this->user = $user;
         $this->fromMail = $fromMail;
+        $this->message = $message;
     }
 
     /**

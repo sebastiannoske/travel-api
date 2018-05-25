@@ -14,7 +14,11 @@
 
 <p>
 
-    Test
+    Nachricht von {{$fromMail}}:
+
+    <br/><br/>
+
+
 
 </p>
 
