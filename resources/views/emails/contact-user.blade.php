@@ -19,7 +19,7 @@
 </p>
 
 <p>
-    {{$message}}
+    {!! nl2br(e($message)) !!}
 </p>
 
 </body>
