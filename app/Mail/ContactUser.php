@@ -26,7 +26,7 @@ class ContactUser extends Mailable
     {
         $this->user = $user;
         $this->fromMail = $request->email;
-        $this->fromMessage = $request->email; // $request->description;
+        $this->fromMessage = $request->description;
     }
 
     /**
