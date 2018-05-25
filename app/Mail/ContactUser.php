@@ -15,7 +15,7 @@ class ContactUser extends Mailable
 
     public $user;
     public $fromMail;
-    public $message;
+    public $fromMessage;
 
     /**
      * Create a new message instance.
@@ -26,7 +26,7 @@ class ContactUser extends Mailable
     {
         $this->user = $user;
         $this->fromMail = $request->email;
-        $this->message = $request->email; // $request->description;
+        $this->fromMessage = $request->email; // $request->description;
     }
 
     /**
