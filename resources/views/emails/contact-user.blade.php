@@ -18,9 +18,6 @@
 
 </p>
 
-<p>
-    {!! nl2br(e($message)) !!}
-</p>
 
 </body>
 
