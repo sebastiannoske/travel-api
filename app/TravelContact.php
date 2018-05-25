@@ -23,7 +23,7 @@ class TravelContact extends Model
      * @var array
      */
 
-    protected $hidden = ['created_at', 'updated_at', 'email', 'phone_number'];
+    protected $hidden = ['created_at', 'updated_at'];
 
     /**
      *  Get travel associated with the offer
