@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ConfirmTravel;
 use App\Mail\UserConfirmed;
 use App\Mail\ConfirmUser;
+use App\Mail\ContactUser;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
@@ -215,7 +216,7 @@ class TravelController extends Controller
         $travalContact = TravelContact::find($request->contactId);
 
 
-        // \Mail::to($user)->send(new ConfirmTravel($user, $travel));
+        \Mail::to($travalContact)->send(new ContactUser($travalContact));
 
         return response()->json(['data' => $travalContact->email, 'status' => 'success']);
     }
