@@ -16,10 +16,10 @@
 
     Nachricht von {{$fromMail}}:
 
-    <br/><br/>
+</p>
 
+<p>
     {{$message}}
-
 </p>
 
 </body>
