@@ -215,7 +215,7 @@ class TravelController extends Controller
 
         $travalContact = TravelContact::find($request->contactId);
 
-
+        dd($request->description);
         \Mail::to($travalContact->email)->send(new ContactUser($travalContact, $request->email, $request->description));
 
         return response()->json(['data' => $travalContact->email, 'status' => 'success']);
