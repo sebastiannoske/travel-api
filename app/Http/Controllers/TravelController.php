@@ -207,6 +207,15 @@ class TravelController extends Controller
     }
 
     /**
+     * @param Request $request
+     */
+    public function sendMail(Request $request)
+    {
+        return response()->json(['data' => $request, 'status' => 'success']);
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
