@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Http\Request;
 use App\TravelContact;
 
 class ContactUser extends Mailable
@@ -21,11 +22,11 @@ class ContactUser extends Mailable
      *
      * @return void
      */
-    public function __construct(TravelContact $user, $fromMail, $message)
+    public function __construct(TravelContact $user, Request $request)
     {
         $this->user = $user;
-        $this->fromMail = $fromMail;
-        $this->message = $message;
+        $this->fromMail = $request->email;
+        $this->message = $request->description;
     }
 
     /**
