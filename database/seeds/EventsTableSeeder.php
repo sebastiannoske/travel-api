@@ -14,8 +14,8 @@ class EventsTableSeeder extends Seeder
     {
 
         DB::table('events')->insert([
-            'name' => 'AFD Wegbassen',
-            'campaignText' => 'Mitfahrbörse zu Antifaschistischen Afterhour gegen die AFD am 27.05.2018 in Berlin.'
+            'name' => 'Fusion Festival',
+            'campaignText' => 'Mitfahrbörse zum Fusion Festival 2018'
         ]);
 
         /* DB::table('events')->insert([

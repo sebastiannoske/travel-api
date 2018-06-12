@@ -15,11 +15,11 @@ class DestinationsTableSeeder extends Seeder
     {
 
         DB::table('destinations')->insert([
-            'name' => 'Berlin',
-            'lat' => 52.5185385,
-            'long' => 13.3709998,
+            'name' => 'Flugplatz Lärz',
+            'lat' => 53.3010862,
+            'long' => 12.735005,
             'event_id' => 1,
-            'date' => Carbon::create(2018, 05, 27, 11, 0, 0)
+            'date' => Carbon::create(2018, 06, 27, 8, 0, 0)
         ]);
 
         /* DB::table('destinations')->insert([
