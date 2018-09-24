@@ -14,7 +14,7 @@ class EventsTableSeeder extends Seeder
     {
 
         DB::table('events')->insert([
-            'name' => 'STOP KOHLE Demo',
+            'name' => 'Mitfahrbörse zur Demo: Wald retten - Kohle stoppen!<br/><br/>Am 6. Oktober, Bahnhof Buir, am Hambacher Wald',
             'campaignText' => 'Mitfahrbörse zur "STOP KOHLE" Demo im Hambacher Wald'
         ]);
 
