@@ -14,8 +14,8 @@ class EventsTableSeeder extends Seeder
     {
 
         DB::table('events')->insert([
-            'name' => 'Fusion Festival',
-            'campaignText' => 'Mitfahrbörse zum Fusion Festival 2018'
+            'name' => 'STOP KOHLE Demo',
+            'campaignText' => 'Mitfahrbörse zur "STOP KOHLE" Demo im Hambacher Wald'
         ]);
 
         /* DB::table('events')->insert([
