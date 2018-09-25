@@ -217,7 +217,7 @@ class TravelController extends Controller
             new ContactUser($travalContact, $request)
         );
 
-        return response()->json(['status' => 'success', 'email' => $travalContact->email]);
+        return response()->json(['status' => 'success']);
     }
 
 
