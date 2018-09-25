@@ -212,13 +212,12 @@ class TravelController extends Controller
      */
     public function sendMail(Request $request)
     {
-
         $travalContact = TravelContact::find($request->contactId);
-        \Mail::to($travalContact->email)->send(
+        /* \Mail::to($travalContact->email)->send(
             new ContactUser($travalContact, $request)
-        );
+        ); */
 
-        return response()->json(['status' => 'success']);
+        return response()->json(['status' => 'success', 'email' => $travalContact->email]);
     }
 
 
