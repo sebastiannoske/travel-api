@@ -40,7 +40,7 @@
 
                     <h5>Benutzer Daten</h5>
 
-                    {!! Form::open(['url' => "/user/create"]) !!}
+                    {!! Form::open(['url' => "/events/1/user/create"]) !!} <!-- TODO -->
 
                     <div class="form-group <?php if ($errors->has('name')) echo 'has-error'; ?>">
 
