@@ -69,13 +69,18 @@
 
                     </div>
 
-                    @if (isset($admins) && sizeof($admins) > 0)
+                    @if (isset($admins) && sizeof($admins) > 0 || isset($editors) && sizeof($editors) > 0)
 
                         <div class="row">
 
                             <div class="col-md-6 col-md-offset-3">
 
+                                @if (sizeof($admins))
+
+                                <h5>Administratoren</h5>
+
                                 <ul class="demo-list-item mdl-list">
+
                                     @foreach ($admins as $admin)
 
                                         <li class="mdl-list__item">
@@ -91,7 +96,36 @@
                                         </li>
 
                                     @endforeach
+
                                 </ul>
+
+                                @endif
+
+                                @if (sizeof($editors))
+
+                                <h5>Editoren</h5>
+
+                                <ul class="demo-list-item mdl-list">
+
+                                    @foreach ($editors as $editor)
+
+                                        <li class="mdl-list__item">
+                                        <span class="mdl-list__item-primary-content">
+                                          <i class="material-icons  mdl-list__item-avatar">person</i>
+                                            {{$editor->name}}<br/>({{$editor->email}})
+                                        </span>
+                                            <span class="mdl-list__item-secondary-action">
+                                          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-{{$editor->id}}">
+                                            <input type="checkbox" id="list-checkbox-{{$editor->id}}" data-event-id="{{$event->id}}" data-user-id="{{$editor->id}}" <?php if ($editor->has_event): echo 'checked="checked"'; endif; ?> class="mdl-checkbox__input"/>
+                                          </label>
+                                        </span>
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
+                                @endif
 
                             </div>
 

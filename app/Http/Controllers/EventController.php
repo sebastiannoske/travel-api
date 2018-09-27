@@ -179,8 +179,8 @@ class EventController extends Controller
                     foreach ($editors as $editor) {
                         $user_event = UsersEvent::where([['event_id', '=', $event_id], ['user_id', '=', $editor->id]])->first();
                         $editor->has_event = isset($user_event);
+                        // dd($editor->has_event);
                     }
-
                 } else {
 
                     $usersEvents = UsersEvent::where('user_id', '=', $auth_user->id)->get();
@@ -262,7 +262,6 @@ class EventController extends Controller
 
     public function setHasUserValue(Request $request, $event_id, $user_id) {
 
-
         if ( $request->state === 'true') {
 
             $user_event = UsersEvent::where([['event_id', '=', $event_id], ['user_id', '=', $user_id]])->first();
@@ -276,10 +275,10 @@ class EventController extends Controller
                 );
 
                 $user_event->save();
+                dd('hi');
             }
 
         } else {
-
             $user_event = UsersEvent::where([['event_id', '=', $event_id], ['user_id', '=', $user_id]])->first();
 
             if ($user_event) {
