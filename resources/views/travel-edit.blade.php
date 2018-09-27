@@ -339,7 +339,7 @@
                 }
             </script>
 
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbZ4hrT0d_RIaXoaCbUCwSIB3uo90bHAM&libraries=places&callback=initMap"></script>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9XnE7sObsw-I0PAKdL7-XTsN7MD5mvQ0&libraries=places&callback=initMap"></script>
 
             <script src="/js/travel-details.js"></script>
 
