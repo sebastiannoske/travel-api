@@ -75,7 +75,7 @@
 
                             <div class="col-md-6 col-md-offset-3">
 
-                                @if (sizeof($admins))
+                                @if (isset($admins) && sizeof($admins))
 
                                 <h5>Administratoren</h5>
 
@@ -101,7 +101,7 @@
 
                                 @endif
 
-                                @if (sizeof($editors))
+                                @if (isset($editors) && sizeof($editors))
 
                                 <h5>Editoren</h5>
 
