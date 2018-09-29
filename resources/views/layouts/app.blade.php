@@ -28,6 +28,7 @@
     <script src="https://unpkg.com/babel-polyfill@6.2.0/dist/polyfill.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.standalone.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@14/dist/smooth-scroll.polyfills.min.js"></script>
     <script src="https://unpkg.com/vue"></script>
 
     <!-- Scripts -->

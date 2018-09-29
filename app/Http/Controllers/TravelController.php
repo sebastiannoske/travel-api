@@ -651,6 +651,24 @@ class TravelController extends Controller
         return response()->json(['status' => 'success']);
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyStopover(Request $request, $travel_id, $stopover_id)
+    {
+        $stopover = Stopover::findOrFail($stopover_id);
+
+        if ($stopover) {
+            $stopover->delete();
+        }
+
+        return response()->json(['status' => 'success']);
+    }
+
+
     public function setPublicValue(Request $request, $id) {
 
         $value = ( $request->state === 'true') ? 1 : 0;

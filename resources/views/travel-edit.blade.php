@@ -196,16 +196,47 @@
 
             @if ($travel->transportation_mean_id === 2 && $is_offer)
 
-                <h5 style="text-align: center;">Zwischenstopps</h5>
-
                 @if ($travel->stopover)
 
-                    @foreach ( $travel->stopover as $stopover )
+                    <h4 style="text-align: center;">Zwischenstopps</h4>
 
+                    {!! Form::open(['url' => "/travel/$travel->id/stopover"]) !!}
 
-                        <p>über {{$stopover->street_address}}, {{$stopover->postcode}} {{$stopover->city}}</p>
+                    <table class="table table-striped">
 
-                    @endforeach
+                        <thead>
+
+                        <tr>
+
+                            <th>Stadt</th>
+                            <th>Postleitzahl</th>
+                            <th>Adresse</th>
+                            <th></th>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        @foreach ( $travel->stopover as $stopover )
+
+                        <tr>
+
+                            <td>{{$stopover->city}}</td>
+                            <td>{{$stopover->postcode}}</td>
+                            <td>{{$stopover->street_address}}</td>
+                            <td style="text-align: right;"><button class="btn-delete-stopover mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent"  data-travel-id="{{$travel->id}}" data-ref-id="{{$stopover->id}}">löschen</button></td>
+
+                        </tr>
+
+                        @endforeach
+
+                        </tbody>
+
+                    </table>
+
+                     {!! Form::close() !!}
 
                 @else
 
@@ -216,7 +247,7 @@
                 @endif
 
 
-                <h5 style="text-align: center;"><a class="btn" role="button" data-toggle="collapse" href="#collapse" aria-expanded="@if ($stopoverError) true @else false @endif" aria-controls="collapse">Zwischenstopp hinzufügen <i class="glyphicon glyphicon-plus"></i></a></h5>
+                <h5 style="text-align: center;"><a class="btn" id="collapse-toggle" role="button" data-toggle="collapse" href="#collapse" aria-expanded="@if ($stopoverError) true @else false @endif"  aria-controls="collapse">Zwischenstopp hinzufügen <i class="glyphicon glyphicon-plus"></i></a></h5>
 
                 <div class="collapse @if ($stopoverError) in @endif" id="collapse">
 

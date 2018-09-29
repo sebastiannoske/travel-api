@@ -60,6 +60,40 @@ var Global = Global || {};
 
             });
 
+            $('.btn-delete-stopover').on('click', function(e) {
+
+                e.preventDefault();
+
+                $.ajaxSetup({
+
+                    headers: {
+
+                        'X-CSRF-TOKEN': values.crsfToken
+
+                    }
+
+                });
+
+                $.post('/travel/'+$(this).data('travel-id')+'/stopover/'+$(this).data('ref-id')+'/destroy', { }, function(data) {
+
+                    window.location.reload();
+
+                });
+
+                return false;
+
+            });
+
+            $('#collapse-toggle').on('click', function () {
+                setTimeout(() => {
+                    var scroll = new SmoothScroll();
+                    var anchor = document.querySelector('#collapse');
+                    scroll.animateScroll(anchor);
+                }, 500);
+
+            });
+
+
             var picker = new MaterialDatetimePicker({})
                 .on('submit', function(d) {
                     var date = new Date(d);
