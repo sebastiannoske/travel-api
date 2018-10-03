@@ -36,6 +36,6 @@ class ContactUser extends Mailable
      */
     public function build()
     {
-        return $this->replyTo($this->fromMail)->view('emails.contact-user');
+        return $this->replyTo($this->fromMail)->subject('Eine Nachricht von der Mitfahrzentrale')->view('emails.contact-user');
     }
 }
