@@ -15,7 +15,7 @@ class EventsTableSeeder extends Seeder
 
         DB::table('events')->insert([
             'name' => 'STOP KOHLE Demo',
-            'campaignText' => 'Mitfahrbörse zu Ende Gelände 2018<br/><br/>25.10.-29.10.2018 - Im Rheinischen Braunkohlerevier'
+            'campaignText' => 'Mitfahrbörse zu Ende Gelände 2018<br/><br/>25.10.-29.10.2018 - Im Rheinischen <Braunkohlerevier></Braunkohlerevier>'
         ]);
 
         /* DB::table('events')->insert([

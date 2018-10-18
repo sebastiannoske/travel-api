@@ -18,7 +18,10 @@
 
         <p>
 
-            Passwort: {{ $pw }}
+            Passwort: "{{$pw}}"
+
+            <br />
+            (natürlich ohne die Anführungszeichen)
 
             <br />
             <a href='{{ url("login") }}'>Jetzt einloggen</a>
