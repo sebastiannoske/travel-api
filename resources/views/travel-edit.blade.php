@@ -312,6 +312,16 @@
             <input type="hidden" id="input-dest-lat" value="{{$travel->destination->lat}}">
             <input type="hidden" id="input-dest-lng" value="{{$travel->destination->long}}">
 
+            @foreach ( $travel->stopover as $stopover )
+
+                <div class="stopover-positions">
+                    <input type="hidden" class="stopover-lat" value="{{$stopover->lat}}">
+                    <input type="hidden" class="stopover-lng" value="{{$stopover->long}}">
+                </div>
+
+            @endforeach
+
+
             <?php if ( $travel->transportation_mean->id === 1 || $travel->transportation_mean->id === 2 || $travel->transportation_mean->id === 6 ) : ?>
 
                 <input type="hidden" id="input-travelmode" value="DRIVING">
@@ -355,10 +365,27 @@
                     var destLat = document.getElementById('input-dest-lat').value;
                     var travelMode = document.getElementById('input-travelmode').value;
 
+                    var stopOvers = document.getElementsByClassName('stopover-positions');
+                    var waypoints = [];
+
+                    if (stopOvers.length) {
+                        for(var i = 0; i < stopOvers.length; i++)
+                        {
+                            console.log(stopOvers.item(i).querySelector('.stopover-lat').value);
+                            console.log(stopOvers.item(i).querySelector('.stopover-lng').value);
+
+                            waypoints.push({
+                                location: new google.maps.LatLng(stopOvers.item(i).querySelector('.stopover-lat').value, stopOvers.item(i).querySelector('.stopover-lng').value),
+                                stopover: true
+                            })
+                        }
+                    }
+
                     directionsService.route({
 
                         origin: lat + ',' + lng,
                         destination: destLat + ', ' + destLng,
+                        waypoints: waypoints,
                         travelMode: travelMode
                     }, function(response, status) {
                         if (status === 'OK') {
