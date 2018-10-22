@@ -127,6 +127,29 @@ var Global = Global || {};
             // Get the place details from the autocomplete object.
             var place = autocomplete.getPlace();
 
+            var newPlaceMap = document.getElementById('new-place-map');
+
+            if (newPlaceMap.classList.contains('hidden')) {
+                newPlaceMap.classList.remove('hidden');
+            }
+
+            var latLng = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
+
+            var map = new google.maps.Map(newPlaceMap, {
+                zoom: 16,
+                center: latLng
+            });
+
+            // Place a draggable marker on the map
+            var marker = new google.maps.Marker({
+                position: latLng,
+                map: map,
+                draggable:true,
+                title:"Drag me!"
+            });
+
+            marker.addListener('dragend', dragEndEvent);
+
             // console.log(place);
             // console.log(place.address_components.geometry.location.lng());
 
@@ -207,6 +230,12 @@ var Global = Global || {};
                 }
             }
         };
+
+        var dragEndEvent = function dragEndEvent(event) {
+            document.getElementById('lat').value = event.latLng.lat();
+            document.getElementById('lng').value = event.latLng.lng();
+        };
+
 
         var setValues = function setValues() {
 

@@ -257,6 +257,8 @@
 
                     </div>
 
+                    <div id="new-place-map" class="hidden" style="width:100%;height: 500px; margin-bottom: 30px;"></div>
+
                      {!! Form::open(['url' => "/travel/$travel->id/stopover"]) !!}
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('locality')) echo 'has-error'; ?>">
@@ -280,17 +282,29 @@
 
                         </div>
 
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('lat')) echo 'has-error'; ?>">
+                        <div class="row">
 
-                            {{ Form::text('lat', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'lat'])) }}
-                            {{ Form::label('lat', 'Latitude', array('class' => 'mdl-textfield__label'))}}
+                            <div class="col-md-6">
 
-                        </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('lat')) echo 'has-error'; ?>">
 
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('lng')) echo 'has-error'; ?>">
+                                    {{ Form::text('lat', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'lat'])) }}
+                                    {{ Form::label('lat', 'Latitude', array('class' => 'mdl-textfield__label'))}}
 
-                            {{ Form::text('lng', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'lng'])) }}
-                            {{ Form::label('lng', 'Longitude', array('class' => 'mdl-textfield__label'))}}
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php if ($errors->has('lng')) echo 'has-error'; ?>">
+
+                                    {{ Form::text('lng', null, array_merge(['class' => 'mdl-textfield__input', 'id' => 'lng'])) }}
+                                    {{ Form::label('lng', 'Longitude', array('class' => 'mdl-textfield__label'))}}
+
+                                </div>
+
+                            </div>
 
                         </div>
 
