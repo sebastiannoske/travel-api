@@ -21,7 +21,7 @@ return [
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Address
-    |--------------------------------------------------------------------------
+    |-------------------------------------------------------------------------
     |
     | Here you may provide the host address of the SMTP server used by your
     | applications. A default option is provided that is compatible with

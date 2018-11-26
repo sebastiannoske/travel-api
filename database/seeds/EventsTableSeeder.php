@@ -14,8 +14,8 @@ class EventsTableSeeder extends Seeder
     {
 
         DB::table('events')->insert([
-            'name' => 'STOP KOHLE Demo',
-            'campaignText' => 'Mitfahrbörse zur Klima-Doppel-Demo<br/><br/>Samstag 1.12.2018 - zeitgleich in Berlin und Köln'
+            'name' => 'Wir haben es Satt',
+            'campaignText' => 'Mitfahrbörse zu wir haben es Satt 2019<br/><br/>19.01.2019 - Brandenburger Tor - Berlin'
         ]);
 
         /* DB::table('events')->insert([
