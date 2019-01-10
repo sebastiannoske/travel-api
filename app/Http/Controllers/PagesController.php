@@ -162,7 +162,8 @@ class PagesController extends Controller
             foreach ( $travel as $current_travel ) {
 
                 $current_travel->dateHuman = $current_travel->created_at->diffForHumans();
-                $current_travel->label = 'switch-' . $current_travel->id;
+                $current_travel->labelPublic = 'switch-public-' . $current_travel->id;
+                $current_travel->labelVerified = 'switch-verified-' . $current_travel->id;
                 $current_travel->editURL = '/edit-travel/' . $current_travel->id;
                 $current_travel->isPublic = $current_travel->public;
                 $current_travel->isVerified = $current_travel->verified;

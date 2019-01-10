@@ -46,20 +46,23 @@
                     <td>{{key.city}}</td>
                     <td>{{key.transportation_mean.name}}</td>
                     <td>{{key.destination.name}}</td>
-                    <td v-if='key.isVerified'><img src="/img/checked.svg"/></td>
-                    <td v-if='!key.isVerified' class="public-switch">
-                        <img src="/img/not-checked.svg"/>
-                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" v-bind:for="key.label">
-                            <input type="checkbox" v-bind:id="key.label" class="mdl-switch__input" v-bind:data-ref-id="key.id" v-model='key.isPublic' v-bind:true-value="true" v-bind:false-value="false">
-                            <span class="mdl-switch__label"></span>
+                    <td v-if='key.isVerified' class="verified-switch">
+                        <!-- <img src="/img/checked.svg"/> -->
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" v-bind:for="key.labelVerified">
+                            <input type="checkbox" v-bind:id="key.labelVerified" class="mdl-switch__input" v-bind:data-ref-id="key.id" v-model='key.isVerified' v-bind:true-value="true" v-bind:false-value="false">
+                        </label>
+                    </td>
+                    <td v-if='!key.isVerified' class="verified-switch">
+                        <!-- <img src="/img/not-checked.svg"/> -->
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" v-bind:for="key.labelVerified">
+                            <input type="checkbox" v-bind:id="key.labelVerified" class="mdl-switch__input" v-bind:data-ref-id="key.id" v-model='key.isVerified' v-bind:true-value="true" v-bind:false-value="false">
                         </label>
                     </td>
                     <td><a v-bind:href="key.editURL" target="_self"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">editieren</button></a></td>
                     <td><button class="btn-delete-travel mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" v-bind:data-ref-id="key.id">löschen</button></td>
                     <td class="public-switch">
-                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" v-bind:for="key.label">
-                            <input type="checkbox" v-bind:id="key.label" class="mdl-switch__input" v-bind:data-ref-id="key.id" v-model='key.isPublic' v-bind:true-value="true" v-bind:false-value="false">
-                            <span class="mdl-switch__label"></span>
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" v-bind:for="key.labelPublic">
+                            <input type="checkbox" v-bind:id="key.labelPublic" class="mdl-switch__input" v-bind:data-ref-id="key.id" v-model='key.isPublic' v-bind:true-value="true" v-bind:false-value="false">
                         </label>
                     </td>
 

@@ -31,6 +31,24 @@ var Global = Global || {};
 
             });
 
+            $(document).on('change', '.verified-switch .mdl-switch__input', function(e) {
+
+                $.ajaxSetup({
+
+                    headers: {
+
+                        'X-CSRF-TOKEN': values.crsfToken
+
+                    }
+
+                });
+
+                var state = $(e.target).is(":checked");
+
+                $.post('/travel/'+$(this).data('ref-id')+'/isverified', { 'state' : state }, function(data) {});
+
+            });
+
             $(document).on('click', '.btn-delete-travel', function(e) {
 
                 e.preventDefault();

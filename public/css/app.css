@@ -649,6 +649,16 @@ div.hline {
     padding: 16px 8px !important;
 }
 
+.table-striped>tbody>tr>td img {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+td .mdl-switch {
+    display: inline-block;
+    width: auto;
+}
+
 .c-datepicker__header-date {
     height: 182px !important;
 }

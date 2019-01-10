@@ -20,6 +20,7 @@ Route::get('/', 'PagesController@index');
 Route::get('/events/{event_id}/travel', 'PagesController@showTravel');
 Route::get('/edit-travel/{travel}', 'PagesController@editTravel');
 Route::post('/travel/{travel}/ispublic', 'TravelController@setPublicValue');
+Route::post('/travel/{travel}/isverified', 'TravelController@setVerifiedValue');
 Route::post('/travel/{travel}/stopover', 'TravelController@storeStopover');
 Route::post('/travel/{travel}/stopover/{stopover_id}/destroy', 'TravelController@destroyStopover');
 Route::post('/travel/{travel}/update', 'TravelController@update');

@@ -678,4 +678,14 @@ class TravelController extends Controller
 
         return $request->state;
     }
+
+    public function setVerifiedValue(Request $request, $id) {
+
+        $value = ( $request->state === 'true') ? 1 : 0;
+        $travel = Travel::find($id);
+        $travel->verified = $value;
+        $travel->save();
+
+        return $request->state;
+    }
 }

@@ -1724,6 +1724,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['travel'],
@@ -31860,59 +31863,92 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       class: {
         request: key.request
       }
-    }, [_c('td', [_vm._v(_vm._s(key.dateHuman))]), _vm._v(" "), (key.offer) ? _c('td', [_vm._v("Angebot")]) : _vm._e(), _vm._v(" "), (key.request) ? _c('td', [_vm._v("Gesuch")]) : _vm._e(), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.postcode))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.city))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.transportation_mean.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.destination.name))]), _vm._v(" "), (key.isVerified) ? _c('td', [_c('img', {
-      attrs: {
-        "src": "/img/checked.svg"
-      }
-    })]) : _vm._e(), _vm._v(" "), (!key.isVerified) ? _c('td', {
-      staticClass: "public-switch"
-    }, [_c('img', {
-      attrs: {
-        "src": "/img/not-checked.svg"
-      }
-    }), _vm._v(" "), _c('label', {
+    }, [_c('td', [_vm._v(_vm._s(key.dateHuman))]), _vm._v(" "), (key.offer) ? _c('td', [_vm._v("Angebot")]) : _vm._e(), _vm._v(" "), (key.request) ? _c('td', [_vm._v("Gesuch")]) : _vm._e(), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.postcode))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.city))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.transportation_mean.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(key.destination.name))]), _vm._v(" "), (key.isVerified) ? _c('td', {
+      staticClass: "verified-switch"
+    }, [_c('label', {
       staticClass: "mdl-switch mdl-js-switch mdl-js-ripple-effect",
       attrs: {
-        "for": key.label
+        "for": key.labelVerified
       }
     }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
-        value: (key.isPublic),
-        expression: "key.isPublic"
+        value: (key.isVerified),
+        expression: "key.isVerified"
       }],
       staticClass: "mdl-switch__input",
       attrs: {
         "type": "checkbox",
-        "id": key.label,
+        "id": key.labelVerified,
         "data-ref-id": key.id,
         "true-value": true,
         "false-value": false
       },
       domProps: {
-        "checked": Array.isArray(key.isPublic) ? _vm._i(key.isPublic, null) > -1 : (key.isPublic)
+        "checked": Array.isArray(key.isVerified) ? _vm._i(key.isVerified, null) > -1 : (key.isVerified)
       },
       on: {
         "__c": function($event) {
-          var $$a = key.isPublic,
+          var $$a = key.isVerified,
             $$el = $event.target,
             $$c = $$el.checked ? (true) : (false);
           if (Array.isArray($$a)) {
             var $$v = null,
               $$i = _vm._i($$a, $$v);
             if ($$c) {
-              $$i < 0 && (key.isPublic = $$a.concat($$v))
+              $$i < 0 && (key.isVerified = $$a.concat($$v))
             } else {
-              $$i > -1 && (key.isPublic = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+              $$i > -1 && (key.isVerified = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
             }
           } else {
-            key.isPublic = $$c
+            key.isVerified = $$c
           }
         }
       }
-    }), _vm._v(" "), _c('span', {
-      staticClass: "mdl-switch__label"
+    })])]) : _vm._e(), _vm._v(" "), (!key.isVerified) ? _c('td', {
+      staticClass: "verified-switch"
+    }, [_c('label', {
+      staticClass: "mdl-switch mdl-js-switch mdl-js-ripple-effect",
+      attrs: {
+        "for": key.labelVerified
+      }
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (key.isVerified),
+        expression: "key.isVerified"
+      }],
+      staticClass: "mdl-switch__input",
+      attrs: {
+        "type": "checkbox",
+        "id": key.labelVerified,
+        "data-ref-id": key.id,
+        "true-value": true,
+        "false-value": false
+      },
+      domProps: {
+        "checked": Array.isArray(key.isVerified) ? _vm._i(key.isVerified, null) > -1 : (key.isVerified)
+      },
+      on: {
+        "__c": function($event) {
+          var $$a = key.isVerified,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = null,
+              $$i = _vm._i($$a, $$v);
+            if ($$c) {
+              $$i < 0 && (key.isVerified = $$a.concat($$v))
+            } else {
+              $$i > -1 && (key.isVerified = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            }
+          } else {
+            key.isVerified = $$c
+          }
+        }
+      }
     })])]) : _vm._e(), _vm._v(" "), _c('td', [_c('a', {
       attrs: {
         "href": key.editURL,
@@ -31930,7 +31966,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('label', {
       staticClass: "mdl-switch mdl-js-switch mdl-js-ripple-effect",
       attrs: {
-        "for": key.label
+        "for": key.labelPublic
       }
     }, [_c('input', {
       directives: [{
@@ -31942,7 +31978,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "mdl-switch__input",
       attrs: {
         "type": "checkbox",
-        "id": key.label,
+        "id": key.labelPublic,
         "data-ref-id": key.id,
         "true-value": true,
         "false-value": false
@@ -31968,8 +32004,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           }
         }
       }
-    }), _vm._v(" "), _c('span', {
-      staticClass: "mdl-switch__label"
     })])])])
   }))])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
