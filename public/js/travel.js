@@ -13,7 +13,7 @@ var Global = Global || {};
             setValues();
             setElements();
 
-            $(document).on('change', '.mdl-switch__input', function(e) {
+            $(document).on('change', '.public-switch .mdl-switch__input', function(e) {
 
                 $.ajaxSetup({
 
