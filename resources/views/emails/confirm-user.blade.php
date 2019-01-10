@@ -14,7 +14,7 @@
 
 <p>
 
-    Du musst nur noch <!-- <a href='{{ url("register/confirm/{$user->token}") }}'>--> <a href="https://mfz.klima-kohle-demo.de/travel/confirm/{{$travel->token}}">deine E-Mail Adresse bestätigen</a> um das Portal nutzen zu können.
+    Du musst nur noch <!-- <a href='{{ url("register/confirm/{$user->token}") }}'>--> <a href="https://mfz.wir-haben-es-satt.de/travel/confirm/{{$travel->token}}">deine E-Mail Adresse bestätigen</a> um das Portal nutzen zu können.
 
 </p>
 
