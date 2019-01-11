@@ -14,8 +14,8 @@ class EventsTableSeeder extends Seeder
     {
 
         DB::table('events')->insert([
-            'name' => 'Klimastreik',
-            'campaignText' => 'Mitfahrbörse zum Klimastreik 2019<br/><br/>25.01.2019 - Bundeswirtschaftsministerium - Berlin'
+            'name' => 'Bildungsstreik fürs Klima',
+            'campaignText' => 'Mitfahrbörse zum Bildungsstreik fürs Klima 2019<br/><br/>25.01.2019 - Bundeswirtschaftsministerium - Berlin'
         ]);
 
         /* DB::table('events')->insert([
