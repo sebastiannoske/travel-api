@@ -14,7 +14,7 @@ class DestinationsTableSeeder extends Seeder
     public function run()
     {
         DB::table('destinations')->insert([
-            'name' => 'Berlin - Alexanderplatz',
+            'name' => 'Berlin',
             'lat' => 52.523552,
             'long' => 13.4117364,
             'event_id' => 1,
@@ -23,7 +23,7 @@ class DestinationsTableSeeder extends Seeder
         ]);
 
         DB::table('destinations')->insert([
-            'name' => 'Frankfurt - Opernplatz',
+            'name' => 'Frankfurt',
             'lat' => 50.1150384,
             'long' => 8.6701293,
             'event_id' => 1,
@@ -32,7 +32,7 @@ class DestinationsTableSeeder extends Seeder
         ]);
 
         DB::table('destinations')->insert([
-            'name' => 'Hamburg - Rathausmarkt',
+            'name' => 'Hamburg',
             'lat' => 53.5508717,
             'long' => 9.9917392,
             'event_id' => 1,
@@ -41,7 +41,7 @@ class DestinationsTableSeeder extends Seeder
         ]);
 
         DB::table('destinations')->insert([
-            'name' => 'Köln - Deutzer Werft',
+            'name' => 'Köln',
             'lat' => 50.9338788,
             'long' => 6.9677085,
             'event_id' => 1,
@@ -50,7 +50,7 @@ class DestinationsTableSeeder extends Seeder
         ]);
 
         DB::table('destinations')->insert([
-            'name' => 'Leipzig - Wilhelm-Leuschner-Platz',
+            'name' => 'Leipzig',
             'lat' => 51.3351466,
             'long' => 12.3727957,
             'event_id' => 1,
@@ -59,7 +59,7 @@ class DestinationsTableSeeder extends Seeder
         ]);
 
         DB::table('destinations')->insert([
-            'name' => 'München - Odeonsplatz',
+            'name' => 'München',
             'lat' => 48.1433895,
             'long' => 11.5753355,
             'event_id' => 1,
@@ -68,7 +68,7 @@ class DestinationsTableSeeder extends Seeder
         ]);
 
         DB::table('destinations')->insert([
-            'name' => 'Stuttgart - Arnulff-Klett-Platz',
+            'name' => 'Stuttgart',
             'lat' => 48.7830007,
             'long' => 9.179412,
             'event_id' => 1,

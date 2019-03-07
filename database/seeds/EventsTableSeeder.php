@@ -14,8 +14,8 @@ class EventsTableSeeder extends Seeder
     {
 
         DB::table('events')->insert([
-            'name' => 'Demo Europa',
-            'campaignText' => 'Mitfahrbörse zur Demo Europa<br/><br/>19.05.2019 - Deutschlandweit'
+            'name' => 'Ein Europa für Alle!',
+            'campaignText' => 'Mitfahrbörse zu den "Ein Europa für Alle!"<br/><br/>Demonstrationen am 19.05.2019 '
         ]);
 
         /* DB::table('events')->insert([
