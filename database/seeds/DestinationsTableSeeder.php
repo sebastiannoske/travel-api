@@ -14,31 +14,70 @@ class DestinationsTableSeeder extends Seeder
     public function run()
     {
         DB::table('destinations')->insert([
-            'name' => 'Berlin',
-            'lat' => 52.5284531,
-            'long' => 13.3746955,
+            'name' => 'Berlin - Alexanderplatz',
+            'lat' => 52.523552,
+            'long' => 13.4117364,
             'event_id' => 1,
-            'date' => Carbon::create(2019, 01, 25, 12, 0, 0)
+            'pin_color' => 'red',
+            'date' => Carbon::create(2019, 5, 19, 12, 0, 0)
         ]);
 
-        /* DB::table('destinations')->insert([
-            'name' => 'Berlin',
-            'lat' => 52.525084,
-            'long' => 13.369402,
-            'event_id' => 2,
-            'date' => Carbon::create(2018, 03, 04, 12, 0, 0)
-        ]); */
+        DB::table('destinations')->insert([
+            'name' => 'Frankfurt - Opernplatz',
+            'lat' => 50.1150384,
+            'long' => 8.6701293,
+            'event_id' => 1,
+            'pin_color' => 'darkred',
+            'date' => Carbon::create(2019, 5, 19, 12, 0, 0)
+        ]);
 
-        /* DB::table('destinations')->insert([
-            'name' => 'Hamburg',
-            'lat' => 53.552812,
-            'long' => 10.006979,
-            'event_id' => 2,
-            'date' => Carbon::create(2018, 03, 04, 12, 0, 0)
-        ]); */
+        DB::table('destinations')->insert([
+            'name' => 'Hamburg - Rathausmarkt',
+            'lat' => 53.5508717,
+            'long' => 9.9917392,
+            'event_id' => 1,
+            'pin_color' => 'violet',
+            'date' => Carbon::create(2019, 5, 19, 12, 0, 0)
+        ]);
 
-        /*$faker = Faker::create();
-        $startDate = Carbon::create(2017, 11, 1, 0, 0, 0);
+        DB::table('destinations')->insert([
+            'name' => 'Köln - Deutzer Werft',
+            'lat' => 50.9338788,
+            'long' => 6.9677085,
+            'event_id' => 1,
+            'pin_color' => 'blue',
+            'date' => Carbon::create(2019, 5, 19, 12, 0, 0)
+        ]);
+
+        DB::table('destinations')->insert([
+            'name' => 'Leipzig - Wilhelm-Leuschner-Platz',
+            'lat' => 51.3351466,
+            'long' => 12.3727957,
+            'event_id' => 1,
+            'pin_color' => 'cyan',
+            'date' => Carbon::create(2019, 5, 19, 12, 0, 0)
+        ]);
+
+        DB::table('destinations')->insert([
+            'name' => 'München - Odeonsplatz',
+            'lat' => 48.1433895,
+            'long' => 11.5753355,
+            'event_id' => 1,
+            'pin_color' => 'green',
+            'date' => Carbon::create(2019, 5, 19, 12, 0, 0)
+        ]);
+
+        DB::table('destinations')->insert([
+            'name' => 'Stuttgart - Arnulff-Klett-Platz',
+            'lat' => 48.7830007,
+            'long' => 9.179412,
+            'event_id' => 1,
+            'pin_color' => 'darkgreen',
+            'date' => Carbon::create(2019, 5, 19, 12, 0, 0)
+        ]);
+
+        /* $faker = Faker::create();
+        $startDate = Carbon::create(2019, 4, 1, 0, 0, 0);
         $dates = [];
 
         for ( $i = 0; $i < 7; $i++) {
@@ -75,7 +114,7 @@ class DestinationsTableSeeder extends Seeder
                 'event_id' => $event_id,
                 'date' => $dates[$event_id - 1]
             ]);
-        }*/
+        } */
 
 
     }

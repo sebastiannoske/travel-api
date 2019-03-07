@@ -18,6 +18,7 @@ class CreateDestinationsTable extends Migration
             $table->string('name');
             $table->string('postcode')->nullable()->default(null);
             $table->string('street_address')->nullable()->default(null);
+            $table->string('pin_color')->default('black');
             $table->double('lat', 12, 10);
             $table->double('long', 13,10);
             $table->integer('event_id')->unsigned();
