@@ -22,7 +22,6 @@ class DestinationsTableSeeder extends Seeder
             'date' => Carbon::create(2020, 1, 18, 12, 0, 0)
         ]);
 
-        52.5162746,13.3755154
         /*DB::table('destinations')->insert([
             'name' => 'Frankfurt',
             'lat' => 50.1150384,
