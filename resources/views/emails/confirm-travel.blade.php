@@ -19,7 +19,7 @@
         <p>
 
             <!-- <a href='{{ url("travel/confirm/{$travel->token}") }}'>Eintrag bestätigen</a> -->
-            <a href="https://mfz.wir-haben-es-satt.de.env/travel/confirm/{{$travel->token}}">Eintrag bestätigen</a>
+            <a href="https://mfz.wir-haben-es-satt.de/travel/confirm/{{$travel->token}}">Eintrag bestätigen</a>
 
         </p>
 
