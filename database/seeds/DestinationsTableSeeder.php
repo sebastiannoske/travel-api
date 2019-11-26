@@ -14,14 +14,15 @@ class DestinationsTableSeeder extends Seeder
     public function run()
     {
         DB::table('destinations')->insert([
-            'name' => 'Frankfurt am Main',
-            'lat' => 50.112185,
-            'long' => 8.654437,
+            'name' => 'Berlin - Brandenburger Tor',
+            'lat' => 52.5162746,
+            'long' => 13.3755154,
             'event_id' => 1,
             'pin_color' => 'green',
-            'date' => Carbon::create(2019, 9, 14, 12, 0, 0)
+            'date' => Carbon::create(2020, 1, 18, 12, 0, 0)
         ]);
 
+        52.5162746,13.3755154
         /*DB::table('destinations')->insert([
             'name' => 'Frankfurt',
             'lat' => 50.1150384,

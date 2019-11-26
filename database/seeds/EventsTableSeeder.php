@@ -14,7 +14,7 @@ class EventsTableSeeder extends Seeder
     {
 
         DB::table('events')->insert([
-            'name' => 'IAA Demo und Sternfahrt',
+            'name' => 'Wir haben es satt!-Demo',
             'campaignText' => 'Mitfahrbörse zur IAA-DEMO und Sternfahrt am 14.09.2019'
         ]);
 
