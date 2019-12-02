@@ -1,6 +1,6 @@
 # travel-api
 
-This project is developed using Laravel 5
+This project is developed using Laravel 5.6 ( https://laravel.com/docs/5.6 ). It contains a custom content management system to create content for books. It also offers an API, which delivers content.
 
 ## Installation
 - git clone https://github.com/sebastiannoske/travel-api.git projectname
