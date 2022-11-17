@@ -15,7 +15,7 @@ class DestinationsTableSeeder extends Seeder
     {
         DB::table('destinations')->insert([
             'name' => 'Brandenburger Tor',
-            'lat' => 52.516200,
+            'lat' => 52.51620,
             'long' => 13.377028,
             'event_id' => 1,
             'pin_color' => 'blue',
