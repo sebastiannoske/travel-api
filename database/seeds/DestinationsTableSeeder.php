@@ -15,11 +15,19 @@ class DestinationsTableSeeder extends Seeder
     {
         DB::table('destinations')->insert([
             'name' => 'Brandenburger Tor',
+<<<<<<< HEAD
             'lat' => 52.516200,
             'long' => 13.377028,
             'event_id' => 1,
             'pin_color' => 'blue',
             'date' => Carbon::create(2022, 1, 22, 12, 0, 0)
+=======
+            'lat' => 52.51620,
+            'long' => 13.377028,
+            'event_id' => 1,
+            'pin_color' => 'blue',
+            'date' => Carbon::create(2023, 1, 21, 12, 0, 0)
+>>>>>>> 5e0ec5e2c1a7595c463380741d382136797e6bd5
         ]);
 
         /*DB::table('destinations')->insert([

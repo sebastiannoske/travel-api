@@ -14,8 +14,8 @@ class EventsTableSeeder extends Seeder
     {
 
         DB::table('events')->insert([
-            'name' => 'Wir haben es satt!-Demo',
-            'campaignText' => 'Mitfahrbörse zur #WHES22-Demo am 22.1.22'
+            'name' => 'Wir haben es satt! - Demo',
+            'campaignText' => 'Mitfahrbörse zur #WHES23-Demo am 21.1.23'
         ]);
 
         /* DB::table('events')->insert([
